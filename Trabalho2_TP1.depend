@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1719694598 source:c:\users\andre\desktop\pasta\trabalho-1-tp1\dominios.cpp
+	"dominios.h"
+
+1720386996 c:\users\andre\desktop\pasta\trabalho-1-tp1\dominios.h
+	<string>
+	<stdexcept>
+	<regex>
+	<iostream>
+	<ctype.h>
+	<stdio.h>
+
+1719694598 source:c:\users\andre\desktop\pasta\trabalho-1-tp1\main.cpp
+	<iostream>
+	"dominios.h"
+	"entidades.h"
+	"testes.h"
+
+1720453838 c:\users\andre\desktop\pasta\trabalho-1-tp1\entidades.h
+	"dominios.h"
+
+1719694598 c:\users\andre\desktop\pasta\trabalho-1-tp1\testes.h
+	"dominios.h"
+	"entidades.h"
+
+1719694598 source:c:\users\andre\desktop\pasta\trabalho-1-tp1\testes.cpp
+	"testes.h"
+
