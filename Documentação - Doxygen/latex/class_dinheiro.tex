@@ -1,0 +1,90 @@
+\doxysection{Dinheiro Class Reference}
+\hypertarget{class_dinheiro}{}\label{class_dinheiro}\index{Dinheiro@{Dinheiro}}
+
+
+Classe concreta \doxylink{class_dinheiro}{Dinheiro}. Herda metodos da classe abstrata \doxylink{class_dominios}{Dominios}.  
+
+
+
+
+{\ttfamily \#include $<$dominios.\+h$>$}
+
+Inheritance diagram for Dinheiro\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_dinheiro}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_dinheiro_a9fe0cac2ccefd20320296ed4b5892446}{validar}} (string) override
+\begin{DoxyCompactList}\small\item\em O valor do objeto do dominio desejado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_dominios}{Dominios}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_dominios_add18854d2909d6e44e0b377f73304c07}{\texorpdfstring{$\sim$}{\string~}\+Dominios}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor virtual da classe \doxylink{class_dominios}{Dominios}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_dominios_a5aab10b5c80ead7ea78495f6ed426357}{set\+Valor}} (string)
+\begin{DoxyCompactList}\small\item\em Define o valor do domiinio. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_dominios_ac86d0cf047c11d1693d421ffc62480a6}{get\+Valor}} () const
+\begin{DoxyCompactList}\small\item\em Retorna o valor do dominio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe concreta \doxylink{class_dinheiro}{Dinheiro}. Herda metodos da classe abstrata \doxylink{class_dominios}{Dominios}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_dinheiro_a9fe0cac2ccefd20320296ed4b5892446}\index{Dinheiro@{Dinheiro}!validar@{validar}}
+\index{validar@{validar}!Dinheiro@{Dinheiro}}
+\doxysubsubsection{\texorpdfstring{validar()}{validar()}}
+{\footnotesize\ttfamily \label{class_dinheiro_a9fe0cac2ccefd20320296ed4b5892446} 
+void Dinheiro\+::validar (\begin{DoxyParamCaption}\item[{string}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+O valor do objeto do dominio desejado. 
+
+O valor que o objeto vai receber, que pode varia de acordo com o dominio desejado.
+
+Verifica se um valor e valido para o dominio. 
+\begin{DoxyParams}{Parameters}
+{\em valor} & O valor a ser verificado.\\
+\hline
+\end{DoxyParams}
+Este metodo deve ser implementado pelas classes filhas para verificar se um valor e valido para o dominio. Se o valor nao for valido, o metodo deve lancar uma excecao. 
+
+Implements \mbox{\hyperlink{class_dominios_acddc7c2a1632211b48adaebd2356cf23}{Dominios}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//Regex\ para\ validar\ o\ formato\ da\ quantia}}
+\DoxyCodeLine{00133\ \ \ \ \ std::regex\ regex(\textcolor{stringliteral}{"{}\string^([0-\/9]\{1,3\}(\(\backslash\)\(\backslash\).[0-\/9]\{3\})*|[0-\/9]+),[0-\/9]\{2\}\$"{}});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//Verifica\ se\ o\ formato\ ta\ certo}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{if}\ (!std::regex\_match(valor,\ regex))\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Dinheiro\ invalido."{}});}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{//Tira\ os\ pontos\ e\ troca\ virgula\ por\ ponto\ pra\ usar\ o\ double}}
+\DoxyCodeLine{00141\ \ \ \ \ std::string\ quantiaSemPontos\ =\ valor;}
+\DoxyCodeLine{00142\ \ \ \ \ quantiaSemPontos.erase(remove(quantiaSemPontos.begin(),\ quantiaSemPontos.end(),\ \textcolor{charliteral}{'.'}),\ quantiaSemPontos.end());}
+\DoxyCodeLine{00143\ \ \ \ \ std::replace(quantiaSemPontos.begin(),\ quantiaSemPontos.end(),\ \textcolor{charliteral}{','},\ \textcolor{charliteral}{'.'});}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{//\ Converte\ a\ string\ para\ float}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{double}\ quantia\ =\ std::stof(quantiaSemPontos);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{if}(quantia\ <\ 0.0\ ||\ quantia\ >\ 1000000.0)\{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Dinheiro\ invalido."{}});}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{dominios_8h}{dominios.\+h}}\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{dominios_8cpp}{dominios.\+cpp}}\end{DoxyCompactItemize}

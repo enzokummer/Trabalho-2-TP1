@@ -1,0 +1,194 @@
+\doxysection{TUEntidades Class Reference}
+\hypertarget{class_t_u_entidades}{}\label{class_t_u_entidades}\index{TUEntidades@{TUEntidades}}
+
+
+{\ttfamily \#include $<$testes.\+h$>$}
+
+Inheritance diagram for TUEntidades\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_t_u_entidades}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_t_u_entidades_a6aac052f1223720ddba211c4d0be18d4}{run}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const bool \mbox{\hyperlink{class_t_u_entidades_aea5d6482506ca7cd4eb94462f34311cf}{sucesso}} = true
+\item 
+const bool \mbox{\hyperlink{class_t_u_entidades_ad1ff48b9eaa9e462af566e101074e0d8}{falha}} = false
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_t_u_entidades_ac6fa7b50f63efce95c5f1ad83f1ad8a2}{set\+Up}} ()=0
+\item 
+virtual void \mbox{\hyperlink{class_t_u_entidades_aebf275bf5924acc415df430773505369}{tear\+Down}} ()=0
+\item 
+virtual void \mbox{\hyperlink{class_t_u_entidades_a9d6dbe81dbeb2a8263e09a55df507cf8}{testar\+Cenario\+Valido}} ()=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const string \mbox{\hyperlink{class_t_u_entidades_ad8e33261a75e05f65d35bc12bfac420d}{valor\+Valido\+Cod\+Pagamento}} = "{}12345678"{}
+\item 
+const string \mbox{\hyperlink{class_t_u_entidades_a80c85fcb1debc8b8c2cfe1c972fa5383}{valor\+Valido\+Cod\+Titulo}} = "{}CDB12345678"{}
+\item 
+const string \mbox{\hyperlink{class_t_u_entidades_a58f39b5495929e8750b865220285ba2a}{valor\+Valido\+CPF}} = "{}190.\+559.\+370-\/88"{}
+\item 
+const string \mbox{\hyperlink{class_t_u_entidades_abd9756e433065efdac34f72022993376}{valor\+Valido\+Data}} = "{}21-\/04-\/2004"{}
+\item 
+const string \mbox{\hyperlink{class_t_u_entidades_aa248a308d485e136f34d3f847ad571cd}{valor\+Valido\+Dinheiro}} = "{}30.\+000,00"{}
+\item 
+const string \mbox{\hyperlink{class_t_u_entidades_a08952cd78c0cc1d2c34e33de684a4f05}{valor\+Valido\+Estado}} = "{}Previsto"{}
+\item 
+const string \mbox{\hyperlink{class_t_u_entidades_a0255daae0f2ed2ba9fea6ad9271c5066}{valor\+Valido\+Nome}} = "{}Andre"{}
+\item 
+const string \mbox{\hyperlink{class_t_u_entidades_a662f64bd2978e84a2cebca2f87f67f5b}{valor\+Valido\+Percentual}} = "{}99"{}
+\item 
+const string \mbox{\hyperlink{class_t_u_entidades_a1d8c2ab8c1e218f2ddcc7e794ad9348b}{valor\+Valido\+Senha}} = "{}354612"{}
+\item 
+const string \mbox{\hyperlink{class_t_u_entidades_a2f4e25adc2ecd71081b7e7de2801f78f}{valor\+Valido\+Setor}} = "{}Agricultura"{}
+\item 
+bool \mbox{\hyperlink{class_t_u_entidades_a4f9a6a18746118313f1fe539847ff3ec}{state}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_t_u_entidades_a6aac052f1223720ddba211c4d0be18d4}\index{TUEntidades@{TUEntidades}!run@{run}}
+\index{run@{run}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_a6aac052f1223720ddba211c4d0be18d4} 
+bool TUEntidades\+::run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00343\ \ \ \ \ \mbox{\hyperlink{class_t_u_entidades_ac6fa7b50f63efce95c5f1ad83f1ad8a2}{setUp}}();}
+\DoxyCodeLine{00344\ \ \ \ \ \mbox{\hyperlink{class_t_u_entidades_a9d6dbe81dbeb2a8263e09a55df507cf8}{testarCenarioValido}}();}
+\DoxyCodeLine{00345\ \ \ \ \ \mbox{\hyperlink{class_t_u_entidades_aebf275bf5924acc415df430773505369}{tearDown}}();}
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_t_u_entidades_a4f9a6a18746118313f1fe539847ff3ec}{state}};}
+\DoxyCodeLine{00347\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_t_u_entidades_ac6fa7b50f63efce95c5f1ad83f1ad8a2}\index{TUEntidades@{TUEntidades}!setUp@{setUp}}
+\index{setUp@{setUp}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{setUp()}{setUp()}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_ac6fa7b50f63efce95c5f1ad83f1ad8a2} 
+virtual void TUEntidades\+::set\+Up (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_t_u_conta_a0854db35d5d9639ee3bc2f1e3817337d}{TUConta}}, \mbox{\hyperlink{class_t_u_pagamento_a8ef1f7176a88944351b236bff130206c}{TUPagamento}}, and \mbox{\hyperlink{class_t_u_titulo_ab4288c4f0b244f74d6fd95eb7c81b667}{TUTitulo}}.
+
+\Hypertarget{class_t_u_entidades_aebf275bf5924acc415df430773505369}\index{TUEntidades@{TUEntidades}!tearDown@{tearDown}}
+\index{tearDown@{tearDown}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{tearDown()}{tearDown()}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_aebf275bf5924acc415df430773505369} 
+virtual void TUEntidades\+::tear\+Down (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_t_u_conta_a9f60de22865eb4d807b1fab951512faf}{TUConta}}, \mbox{\hyperlink{class_t_u_pagamento_a335f10f8853104d87bf9ea28322948e4}{TUPagamento}}, and \mbox{\hyperlink{class_t_u_titulo_abcc8ec192028836612cbbb5e3f3c5469}{TUTitulo}}.
+
+\Hypertarget{class_t_u_entidades_a9d6dbe81dbeb2a8263e09a55df507cf8}\index{TUEntidades@{TUEntidades}!testarCenarioValido@{testarCenarioValido}}
+\index{testarCenarioValido@{testarCenarioValido}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{testarCenarioValido()}{testarCenarioValido()}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_a9d6dbe81dbeb2a8263e09a55df507cf8} 
+virtual void TUEntidades\+::testar\+Cenario\+Valido (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_t_u_conta_ad757c3c1a08b70f760a728e9ba33dd8d}{TUConta}}, \mbox{\hyperlink{class_t_u_pagamento_aa9332fe711d1eeec6baa72c20374705b}{TUPagamento}}, and \mbox{\hyperlink{class_t_u_titulo_a6252f520ef126696bbd9b4a2b408da61}{TUTitulo}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_t_u_entidades_ad1ff48b9eaa9e462af566e101074e0d8}\index{TUEntidades@{TUEntidades}!falha@{falha}}
+\index{falha@{falha}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{falha}{falha}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_ad1ff48b9eaa9e462af566e101074e0d8} 
+const bool TUEntidades\+::falha = false}
+
+\Hypertarget{class_t_u_entidades_a4f9a6a18746118313f1fe539847ff3ec}\index{TUEntidades@{TUEntidades}!state@{state}}
+\index{state@{state}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_a4f9a6a18746118313f1fe539847ff3ec} 
+bool TUEntidades\+::state\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_t_u_entidades_aea5d6482506ca7cd4eb94462f34311cf}\index{TUEntidades@{TUEntidades}!sucesso@{sucesso}}
+\index{sucesso@{sucesso}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{sucesso}{sucesso}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_aea5d6482506ca7cd4eb94462f34311cf} 
+const bool TUEntidades\+::sucesso = true}
+
+\Hypertarget{class_t_u_entidades_ad8e33261a75e05f65d35bc12bfac420d}\index{TUEntidades@{TUEntidades}!valorValidoCodPagamento@{valorValidoCodPagamento}}
+\index{valorValidoCodPagamento@{valorValidoCodPagamento}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{valorValidoCodPagamento}{valorValidoCodPagamento}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_ad8e33261a75e05f65d35bc12bfac420d} 
+const string TUEntidades\+::valor\+Valido\+Cod\+Pagamento = "{}12345678"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_t_u_entidades_a80c85fcb1debc8b8c2cfe1c972fa5383}\index{TUEntidades@{TUEntidades}!valorValidoCodTitulo@{valorValidoCodTitulo}}
+\index{valorValidoCodTitulo@{valorValidoCodTitulo}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{valorValidoCodTitulo}{valorValidoCodTitulo}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_a80c85fcb1debc8b8c2cfe1c972fa5383} 
+const string TUEntidades\+::valor\+Valido\+Cod\+Titulo = "{}CDB12345678"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_t_u_entidades_a58f39b5495929e8750b865220285ba2a}\index{TUEntidades@{TUEntidades}!valorValidoCPF@{valorValidoCPF}}
+\index{valorValidoCPF@{valorValidoCPF}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{valorValidoCPF}{valorValidoCPF}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_a58f39b5495929e8750b865220285ba2a} 
+const string TUEntidades\+::valor\+Valido\+CPF = "{}190.\+559.\+370-\/88"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_t_u_entidades_abd9756e433065efdac34f72022993376}\index{TUEntidades@{TUEntidades}!valorValidoData@{valorValidoData}}
+\index{valorValidoData@{valorValidoData}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{valorValidoData}{valorValidoData}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_abd9756e433065efdac34f72022993376} 
+const string TUEntidades\+::valor\+Valido\+Data = "{}21-\/04-\/2004"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_t_u_entidades_aa248a308d485e136f34d3f847ad571cd}\index{TUEntidades@{TUEntidades}!valorValidoDinheiro@{valorValidoDinheiro}}
+\index{valorValidoDinheiro@{valorValidoDinheiro}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{valorValidoDinheiro}{valorValidoDinheiro}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_aa248a308d485e136f34d3f847ad571cd} 
+const string TUEntidades\+::valor\+Valido\+Dinheiro = "{}30.\+000,00"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_t_u_entidades_a08952cd78c0cc1d2c34e33de684a4f05}\index{TUEntidades@{TUEntidades}!valorValidoEstado@{valorValidoEstado}}
+\index{valorValidoEstado@{valorValidoEstado}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{valorValidoEstado}{valorValidoEstado}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_a08952cd78c0cc1d2c34e33de684a4f05} 
+const string TUEntidades\+::valor\+Valido\+Estado = "{}Previsto"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_t_u_entidades_a0255daae0f2ed2ba9fea6ad9271c5066}\index{TUEntidades@{TUEntidades}!valorValidoNome@{valorValidoNome}}
+\index{valorValidoNome@{valorValidoNome}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{valorValidoNome}{valorValidoNome}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_a0255daae0f2ed2ba9fea6ad9271c5066} 
+const string TUEntidades\+::valor\+Valido\+Nome = "{}Andre"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_t_u_entidades_a662f64bd2978e84a2cebca2f87f67f5b}\index{TUEntidades@{TUEntidades}!valorValidoPercentual@{valorValidoPercentual}}
+\index{valorValidoPercentual@{valorValidoPercentual}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{valorValidoPercentual}{valorValidoPercentual}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_a662f64bd2978e84a2cebca2f87f67f5b} 
+const string TUEntidades\+::valor\+Valido\+Percentual = "{}99"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_t_u_entidades_a1d8c2ab8c1e218f2ddcc7e794ad9348b}\index{TUEntidades@{TUEntidades}!valorValidoSenha@{valorValidoSenha}}
+\index{valorValidoSenha@{valorValidoSenha}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{valorValidoSenha}{valorValidoSenha}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_a1d8c2ab8c1e218f2ddcc7e794ad9348b} 
+const string TUEntidades\+::valor\+Valido\+Senha = "{}354612"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_t_u_entidades_a2f4e25adc2ecd71081b7e7de2801f78f}\index{TUEntidades@{TUEntidades}!valorValidoSetor@{valorValidoSetor}}
+\index{valorValidoSetor@{valorValidoSetor}!TUEntidades@{TUEntidades}}
+\doxysubsubsection{\texorpdfstring{valorValidoSetor}{valorValidoSetor}}
+{\footnotesize\ttfamily \label{class_t_u_entidades_a2f4e25adc2ecd71081b7e7de2801f78f} 
+const string TUEntidades\+::valor\+Valido\+Setor = "{}Agricultura"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{testes_8h}{testes.\+h}}\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{testes_8cpp}{testes.\+cpp}}\end{DoxyCompactItemize}

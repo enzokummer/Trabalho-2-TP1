@@ -1,0 +1,137 @@
+\doxysection{TUEstado Class Reference}
+\hypertarget{class_t_u_estado}{}\label{class_t_u_estado}\index{TUEstado@{TUEstado}}
+
+
+{\ttfamily \#include $<$testes.\+h$>$}
+
+Inheritance diagram for TUEstado\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_t_u_estado}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_t_u_estado_afb07b46d86ab8105857b3ce0018a9773}{set\+Up}} () override
+\item 
+void \mbox{\hyperlink{class_t_u_estado_a0d3d73aaf3d48e503aa282e2a4ac631e}{tear\+Down}} () override
+\item 
+void \mbox{\hyperlink{class_t_u_estado_a7be5d026c5ae0bc40e0792fba6c17718}{testar\+Cenario\+Valido}} () override
+\item 
+void \mbox{\hyperlink{class_t_u_estado_a09ea429c682fb599059242c4c016fdb1}{testar\+Cenario\+Invalido}} () override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_t_udominios}{TUdominios}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_t_udominios_a32bf626de05fbceebdafe9f4e0a8ac1a}{\texorpdfstring{$\sim$}{\string~}\+TUdominios}} ()
+\item 
+bool \mbox{\hyperlink{class_t_udominios_a1b3b89be12da8e1e7f7d7aa90efdbecc}{run}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_t_udominios}{TUdominios}}}
+\begin{DoxyCompactItemize}
+\item 
+static const bool \mbox{\hyperlink{class_t_udominios_a6d3532643af77da761a5be51d5e8df9c}{sucesso}} = true
+\item 
+static const bool \mbox{\hyperlink{class_t_udominios_a45a3d1f42b662f243c994a96ffefaa6b}{falha}} = false
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_t_udominios}{TUdominios}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_t_udominios_a04595bd9725bb505e3fb7b2e2013c7f2}{state}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_t_u_estado_afb07b46d86ab8105857b3ce0018a9773}\index{TUEstado@{TUEstado}!setUp@{setUp}}
+\index{setUp@{setUp}!TUEstado@{TUEstado}}
+\doxysubsubsection{\texorpdfstring{setUp()}{setUp()}}
+{\footnotesize\ttfamily \label{class_t_u_estado_afb07b46d86ab8105857b3ce0018a9773} 
+void TUEstado\+::set\+Up (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_t_udominios_a36f9c95f41d127a417539fbaa2247c1a}{TUdominios}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ estado\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_estado}{Estado}}();}
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{class_t_udominios_a04595bd9725bb505e3fb7b2e2013c7f2}{state}}\ =\ \mbox{\hyperlink{class_t_udominios_a6d3532643af77da761a5be51d5e8df9c}{sucesso}};}
+\DoxyCodeLine{00179\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_t_u_estado_a0d3d73aaf3d48e503aa282e2a4ac631e}\index{TUEstado@{TUEstado}!tearDown@{tearDown}}
+\index{tearDown@{tearDown}!TUEstado@{TUEstado}}
+\doxysubsubsection{\texorpdfstring{tearDown()}{tearDown()}}
+{\footnotesize\ttfamily \label{class_t_u_estado_a0d3d73aaf3d48e503aa282e2a4ac631e} 
+void TUEstado\+::tear\+Down (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_t_udominios_a32d25d0e27195113b45e3825552446a5}{TUdominios}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{delete}\ estado;}
+\DoxyCodeLine{00207\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_t_u_estado_a09ea429c682fb599059242c4c016fdb1}\index{TUEstado@{TUEstado}!testarCenarioInvalido@{testarCenarioInvalido}}
+\index{testarCenarioInvalido@{testarCenarioInvalido}!TUEstado@{TUEstado}}
+\doxysubsubsection{\texorpdfstring{testarCenarioInvalido()}{testarCenarioInvalido()}}
+{\footnotesize\ttfamily \label{class_t_u_estado_a09ea429c682fb599059242c4c016fdb1} 
+void TUEstado\+::testar\+Cenario\+Invalido (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_t_udominios_a96db118dac2fa510b1475acd6c96f944}{TUdominios}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ estado-\/>\mbox{\hyperlink{class_dominios_a5aab10b5c80ead7ea78495f6ed426357}{setValor}}(valorInvalido);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_t_udominios_a04595bd9725bb505e3fb7b2e2013c7f2}{state}}\ =\ \mbox{\hyperlink{class_t_udominios_a45a3d1f42b662f243c994a96ffefaa6b}{falha}};}
+\DoxyCodeLine{00197\ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{catch}\ (invalid\_argument\ \&excecao)\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (estado-\/>\mbox{\hyperlink{class_dominios_ac86d0cf047c11d1693d421ffc62480a6}{getValor}}()\ ==\ valorInvalido)\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_t_udominios_a04595bd9725bb505e3fb7b2e2013c7f2}{state}}\ =\ \mbox{\hyperlink{class_t_udominios_a45a3d1f42b662f243c994a96ffefaa6b}{falha}};}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \}}
+\DoxyCodeLine{00203\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_t_u_estado_a7be5d026c5ae0bc40e0792fba6c17718}\index{TUEstado@{TUEstado}!testarCenarioValido@{testarCenarioValido}}
+\index{testarCenarioValido@{testarCenarioValido}!TUEstado@{TUEstado}}
+\doxysubsubsection{\texorpdfstring{testarCenarioValido()}{testarCenarioValido()}}
+{\footnotesize\ttfamily \label{class_t_u_estado_a7be5d026c5ae0bc40e0792fba6c17718} 
+void TUEstado\+::testar\+Cenario\+Valido (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_t_udominios_a99617f34af4747a201f6428af2dbe264}{TUdominios}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ estado-\/>\mbox{\hyperlink{class_dominios_a5aab10b5c80ead7ea78495f6ed426357}{setValor}}(valorValido);}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (estado-\/>\mbox{\hyperlink{class_dominios_ac86d0cf047c11d1693d421ffc62480a6}{getValor}}()\ !=\ valorValido)\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_t_udominios_a04595bd9725bb505e3fb7b2e2013c7f2}{state}}\ =\ \mbox{\hyperlink{class_t_udominios_a45a3d1f42b662f243c994a96ffefaa6b}{falha}};}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{catch}\ (invalid\_argument\ \&excecao)\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_t_udominios_a04595bd9725bb505e3fb7b2e2013c7f2}{state}}\ =\ \mbox{\hyperlink{class_t_udominios_a45a3d1f42b662f243c994a96ffefaa6b}{falha}};}
+\DoxyCodeLine{00190\ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{testes_8h}{testes.\+h}}\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{testes_8cpp}{testes.\+cpp}}\end{DoxyCompactItemize}

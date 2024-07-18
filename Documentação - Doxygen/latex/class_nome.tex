@@ -1,0 +1,116 @@
+\doxysection{Nome Class Reference}
+\hypertarget{class_nome}{}\label{class_nome}\index{Nome@{Nome}}
+
+
+Classe concreta \doxylink{class_nome}{Nome}. Herda metodos da classe abstrata \doxylink{class_dominios}{Dominios}.  
+
+
+
+
+{\ttfamily \#include $<$dominios.\+h$>$}
+
+Inheritance diagram for Nome\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_nome}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_nome_ac25119b2ed1a4b4ed0a337aa9c6b681a}{validar}} (string) override
+\begin{DoxyCompactList}\small\item\em O valor do objeto do dominio desejado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_dominios}{Dominios}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_dominios_add18854d2909d6e44e0b377f73304c07}{\texorpdfstring{$\sim$}{\string~}\+Dominios}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor virtual da classe \doxylink{class_dominios}{Dominios}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_dominios_a5aab10b5c80ead7ea78495f6ed426357}{set\+Valor}} (string)
+\begin{DoxyCompactList}\small\item\em Define o valor do domiinio. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_dominios_ac86d0cf047c11d1693d421ffc62480a6}{get\+Valor}} () const
+\begin{DoxyCompactList}\small\item\em Retorna o valor do dominio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe concreta \doxylink{class_nome}{Nome}. Herda metodos da classe abstrata \doxylink{class_dominios}{Dominios}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_nome_ac25119b2ed1a4b4ed0a337aa9c6b681a}\index{Nome@{Nome}!validar@{validar}}
+\index{validar@{validar}!Nome@{Nome}}
+\doxysubsubsection{\texorpdfstring{validar()}{validar()}}
+{\footnotesize\ttfamily \label{class_nome_ac25119b2ed1a4b4ed0a337aa9c6b681a} 
+void Nome\+::validar (\begin{DoxyParamCaption}\item[{string}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+O valor do objeto do dominio desejado. 
+
+O valor que o objeto vai receber, que pode varia de acordo com o dominio desejado.
+
+Verifica se um valor e valido para o dominio. 
+\begin{DoxyParams}{Parameters}
+{\em valor} & O valor a ser verificado.\\
+\hline
+\end{DoxyParams}
+Este metodo deve ser implementado pelas classes filhas para verificar se um valor e valido para o dominio. Se o valor nao for valido, o metodo deve lancar uma excecao. 
+
+Implements \mbox{\hyperlink{class_dominios_acddc7c2a1632211b48adaebd2356cf23}{Dominios}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ tamanhoNome\ =\ valor.length();}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{int}\ quantosNomes\ =\ 1;}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{int}\ posEspaco;}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{comment}{//Descobre\ quantos\ termos\ tem\ o\ nome\ e\ salva\ posicao\ do\ espaco\ '\ '.}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{//Tambem\ verifica\ se\ todos\ os\ caracteres\ sao\ validos.}}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i=0;\ i<tamanhoNome;\ i++)\{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(valor[i]\ ==\ \textcolor{charliteral}{'\ '})\{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ quantosNomes++;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ posEspaco\ =\ i;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isalpha(valor[i])\ ==\ 0\ \&\&\ valor[i]\ !=\ \textcolor{charliteral}{'\ '})\{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Nome\ com\ caractere\ invalido."{}});}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{comment}{//Verifica\ se\ excedeu\ o\ numero\ maximo\ de\ nomes.}}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{if}(quantosNomes\ >\ 2)\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Numero\ maximo\ de\ nomes\ (2)\ excedido."{}});}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{comment}{//Salva\ o\ tamanho\ dos\ termos\ em\ caso\ de\ nome\ composto.}}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ tamNome1,\ tamNome2;}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{string}\ nome1,\ nome2;}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{if}(quantosNomes\ ==\ 2)\{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ nome1\ =\ valor.substr(0,\ posEspaco);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ nome2\ =\ valor.substr(posEspaco\ +\ 1);}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ tamNome1\ =\ nome1.length();}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ tamNome2\ =\ nome2.length();}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{comment}{//Verifica\ se\ os\ termos\ tem\ a\ quantidade\ correta\ de\ caracteres}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{if}((quantosNomes\ ==\ 1\ \&\&\ (tamanhoNome\ >\ 10\ ||\ tamanhoNome\ <\ 3))}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ ||\ (quantosNomes\ ==\ 2\ \&\&\ (tamNome1\ >\ 10\ ||\ tamNome1\ <\ 3\ ||\ tamNome2\ >\ 10\ ||\ tamNome2\ <\ 3)))\{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Numero\ maximo\ de\ caracteres\ por\ nome\ excedido."{}});}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{comment}{//Verifica\ se\ algum\ dos\ termos\ comeca\ com\ letra\ maiuscula}}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordflow}{if}((!isupper(valor[0])\ \&\&\ quantosNomes\ ==\ 1)}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ ||(quantosNomes\ ==\ 2\ \&\&\ (!isupper(nome1[0])\ ||\ !isupper(nome2[0]))))\ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Nome\ invalido:\ algum(ns)\ dos\ termo(s)\ nao\ comeca\ com\ letra\ maiuscula"{}});}
+\DoxyCodeLine{00216\ \ \ \ \ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{dominios_8h}{dominios.\+h}}\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{dominios_8cpp}{dominios.\+cpp}}\end{DoxyCompactItemize}

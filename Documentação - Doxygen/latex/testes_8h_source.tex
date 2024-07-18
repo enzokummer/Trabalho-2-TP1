@@ -1,0 +1,184 @@
+\doxysection{testes.\+h}
+\hypertarget{testes_8h_source}{}\label{testes_8h_source}\index{Trabalho-\/1-\/TP1/testes.h@{Trabalho-\/1-\/TP1/testes.h}}
+\mbox{\hyperlink{testes_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ TESTES\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ TESTES\_H}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dominios_8h}{dominios.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{entidades_8h}{entidades.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_udominios}{TUdominios}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_udominios_a36f9c95f41d127a417539fbaa2247c1a}{setUp}}()\ =\ 0;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_udominios_a32d25d0e27195113b45e3825552446a5}{tearDown}}()\ =\ 0;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_udominios_a99617f34af4747a201f6428af2dbe264}{testarCenarioValido}}()\ =\ 0;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_udominios_a96db118dac2fa510b1475acd6c96f944}{testarCenarioInvalido}}()\ =\ 0;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_t_udominios_a04595bd9725bb505e3fb7b2e2013c7f2}{state}};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_t_udominios_a32bf626de05fbceebdafe9f4e0a8ac1a}{\string~TUdominios}}()\ \{\}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_t_udominios_a6d3532643af77da761a5be51d5e8df9c}{sucesso}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_t_udominios_a45a3d1f42b662f243c994a96ffefaa6b}{falha}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_t_udominios_a1b3b89be12da8e1e7f7d7aa90efdbecc}{run}}();}
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_u_cod_pagamento}{TUCodPagamento}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_t_udominios}{TUdominios}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorValido\ =\ \textcolor{stringliteral}{"{}12345678"{}};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorInvalido\ =\ \textcolor{stringliteral}{"{}01234567"{}};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_cod_pagamento_ac8c62909415e02f0a3578cdb36a3808b}{setUp}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_cod_pagamento_a1abfcee36c8e8b2a1544804f513c5b17}{tearDown}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_cod_pagamento_a151e96becb74eabd01d9edc1747ff894}{testarCenarioValido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_cod_pagamento_ace522648cf2eff0d064670561f94677b}{testarCenarioInvalido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_cod_pagamento}{CodPagamento}}\ *codigo;}
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_u_cod_titulo}{TUCodTitulo}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_t_udominios}{TUdominios}}\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorValido\ =\ \textcolor{stringliteral}{"{}CDB12345678"{}};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorInvalido\ =\ \textcolor{stringliteral}{"{}01234567"{}};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_cod_titulo_a237b58c5af8d27b0c753c5658f899665}{setUp}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_cod_titulo_a69f564010533d1c9e17392ac3419bb10}{tearDown}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_cod_titulo_a753dd31ef99cc0063d41cb5be2077551}{testarCenarioValido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_cod_titulo_ad63b3563e7f9d9c2ded9bb2d18ebe6f7}{testarCenarioInvalido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_cod_titulo}{CodTitulo}}\ *codigo;}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_u_c_p_f}{TUCPF}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_t_udominios}{TUdominios}}\ \{}
+\DoxyCodeLine{00045\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorValido\ =\ \textcolor{stringliteral}{"{}190.559.370-\/88"{}};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorInvalido\ =\ \textcolor{stringliteral}{"{}190.559.370.88"{}};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_c_p_f_ab09b102b3621cc361f7c862f952e77a9}{setUp}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_c_p_f_ab0bbdc638151c59edb23b6147cf3b02a}{tearDown}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_c_p_f_a00a9a11cb1f760a8135fbd8a98dd54c6}{testarCenarioValido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_c_p_f_a1bb8829dc94ba7b6463fa75e5c1737c6}{testarCenarioInvalido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_c_p_f}{CPF}}\ *cpf;}
+\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_u_data}{TUData}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_t_udominios}{TUdominios}}\ \{}
+\DoxyCodeLine{00056\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorValido\ =\ \textcolor{stringliteral}{"{}21-\/04-\/2004"{}};}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorInvalido\ =\ \textcolor{stringliteral}{"{}21-\/04-\/2101"{}};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_data_aa6dcc196ca8dddfbcac43c2de47f4ac5}{setUp}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_data_a2dbbf227bbce13d7ce345324f97f26da}{tearDown}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_data_ad5f3023bc33acab91191d8e9be6fa9c0}{testarCenarioValido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_data_a23ae63a96982a842c9146e692b1cb91e}{testarCenarioInvalido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{class_data}{Data}}\ *data;}
+\DoxyCodeLine{00064\ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_u_dinheiro}{TUDinheiro}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_t_udominios}{TUdominios}}\ \{}
+\DoxyCodeLine{00067\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorValido\ =\ \textcolor{stringliteral}{"{}30.000,00"{}};}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorInvalido\ =\ \textcolor{stringliteral}{"{}30000"{}};}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_dinheiro_acaa758de219d9c3b60969c219478ed65}{setUp}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_dinheiro_a2e1836fcbd84965a5c63150150cdd230}{tearDown}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_dinheiro_a881984c119159286b2cdff1fe475f13e}{testarCenarioValido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_dinheiro_a624d58a6bbe72cac648f6b0cda8da1c6}{testarCenarioInvalido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{class_dinheiro}{Dinheiro}}\ *dinheiro;}
+\DoxyCodeLine{00075\ \};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_u_estado}{TUEstado}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_t_udominios}{TUdominios}}\ \{}
+\DoxyCodeLine{00078\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorValido\ =\ \textcolor{stringliteral}{"{}Previsto"{}};}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorInvalido\ =\ \textcolor{stringliteral}{"{}Preuvistou"{}};}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_estado_afb07b46d86ab8105857b3ce0018a9773}{setUp}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_estado_a0d3d73aaf3d48e503aa282e2a4ac631e}{tearDown}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_estado_a7be5d026c5ae0bc40e0792fba6c17718}{testarCenarioValido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_estado_a09ea429c682fb599059242c4c016fdb1}{testarCenarioInvalido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{class_estado}{Estado}}\ *estado;}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_u_nome}{TUNome}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_t_udominios}{TUdominios}}\ \{}
+\DoxyCodeLine{00089\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorValido\ =\ \textcolor{stringliteral}{"{}Andre"{}};}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorInvalido\ =\ \textcolor{stringliteral}{"{}Marcos\ Paulinhogamer"{}};}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_nome_a307700973409c2a853c9ac385151095f}{setUp}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_nome_adb0678a570f2cf6b601f6433521bdf28}{tearDown}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_nome_aa5243c70d3c81909dfda335a5fa632ca}{testarCenarioValido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_nome_a3d3dfebe2526a7418e8fad6342eba955}{testarCenarioInvalido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{class_nome}{Nome}}\ *nome;}
+\DoxyCodeLine{00097\ \};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_u_percentual}{TUPercentual}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_t_udominios}{TUdominios}}\ \{}
+\DoxyCodeLine{00100\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorValido\ =\ \textcolor{stringliteral}{"{}80"{}};}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorInvalido\ =\ \textcolor{stringliteral}{"{}101"{}};}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_percentual_af690536934957659b0c9e6510695bbe2}{setUp}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_percentual_a607d10d14a54cd6070cf9840267fc0ff}{tearDown}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_percentual_a5ebaae795deefcbc582ff0e61171636f}{testarCenarioValido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_percentual_ae501d6e4b3db5e69eda4990cacd79d13}{testarCenarioInvalido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{class_percentual}{Percentual}}\ *percentual;}
+\DoxyCodeLine{00108\ \};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_u_senha}{TUSenha}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_t_udominios}{TUdominios}}\ \{}
+\DoxyCodeLine{00111\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorValido\ =\ \textcolor{stringliteral}{"{}789543"{}};}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorInvalido\ =\ \textcolor{stringliteral}{"{}123456"{}};}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_senha_acf5f5263b95119a7096b69eb05488700}{setUp}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_senha_aca975cac5bffb196dc8245f287a7e01b}{tearDown}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_senha_aaa876a9fd6cb086a6202dbf4b111cda7}{testarCenarioValido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_senha_a03c42389222021237a3434622388566a}{testarCenarioInvalido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{class_senha}{Senha}}\ *senha;}
+\DoxyCodeLine{00119\ \};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_u_setor}{TUSetor}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_t_udominios}{TUdominios}}\ \{}
+\DoxyCodeLine{00122\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorValido\ =\ \textcolor{stringliteral}{"{}Agricultura"{}};}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ valorInvalido\ =\ \textcolor{stringliteral}{"{}Agroehpop"{}};}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_setor_af9300b3c215b5c9e84d90d0b816845cb}{setUp}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_setor_af7423cf4f57d34ee54011d0e8a42f6d5}{tearDown}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_setor_a68f1f2490844af7d7e543e4d983e3b36}{testarCenarioValido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_setor_afff1242b1a0ad8ce8c9c461bea01fb76}{testarCenarioInvalido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00129\ \ \ \ \ \mbox{\hyperlink{class_setor}{Setor}}\ *setor;}
+\DoxyCodeLine{00130\ \};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{comment}{//TESTES\ ENTIDADES}}
+\DoxyCodeLine{00133\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_u_entidades}{TUEntidades}}\ \{}
+\DoxyCodeLine{00134\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_entidades_ac6fa7b50f63efce95c5f1ad83f1ad8a2}{setUp}}()\ =\ 0;}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_entidades_aebf275bf5924acc415df430773505369}{tearDown}}()\ =\ 0;}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_entidades_a9d6dbe81dbeb2a8263e09a55df507cf8}{testarCenarioValido}}()\ =0;}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_t_u_entidades_ad8e33261a75e05f65d35bc12bfac420d}{valorValidoCodPagamento}}\ =\ \textcolor{stringliteral}{"{}12345678"{}};}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_t_u_entidades_a80c85fcb1debc8b8c2cfe1c972fa5383}{valorValidoCodTitulo}}\ =\ \textcolor{stringliteral}{"{}CDB12345678"{}};}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_t_u_entidades_a58f39b5495929e8750b865220285ba2a}{valorValidoCPF}}\ =\ \textcolor{stringliteral}{"{}190.559.370-\/88"{}};}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_t_u_entidades_abd9756e433065efdac34f72022993376}{valorValidoData}}\ =\ \textcolor{stringliteral}{"{}21-\/04-\/2004"{}};}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_t_u_entidades_aa248a308d485e136f34d3f847ad571cd}{valorValidoDinheiro}}\ =\ \textcolor{stringliteral}{"{}30.000,00"{}};}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_t_u_entidades_a08952cd78c0cc1d2c34e33de684a4f05}{valorValidoEstado}}\ =\ \textcolor{stringliteral}{"{}Previsto"{}};}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_t_u_entidades_a0255daae0f2ed2ba9fea6ad9271c5066}{valorValidoNome}}\ =\ \textcolor{stringliteral}{"{}Andre"{}};}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_t_u_entidades_a662f64bd2978e84a2cebca2f87f67f5b}{valorValidoPercentual}}\ =\ \textcolor{stringliteral}{"{}99"{}};}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_t_u_entidades_a1d8c2ab8c1e218f2ddcc7e794ad9348b}{valorValidoSenha}}\ =\ \textcolor{stringliteral}{"{}354612"{}};}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_t_u_entidades_a2f4e25adc2ecd71081b7e7de2801f78f}{valorValidoSetor}}\ =\ \textcolor{stringliteral}{"{}Agricultura"{}};}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_t_u_entidades_a4f9a6a18746118313f1fe539847ff3ec}{state}};}
+\DoxyCodeLine{00149\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_t_u_entidades_aea5d6482506ca7cd4eb94462f34311cf}{sucesso}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_t_u_entidades_ad1ff48b9eaa9e462af566e101074e0d8}{falha}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_t_u_entidades_a6aac052f1223720ddba211c4d0be18d4}{run}}();}
+\DoxyCodeLine{00153\ \};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_u_conta}{TUConta}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_t_u_entidades}{TUEntidades}}\ \{}
+\DoxyCodeLine{00156\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_conta_a0854db35d5d9639ee3bc2f1e3817337d}{setUp}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_conta_a9f60de22865eb4d807b1fab951512faf}{tearDown}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_conta_ad757c3c1a08b70f760a728e9ba33dd8d}{testarCenarioValido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{class_conta}{Conta}}\ *conta;}
+\DoxyCodeLine{00161\ \};}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_u_titulo}{TUTitulo}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_t_u_entidades}{TUEntidades}}\ \{}
+\DoxyCodeLine{00164\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_titulo_ab4288c4f0b244f74d6fd95eb7c81b667}{setUp}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_titulo_abcc8ec192028836612cbbb5e3f3c5469}{tearDown}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_titulo_a6252f520ef126696bbd9b4a2b408da61}{testarCenarioValido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{class_titulo}{Titulo}}\ *titulo;}
+\DoxyCodeLine{00169\ \};}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_t_u_pagamento}{TUPagamento}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_t_u_entidades}{TUEntidades}}\ \{}
+\DoxyCodeLine{00172\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_pagamento_a8ef1f7176a88944351b236bff130206c}{setUp}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_pagamento_a335f10f8853104d87bf9ea28322948e4}{tearDown}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_t_u_pagamento_aa9332fe711d1eeec6baa72c20374705b}{testarCenarioValido}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{class_pagamento}{Pagamento}}\ *pagamento;}
+\DoxyCodeLine{00177\ \};}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//TESTES\_H}}
+
+\end{DoxyCode}

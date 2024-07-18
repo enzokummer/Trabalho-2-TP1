@@ -1,0 +1,137 @@
+\doxysection{TUCod\+Pagamento Class Reference}
+\hypertarget{class_t_u_cod_pagamento}{}\label{class_t_u_cod_pagamento}\index{TUCodPagamento@{TUCodPagamento}}
+
+
+{\ttfamily \#include $<$testes.\+h$>$}
+
+Inheritance diagram for TUCod\+Pagamento\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_t_u_cod_pagamento}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_t_u_cod_pagamento_ac8c62909415e02f0a3578cdb36a3808b}{set\+Up}} () override
+\item 
+void \mbox{\hyperlink{class_t_u_cod_pagamento_a1abfcee36c8e8b2a1544804f513c5b17}{tear\+Down}} () override
+\item 
+void \mbox{\hyperlink{class_t_u_cod_pagamento_a151e96becb74eabd01d9edc1747ff894}{testar\+Cenario\+Valido}} () override
+\item 
+void \mbox{\hyperlink{class_t_u_cod_pagamento_ace522648cf2eff0d064670561f94677b}{testar\+Cenario\+Invalido}} () override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_t_udominios}{TUdominios}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_t_udominios_a32bf626de05fbceebdafe9f4e0a8ac1a}{\texorpdfstring{$\sim$}{\string~}\+TUdominios}} ()
+\item 
+bool \mbox{\hyperlink{class_t_udominios_a1b3b89be12da8e1e7f7d7aa90efdbecc}{run}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_t_udominios}{TUdominios}}}
+\begin{DoxyCompactItemize}
+\item 
+static const bool \mbox{\hyperlink{class_t_udominios_a6d3532643af77da761a5be51d5e8df9c}{sucesso}} = true
+\item 
+static const bool \mbox{\hyperlink{class_t_udominios_a45a3d1f42b662f243c994a96ffefaa6b}{falha}} = false
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_t_udominios}{TUdominios}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_t_udominios_a04595bd9725bb505e3fb7b2e2013c7f2}{state}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_t_u_cod_pagamento_ac8c62909415e02f0a3578cdb36a3808b}\index{TUCodPagamento@{TUCodPagamento}!setUp@{setUp}}
+\index{setUp@{setUp}!TUCodPagamento@{TUCodPagamento}}
+\doxysubsubsection{\texorpdfstring{setUp()}{setUp()}}
+{\footnotesize\ttfamily \label{class_t_u_cod_pagamento_ac8c62909415e02f0a3578cdb36a3808b} 
+void TUCod\+Pagamento\+::set\+Up (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_t_udominios_a36f9c95f41d127a417539fbaa2247c1a}{TUdominios}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00012\ \ \ \ \ codigo\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_cod_pagamento}{CodPagamento}}();}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{class_t_udominios_a04595bd9725bb505e3fb7b2e2013c7f2}{state}}\ =\ \mbox{\hyperlink{class_t_udominios_a6d3532643af77da761a5be51d5e8df9c}{sucesso}};}
+\DoxyCodeLine{00014\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_t_u_cod_pagamento_a1abfcee36c8e8b2a1544804f513c5b17}\index{TUCodPagamento@{TUCodPagamento}!tearDown@{tearDown}}
+\index{tearDown@{tearDown}!TUCodPagamento@{TUCodPagamento}}
+\doxysubsubsection{\texorpdfstring{tearDown()}{tearDown()}}
+{\footnotesize\ttfamily \label{class_t_u_cod_pagamento_a1abfcee36c8e8b2a1544804f513c5b17} 
+void TUCod\+Pagamento\+::tear\+Down (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_t_udominios_a32d25d0e27195113b45e3825552446a5}{TUdominios}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{delete}\ codigo;}
+\DoxyCodeLine{00042\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_t_u_cod_pagamento_ace522648cf2eff0d064670561f94677b}\index{TUCodPagamento@{TUCodPagamento}!testarCenarioInvalido@{testarCenarioInvalido}}
+\index{testarCenarioInvalido@{testarCenarioInvalido}!TUCodPagamento@{TUCodPagamento}}
+\doxysubsubsection{\texorpdfstring{testarCenarioInvalido()}{testarCenarioInvalido()}}
+{\footnotesize\ttfamily \label{class_t_u_cod_pagamento_ace522648cf2eff0d064670561f94677b} 
+void TUCod\+Pagamento\+::testar\+Cenario\+Invalido (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_t_udominios_a96db118dac2fa510b1475acd6c96f944}{TUdominios}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ codigo-\/>\mbox{\hyperlink{class_dominios_a5aab10b5c80ead7ea78495f6ed426357}{setValor}}(valorInvalido);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_t_udominios_a04595bd9725bb505e3fb7b2e2013c7f2}{state}}\ =\ \mbox{\hyperlink{class_t_udominios_a45a3d1f42b662f243c994a96ffefaa6b}{falha}};}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{catch}\ (invalid\_argument\ \&excecao)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (codigo-\/>\mbox{\hyperlink{class_dominios_ac86d0cf047c11d1693d421ffc62480a6}{getValor}}()\ ==\ valorInvalido)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_t_udominios_a04595bd9725bb505e3fb7b2e2013c7f2}{state}}\ =\ \mbox{\hyperlink{class_t_udominios_a45a3d1f42b662f243c994a96ffefaa6b}{falha}};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_t_u_cod_pagamento_a151e96becb74eabd01d9edc1747ff894}\index{TUCodPagamento@{TUCodPagamento}!testarCenarioValido@{testarCenarioValido}}
+\index{testarCenarioValido@{testarCenarioValido}!TUCodPagamento@{TUCodPagamento}}
+\doxysubsubsection{\texorpdfstring{testarCenarioValido()}{testarCenarioValido()}}
+{\footnotesize\ttfamily \label{class_t_u_cod_pagamento_a151e96becb74eabd01d9edc1747ff894} 
+void TUCod\+Pagamento\+::testar\+Cenario\+Valido (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_t_udominios_a99617f34af4747a201f6428af2dbe264}{TUdominios}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ codigo-\/>\mbox{\hyperlink{class_dominios_a5aab10b5c80ead7ea78495f6ed426357}{setValor}}(valorValido);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (codigo-\/>\mbox{\hyperlink{class_dominios_ac86d0cf047c11d1693d421ffc62480a6}{getValor}}()\ !=\ valorValido)\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_t_udominios_a04595bd9725bb505e3fb7b2e2013c7f2}{state}}\ =\ \mbox{\hyperlink{class_t_udominios_a45a3d1f42b662f243c994a96ffefaa6b}{falha}};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \ \ \}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{catch}\ (invalid\_argument\ \&excecao)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_t_udominios_a04595bd9725bb505e3fb7b2e2013c7f2}{state}}\ =\ \mbox{\hyperlink{class_t_udominios_a45a3d1f42b662f243c994a96ffefaa6b}{falha}};}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{testes_8h}{testes.\+h}}\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{testes_8cpp}{testes.\+cpp}}\end{DoxyCompactItemize}

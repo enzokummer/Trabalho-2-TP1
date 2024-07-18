@@ -1,0 +1,83 @@
+\doxysection{Cod\+Titulo Class Reference}
+\hypertarget{class_cod_titulo}{}\label{class_cod_titulo}\index{CodTitulo@{CodTitulo}}
+
+
+Classe concreta \doxylink{class_cod_titulo}{Cod\+Titulo}. Herda metodos da classe abstrata \doxylink{class_dominios}{Dominios}.  
+
+
+
+
+{\ttfamily \#include $<$dominios.\+h$>$}
+
+Inheritance diagram for Cod\+Titulo\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_cod_titulo}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_cod_titulo_a0e4604b10626f6ef58d7821303a52ffe}{validar}} (string) override
+\begin{DoxyCompactList}\small\item\em Responsavel pela validacao do valor do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_dominios}{Dominios}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_dominios_add18854d2909d6e44e0b377f73304c07}{\texorpdfstring{$\sim$}{\string~}\+Dominios}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor virtual da classe \doxylink{class_dominios}{Dominios}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_dominios_a5aab10b5c80ead7ea78495f6ed426357}{set\+Valor}} (string)
+\begin{DoxyCompactList}\small\item\em Define o valor do domiinio. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_dominios_ac86d0cf047c11d1693d421ffc62480a6}{get\+Valor}} () const
+\begin{DoxyCompactList}\small\item\em Retorna o valor do dominio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe concreta \doxylink{class_cod_titulo}{Cod\+Titulo}. Herda metodos da classe abstrata \doxylink{class_dominios}{Dominios}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_cod_titulo_a0e4604b10626f6ef58d7821303a52ffe}\index{CodTitulo@{CodTitulo}!validar@{validar}}
+\index{validar@{validar}!CodTitulo@{CodTitulo}}
+\doxysubsubsection{\texorpdfstring{validar()}{validar()}}
+{\footnotesize\ttfamily \label{class_cod_titulo_a0e4604b10626f6ef58d7821303a52ffe} 
+void Cod\+Titulo\+::validar (\begin{DoxyParamCaption}\item[{string}]{valor}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+Responsavel pela validacao do valor do objeto. 
+
+
+
+Implements \mbox{\hyperlink{class_dominios_acddc7c2a1632211b48adaebd2356cf23}{Dominios}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ tamanhoCodigo\ =\ valor.length();}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{string}\ sigla\ =\ valor.substr(0,3);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//Verifica\ se\ o\ codigo\ possui\ uma\ das\ siglas\ aleatorias}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//se\ nao\ tiver,\ recebe\ a\ classificacao\ invalida.}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{string}\ siglaValida\ =\ (sigla\ !=\ \textcolor{stringliteral}{"{}CDB"{}}\ \&\&\ sigla\ !=\ \textcolor{stringliteral}{"{}CRA"{}}\ \&\&\ sigla\ !=\ \textcolor{stringliteral}{"{}CRI"{}}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ sigla\ !=\ \textcolor{stringliteral}{"{}LCA"{}}\ \&\&\ sigla\ !=\ \textcolor{stringliteral}{"{}LCI"{}}\ \&\&\ sigla\ !=\ \textcolor{stringliteral}{"{}DEB"{}})}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ \textcolor{stringliteral}{"{}invalida"{}}\ :\ \textcolor{stringliteral}{"{}valida"{}};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//Verifica\ se\ ha\ caractere\ invalido}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<tamanhoCodigo;\ i++)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isdigit(valor[i])\ ==\ 0\ \&\&\ isalpha(valor[i]\ ==\ 0))\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Codigo\ invalido:\ caracetre\ invalido\ detectado"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{if}\ (siglaValida\ ==\ \textcolor{stringliteral}{"{}invalida"{}})\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Codigo\ invalido:\ sigla\ incorreta"{}});}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{if}\ (tamanhoCodigo\ !=\ 11)\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Codigo\ invalido:\ tamanho\ incorreto"{}});}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{dominios_8h}{dominios.\+h}}\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{dominios_8cpp}{dominios.\+cpp}}\end{DoxyCompactItemize}

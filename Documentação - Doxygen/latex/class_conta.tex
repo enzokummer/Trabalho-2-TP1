@@ -1,0 +1,115 @@
+\doxysection{Conta Class Reference}
+\hypertarget{class_conta}{}\label{class_conta}\index{Conta@{Conta}}
+
+
+Classe concreta, que contem as informacoes sobre os dados pessoais da conta.  
+
+
+
+
+{\ttfamily \#include $<$entidades.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_conta_afd9a0f045f816098e7ff584ae9aae92f}{setcpf}} (const \mbox{\hyperlink{class_c_p_f}{CPF}} \&)
+\item 
+\mbox{\hyperlink{class_c_p_f}{CPF}} \mbox{\hyperlink{class_conta_af0286bcf9f6def815958467603c93689}{getcpf}} () const
+\item 
+void \mbox{\hyperlink{class_conta_a5d66c1723ff6d386b95118889436bbb3}{setnome}} (const \mbox{\hyperlink{class_nome}{Nome}} \&)
+\item 
+\mbox{\hyperlink{class_nome}{Nome}} \mbox{\hyperlink{class_conta_a6b19cc5a7387c34bec388c3e75fe71bf}{getnome}} () const
+\item 
+void \mbox{\hyperlink{class_conta_ad9a407f03aa40540ff94421ddbaf312b}{setsenha}} (const \mbox{\hyperlink{class_senha}{Senha}} \&)
+\item 
+\mbox{\hyperlink{class_senha}{Senha}} \mbox{\hyperlink{class_conta_ab16b82473208e765c04e88d4295f9893}{getsenha}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe concreta, que contem as informacoes sobre os dados pessoais da conta. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_conta_af0286bcf9f6def815958467603c93689}\index{Conta@{Conta}!getcpf@{getcpf}}
+\index{getcpf@{getcpf}!Conta@{Conta}}
+\doxysubsubsection{\texorpdfstring{getcpf()}{getcpf()}}
+{\footnotesize\ttfamily \label{class_conta_af0286bcf9f6def815958467603c93689} 
+\mbox{\hyperlink{class_c_p_f}{CPF}} Conta\+::getcpf (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ cpf;}
+\DoxyCodeLine{00037\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_conta_a6b19cc5a7387c34bec388c3e75fe71bf}\index{Conta@{Conta}!getnome@{getnome}}
+\index{getnome@{getnome}!Conta@{Conta}}
+\doxysubsubsection{\texorpdfstring{getnome()}{getnome()}}
+{\footnotesize\ttfamily \label{class_conta_a6b19cc5a7387c34bec388c3e75fe71bf} 
+\mbox{\hyperlink{class_nome}{Nome}} Conta\+::getnome (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{return}\ nome;}
+\DoxyCodeLine{00045\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_conta_ab16b82473208e765c04e88d4295f9893}\index{Conta@{Conta}!getsenha@{getsenha}}
+\index{getsenha@{getsenha}!Conta@{Conta}}
+\doxysubsubsection{\texorpdfstring{getsenha()}{getsenha()}}
+{\footnotesize\ttfamily \label{class_conta_ab16b82473208e765c04e88d4295f9893} 
+\mbox{\hyperlink{class_senha}{Senha}} Conta\+::getsenha (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ senha;}
+\DoxyCodeLine{00053\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_conta_afd9a0f045f816098e7ff584ae9aae92f}\index{Conta@{Conta}!setcpf@{setcpf}}
+\index{setcpf@{setcpf}!Conta@{Conta}}
+\doxysubsubsection{\texorpdfstring{setcpf()}{setcpf()}}
+{\footnotesize\ttfamily \label{class_conta_afd9a0f045f816098e7ff584ae9aae92f} 
+void Conta\+::setcpf (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_c_p_f}{CPF}} \&}]{cpf}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ this-\/>cpf\ =\ cpf;}
+\DoxyCodeLine{00033\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_conta_a5d66c1723ff6d386b95118889436bbb3}\index{Conta@{Conta}!setnome@{setnome}}
+\index{setnome@{setnome}!Conta@{Conta}}
+\doxysubsubsection{\texorpdfstring{setnome()}{setnome()}}
+{\footnotesize\ttfamily \label{class_conta_a5d66c1723ff6d386b95118889436bbb3} 
+void Conta\+::setnome (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_nome}{Nome}} \&}]{nome}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ this-\/>nome\ =\ nome;}
+\DoxyCodeLine{00041\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_conta_ad9a407f03aa40540ff94421ddbaf312b}\index{Conta@{Conta}!setsenha@{setsenha}}
+\index{setsenha@{setsenha}!Conta@{Conta}}
+\doxysubsubsection{\texorpdfstring{setsenha()}{setsenha()}}
+{\footnotesize\ttfamily \label{class_conta_ad9a407f03aa40540ff94421ddbaf312b} 
+void Conta\+::setsenha (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_senha}{Senha}} \&}]{senha}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ this-\/>senha\ =\ senha;}
+\DoxyCodeLine{00049\ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{entidades_8h}{entidades.\+h}}\end{DoxyCompactItemize}

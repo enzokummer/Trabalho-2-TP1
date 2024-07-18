@@ -1,0 +1,132 @@
+\doxysection{Dominios Class Reference}
+\hypertarget{class_dominios}{}\label{class_dominios}\index{Dominios@{Dominios}}
+
+
+Classe abstrata para representar os dominios de valores das classes.  
+
+
+
+
+{\ttfamily \#include $<$dominios.\+h$>$}
+
+Inheritance diagram for Dominios\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=11.000000cm]{class_dominios}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_dominios_add18854d2909d6e44e0b377f73304c07}{\texorpdfstring{$\sim$}{\string~}\+Dominios}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor virtual da classe \doxylink{class_dominios}{Dominios}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_dominios_a5aab10b5c80ead7ea78495f6ed426357}{set\+Valor}} (string)
+\begin{DoxyCompactList}\small\item\em Define o valor do domiinio. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_dominios_ac86d0cf047c11d1693d421ffc62480a6}{get\+Valor}} () const
+\begin{DoxyCompactList}\small\item\em Retorna o valor do dominio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_dominios_acddc7c2a1632211b48adaebd2356cf23}{validar}} (string)=0
+\begin{DoxyCompactList}\small\item\em O valor do objeto do dominio desejado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe abstrata para representar os dominios de valores das classes. 
+
+Esta classe define a interface comum para todas as classes que representam um dominio de valores. Ela fornece metodos para definir e obter o valor do dominio. Todos os metodos fornecidos sao herdados pelas classes do tipo Dominio, com cada uma delas implementando o seu padrao de validacao. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_dominios_add18854d2909d6e44e0b377f73304c07}\index{Dominios@{Dominios}!````~Dominios@{\texorpdfstring{$\sim$}{\string~}Dominios}}
+\index{````~Dominios@{\texorpdfstring{$\sim$}{\string~}Dominios}!Dominios@{Dominios}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Dominios()}{\string~Dominios()}}
+{\footnotesize\ttfamily \label{class_dominios_add18854d2909d6e44e0b377f73304c07} 
+virtual Dominios\+::\texorpdfstring{$\sim$}{\string~}\+Dominios (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Destrutor virtual da classe \doxylink{class_dominios}{Dominios}. 
+
+Este destrutor virtual permite que as classes filhas tenham seus proprios destrutores. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044\ \{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_dominios_ac86d0cf047c11d1693d421ffc62480a6}\index{Dominios@{Dominios}!getValor@{getValor}}
+\index{getValor@{getValor}!Dominios@{Dominios}}
+\doxysubsubsection{\texorpdfstring{getValor()}{getValor()}}
+{\footnotesize\ttfamily \label{class_dominios_ac86d0cf047c11d1693d421ffc62480a6} 
+string Dominios\+::get\+Valor (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retorna o valor do dominio. 
+
+\begin{DoxyReturn}{Returns}
+O valor do dominio.
+\end{DoxyReturn}
+Este metodo retorna o valor do dominio. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{return}\ valor;}
+\DoxyCodeLine{00065\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_dominios_a5aab10b5c80ead7ea78495f6ed426357}\index{Dominios@{Dominios}!setValor@{setValor}}
+\index{setValor@{setValor}!Dominios@{Dominios}}
+\doxysubsubsection{\texorpdfstring{setValor()}{setValor()}}
+{\footnotesize\ttfamily \label{class_dominios_a5aab10b5c80ead7ea78495f6ed426357} 
+void Dominios\+::set\+Valor (\begin{DoxyParamCaption}\item[{string}]{valor}{}\end{DoxyParamCaption})}
+
+
+
+Define o valor do domiinio. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em valor} & O valor a ser definido. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em invalid\+\_\+argument} & Se o valor n\+Ao for valido para o dominio.\\
+\hline
+\end{DoxyExceptions}
+Este m\&todo define o valor do dominio. Ele chama o metodo "{}verifica\+Valor"{} para verificar se o valor e valido. Se o valor nao for valido, o metodo lanca uma excecao do tipo "{}invalid\+\_\+argument"{}. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00004\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00005\ \ \ \ \ \mbox{\hyperlink{class_dominios_acddc7c2a1632211b48adaebd2356cf23}{validar}}(valor);}
+\DoxyCodeLine{00006\ \ \ \ \ this-\/>valor\ =\ valor;}
+\DoxyCodeLine{00007\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_dominios_acddc7c2a1632211b48adaebd2356cf23}\index{Dominios@{Dominios}!validar@{validar}}
+\index{validar@{validar}!Dominios@{Dominios}}
+\doxysubsubsection{\texorpdfstring{validar()}{validar()}}
+{\footnotesize\ttfamily \label{class_dominios_acddc7c2a1632211b48adaebd2356cf23} 
+virtual void Dominios\+::validar (\begin{DoxyParamCaption}\item[{string}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+O valor do objeto do dominio desejado. 
+
+O valor que o objeto vai receber, que pode varia de acordo com o dominio desejado.
+
+Verifica se um valor e valido para o dominio. 
+\begin{DoxyParams}{Parameters}
+{\em valor} & O valor a ser verificado.\\
+\hline
+\end{DoxyParams}
+Este metodo deve ser implementado pelas classes filhas para verificar se um valor e valido para o dominio. Se o valor nao for valido, o metodo deve lancar uma excecao. 
+
+Implemented in \mbox{\hyperlink{class_cod_pagamento_aa213391176c0bed59faad11fda9fe1c6}{Cod\+Pagamento}}, \mbox{\hyperlink{class_cod_titulo_a0e4604b10626f6ef58d7821303a52ffe}{Cod\+Titulo}}, \mbox{\hyperlink{class_c_p_f_ab9d22b271613ca7f3e3a02a85e78299e}{CPF}}, \mbox{\hyperlink{class_data_a00bce518003ffa4b6a609803ec11e873}{Data}}, \mbox{\hyperlink{class_dinheiro_a9fe0cac2ccefd20320296ed4b5892446}{Dinheiro}}, \mbox{\hyperlink{class_estado_ae8de0dcbe4ac9f30fc36510f3fc33473}{Estado}}, \mbox{\hyperlink{class_nome_ac25119b2ed1a4b4ed0a337aa9c6b681a}{Nome}}, \mbox{\hyperlink{class_percentual_afa03313e37077d38824ac473fc44c870}{Percentual}}, \mbox{\hyperlink{class_senha_aa673bf2e28f83d0d43495c8ad3a1d30c}{Senha}}, and \mbox{\hyperlink{class_setor_af63d54d9afb2236adaf68d1e1bc5617a}{Setor}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{dominios_8h}{dominios.\+h}}\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{dominios_8cpp}{dominios.\+cpp}}\end{DoxyCompactItemize}

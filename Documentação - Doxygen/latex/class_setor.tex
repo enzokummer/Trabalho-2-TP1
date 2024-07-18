@@ -1,0 +1,87 @@
+\doxysection{Setor Class Reference}
+\hypertarget{class_setor}{}\label{class_setor}\index{Setor@{Setor}}
+
+
+Classe concreta \doxylink{class_setor}{Setor}. Herda metodos da classe abstrata \doxylink{class_dominios}{Dominios}.  
+
+
+
+
+{\ttfamily \#include $<$dominios.\+h$>$}
+
+Inheritance diagram for Setor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_setor}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_setor_af63d54d9afb2236adaf68d1e1bc5617a}{validar}} (string) override
+\begin{DoxyCompactList}\small\item\em O valor do objeto do dominio desejado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_dominios}{Dominios}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_dominios_add18854d2909d6e44e0b377f73304c07}{\texorpdfstring{$\sim$}{\string~}\+Dominios}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor virtual da classe \doxylink{class_dominios}{Dominios}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_dominios_a5aab10b5c80ead7ea78495f6ed426357}{set\+Valor}} (string)
+\begin{DoxyCompactList}\small\item\em Define o valor do domiinio. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_dominios_ac86d0cf047c11d1693d421ffc62480a6}{get\+Valor}} () const
+\begin{DoxyCompactList}\small\item\em Retorna o valor do dominio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe concreta \doxylink{class_setor}{Setor}. Herda metodos da classe abstrata \doxylink{class_dominios}{Dominios}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_setor_af63d54d9afb2236adaf68d1e1bc5617a}\index{Setor@{Setor}!validar@{validar}}
+\index{validar@{validar}!Setor@{Setor}}
+\doxysubsubsection{\texorpdfstring{validar()}{validar()}}
+{\footnotesize\ttfamily \label{class_setor_af63d54d9afb2236adaf68d1e1bc5617a} 
+void Setor\+::validar (\begin{DoxyParamCaption}\item[{string}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+O valor do objeto do dominio desejado. 
+
+O valor que o objeto vai receber, que pode varia de acordo com o dominio desejado.
+
+Verifica se um valor e valido para o dominio. 
+\begin{DoxyParams}{Parameters}
+{\em valor} & O valor a ser verificado.\\
+\hline
+\end{DoxyParams}
+Este metodo deve ser implementado pelas classes filhas para verificar se um valor e valido para o dominio. Se o valor nao for valido, o metodo deve lancar uma excecao. 
+
+Implements \mbox{\hyperlink{class_dominios_acddc7c2a1632211b48adaebd2356cf23}{Dominios}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordtype}{string}\ setores[10]\ =\ \{\textcolor{stringliteral}{"{}Agricultura"{}},\textcolor{stringliteral}{"{}Construcao\ Civil"{}},}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{stringliteral}{"{}Energia"{}},\textcolor{stringliteral}{"{}Financas"{}},\textcolor{stringliteral}{"{}Imobiliario"{}},\textcolor{stringliteral}{"{}Papel\ e\ celulose"{}},}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{stringliteral}{"{}Pecuaria"{}},\textcolor{stringliteral}{"{}Quimica\ e\ petroquimica"{}},\textcolor{stringliteral}{"{}Metalurgia\ e\ siderurgia"{}},}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{stringliteral}{"{}Mineracao"{}}\};}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordtype}{bool}\ valida\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{comment}{//Itera\ sobre\ a\ lista\ e\ compara\ com\ o\ valor\ de\ entrada}}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&setor\ :\ setores)\{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (setor\ ==\ valor)\{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ valida\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00284\ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{if}(!valida)\ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Setor\ invalido."{}});}
+\DoxyCodeLine{00287\ \ \ \ \ \}}
+\DoxyCodeLine{00288\ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{dominios_8h}{dominios.\+h}}\item 
+Trabalho-\/1-\/\+TP1/\mbox{\hyperlink{dominios_8cpp}{dominios.\+cpp}}\end{DoxyCompactItemize}
