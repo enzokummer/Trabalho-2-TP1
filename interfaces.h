@@ -2,14 +2,15 @@
 #define INTERFACES_H_INCLUDED
 
 #include "dominios.h"
+#include "entidades.h"
 #include <stdexcept>
 
 using namespace std;
 
 class IAAutenticacao{
     public:
-        virtual bool autenticar(Matricula*) = 0                        // Método por meio do qual é solicitado serviço.
-        virtual void setCntrLNAutenticacao(ILNAutenticacao *) = 0;      // Método por meio do qual é estabelecida ligação (link) com a controladora na camada de serviço.
+        virtual bool autenticar(Matricula*) = 0                        // Mï¿½todo por meio do qual ï¿½ solicitado serviï¿½o.
+        virtual void setCntrLNAutenticacao(ILNAutenticacao *) = 0;      // Mï¿½todo por meio do qual ï¿½ estabelecida ligaï¿½ï¿½o (link) com a controladora na camada de serviï¿½o.
         virtual ~IUAutenticacao(){}
 };
 
@@ -32,6 +33,12 @@ class IAInvestimento{
 };
 
 class ISInvestimento{
-
+    public:
+        virtual bool criar(Titulo) = 0;
+        virtual bool recuperar(Titulo*) = 0;
+        virtual bool atualizar(Titulo) = 0;
+        virtual bool excluir(Titulo) = 0;
+        virtual bool listar(Titulo) = 0;
+        virtual ~ISInvestimento() {};
 };
 #endif // INTERFACES_H_INCLUDED
