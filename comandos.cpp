@@ -1,9 +1,9 @@
 #include "comandos.h"
 #include <iostream>
 
-sqlite3* startConnection(const std::string& filename) {
+sqlite3* startConnection(const std::string& dbFile) {
     sqlite3* db;
-    int rc = sqlite3_open(filename.c_str(), &db);
+    int rc = sqlite3_open(dbFile.c_str(), &db);
     if (rc) {
         throw std::runtime_error("Erro ao conectar: " + std::string(sqlite3_errmsg(db)));
     }
