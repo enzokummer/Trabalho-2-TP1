@@ -2,10 +2,23 @@
 #include "dominios.h"
 #include "entidades.h"
 #include "testes.h"
+#include "comandos.h"
 
 using namespace std;
 
 int main(){
+    
+    try {
+        sqlite3* db = startConnection("database.db");
+        createTbAcc(db);
+        createTablebTtl(db);
+        createTablePaym(db);
+        endConnection(db);
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
+    }
+
     cout << endl << "TESTES DOS DOMINIOS" << endl;
 
     TUCodPagamento testeA;
