@@ -8,14 +8,14 @@ using namespace std;
 
 class IAAutenticacao{
     public:
-        virtual bool autenticar(Matricula*) = 0                        // Método por meio do qual é solicitado serviço.
-        virtual void setCntrLNAutenticacao(ILNAutenticacao *) = 0;      // Método por meio do qual é estabelecida ligação (link) com a controladora na camada de serviço.
-        virtual ~IUAutenticacao(){}
+        virtual bool autenticar(Matricula*) = 0                        // Mï¿½todo por meio do qual ï¿½ solicitado serviï¿½o.
+        virtual void setCntrISAutenticacao(ISAutenticacao*) = 0;     // Mï¿½todo por meio do qual ï¿½ estabelecida ligaï¿½ï¿½o (link) com a controladora na camada de serviï¿½o.
+        virtual ~IAAutenticacao(){}                                  // MÃ©todo destrutor virtual
 };
 
 class ISAutenticacao{
     public:
-        virtual bool autenticar(const Matricula&, const Senha&) = 0;
+        virtual bool autenticar(const Matricula&, const Senha&) = 0; // mÃ©todo por meio do qual Ã© solicitado serviÃ§o
         virtual ~ISAutenticacao(){}
 };
 
