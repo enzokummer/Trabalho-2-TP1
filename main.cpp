@@ -2,10 +2,126 @@
 #include "dominios.h"
 #include "entidades.h"
 #include "testes.h"
+#include "comandos.h"
+#include <ctime>
 
 using namespace std;
 
+// Função pra pegar a data e hora do sistema
+
+std::string getDate() {
+    time_t now = time(0);
+    tm* ltm = localtime(&now);
+
+    int year = 1900 + ltm->tm_year;
+    int month = 1 + ltm->tm_mon;
+    int day = ltm->tm_mday;
+
+    char date[11];
+    snprintf(date, sizeof(date), "%04d-%02d-%02d", year, month, day);
+    return std::string(date);
+}
+
 int main(){
+
+    cout << endl << "TESTES DO BANCO" << endl;
+
+    try {
+        sqlite3* db = startConnection("database.db");
+        createTbAcc(db);
+        createTablebTtl(db);
+        createTablePaym(db);
+
+        if (createConta(db, "12345678901", "Fulano silva", "123456")) {
+            cout << "Sucesso - Criar Conta" << endl;
+        } else {
+            cout << "Falha - Criar Conta" << endl;
+        }
+
+        vector<string> conta;
+        if (readConta(db, "12345678901", conta)) {
+            cout << "Sucesso - Ler Conta: " << conta[1] << endl;
+        } else {
+            cout << "Falha - Ler Conta" << endl;
+        }
+
+        if (updateConta(db, "12345678901", "Novo Nome", "654321")) {
+            cout << "Sucesso - Atualizar Conta" << endl;
+        } else {
+            cout << "Falha - Atualizar Conta" << endl;
+        }
+
+        if (deleteConta(db, "12345678901")) {
+            cout << "Sucesso - Excluir Conta" << endl;
+        } else {
+            cout << "Falha - Excluir Conta" << endl;
+        }
+
+        std::string currentDate = getDate();
+
+        if (createTitulo(db, 1, "Emissor Teste", "Setor Teste", currentDate, "2025-01-01", "1000.00", "12345678901")) {
+            cout << "Sucesso - Criar Titulo" << endl;
+        } else {
+            cout << "Falha - Criar Titulo" << endl;
+        }
+
+        vector<string> tituloData;
+        if (readTitulo(db, 1, tituloData)) {
+            cout << "Sucesso - Ler Titulo" << endl;
+            for (const auto& field : tituloData) {
+                cout << field << endl;
+            }
+        } else {
+            cout << "Falha - Ler Titulo" << endl;
+        }
+
+        if (updateTitulo(db, 1, "Emissor Atualizado", "Setor Atualizado", currentDate, "2025-01-01", "2000.00")) {
+            cout << "Sucesso - Atualizar Titulo" << endl;
+        } else {
+            cout << "Falha - Atualizar Titulo" << endl;
+        }
+
+        if (deleteTitulo(db, 1)) {
+            cout << "Sucesso - Deletar Titulo" << endl;
+        } else {
+            cout << "Falha - Deletar Titulo" << endl;
+        }
+        
+                if (createPagamento(db, 1, currentDate, 100, "Previsto", 1)) {
+            cout << "Sucesso - Criar Pagamento" << endl;
+        } else {
+            cout << "Falha - Criar Pagamento" << endl;
+        }
+
+        vector<string> pagamentoData;
+        if (readPagamento(db, 1, pagamentoData)) {
+            cout << "Sucesso - Ler Pagamento" << endl;
+            for (const auto& field : pagamentoData) {
+                cout << field << endl;
+            }
+        } else {
+            cout << "Falha - Ler Pagamento" << endl;
+        }
+
+        if (updatePagamento(db, 1, currentDate, 80, "Liquidado")) {
+            cout << "Sucesso - Atualizar Pagamento" << endl;
+        } else {
+            cout << "Falha - Atualizar Pagamento" << endl;
+        }
+
+        if (deletePagamento(db, 1)) {
+            cout << "Sucesso - Deletar Pagamento" << endl;
+        } else {
+            cout << "Falha - Deletar Pagamento" << endl;
+        }
+        
+        endConnection(db);
+
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
+    }
+
     cout << endl << "TESTES DOS DOMINIOS" << endl;
 
     TUCodPagamento testeA;
@@ -113,4 +229,6 @@ int main(){
     }else {
         cout << "Falha - Pagamento" << endl;
     }
+
+    return 0;
 }
