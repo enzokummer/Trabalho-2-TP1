@@ -1,6 +1,8 @@
 #include "comandos.h"
 #include <iostream>
 
+// Conexão e desconexão com o sqlite
+
 sqlite3* startConnection(const std::string& dbFile) {
     sqlite3* db;
     int rc = sqlite3_open(dbFile.c_str(), &db);
@@ -15,6 +17,8 @@ void endConnection(sqlite3* db) {
         throw std::runtime_error("Erro ao encerrar a conexão:  " + std::string(sqlite3_errmsg(db)));
     }
 }
+
+// Criar as tabelas
 
 void createTbAcc(sqlite3* db) {
     const char* sql = "CREATE TABLE IF NOT EXISTS Conta ("
@@ -56,6 +60,8 @@ void createTablePaym(sqlite3* db) {
         throw std::runtime_error("Erro ao criar tabela 'Pagamento': " + std::string(errMsg));
     }
 }
+
+// CRUD conta
 
 bool createConta(sqlite3* db, const std::string& cpf, const std::string& nome, const std::string& senha) {
     std::string sql = "INSERT INTO Conta (CPF, Nome, Senha) VALUES (?, ?, ?);";
@@ -147,4 +153,85 @@ bool deleteConta(sqlite3* db, const std::string& cpf) {
 
     sqlite3_finalize(stmt);
     return true;
+}
+
+//CRUD titulo
+
+bool createTitulo(sqlite3* db, int codigo, const std::string& emissor, 
+    const std::string& setor, const std::string& emissao, 
+    const std::string& vencimento, const std::string& valor, 
+    const std::string& cpfConta) {
+    std::string sql = "INSERT INTO Titulo (Codigo, Emissor, Setor, Emissao, Vencimento, Valor, CPF_Conta) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    sqlite3_stmt* stmt;
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, 0) != SQLITE_OK) {
+        return false;
+    }
+    sqlite3_bind_int(stmt, 1, codigo);
+    sqlite3_bind_text(stmt, 2, emissor.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 3, setor.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 4, emissao.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 5, vencimento.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 6, valor.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 7, cpfConta.c_str(), -1, SQLITE_STATIC);
+    
+    bool success = (sqlite3_step(stmt) == SQLITE_DONE);
+    sqlite3_finalize(stmt);
+    return success;
+}
+
+bool readTitulo(sqlite3* db, int codigo, std::vector<std::string>& result) {
+    std::string sql = "SELECT * FROM Titulo WHERE Codigo = ?;";
+    sqlite3_stmt* stmt;
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, 0) != SQLITE_OK) {
+        return false;
+    }
+    sqlite3_bind_int(stmt, 1, codigo);
+    
+    if (sqlite3_step(stmt) == SQLITE_ROW) {
+        result.push_back(std::to_string(sqlite3_column_int(stmt, 0)));
+        result.push_back(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1))); // Emissor
+        result.push_back(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2))); // Setor
+        result.push_back(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3))); // Emissao
+        result.push_back(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4))); // Vencimento
+        result.push_back(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5))); // Valor
+        result.push_back(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6))); // CPF_Conta
+        sqlite3_finalize(stmt);
+        return true;
+    } else {
+        sqlite3_finalize(stmt);
+        return false;
+    }
+}
+
+bool updateTitulo(sqlite3* db, int codigo, const std::string& emissor, 
+    const std::string& setor, const std::string& emissao, 
+    const std::string& vencimento, const std::string& valor) {
+    std::string sql = "UPDATE Titulo SET Emissor = ?, Setor = ?, Emissao = ?, Vencimento = ?, Valor = ? WHERE Codigo = ?;";
+    sqlite3_stmt* stmt;
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, 0) != SQLITE_OK) {
+        return false;
+    }
+    sqlite3_bind_text(stmt, 1, emissor.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, setor.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 3, emissao.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 4, vencimento.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 5, valor.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_int(stmt, 6, codigo);
+    
+    bool success = (sqlite3_step(stmt) == SQLITE_DONE);
+    sqlite3_finalize(stmt);
+    return success;
+}
+
+bool deleteTitulo(sqlite3* db, int codigo) {
+    std::string sql = "DELETE FROM Titulo WHERE Codigo = ?;";
+    sqlite3_stmt* stmt;
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, 0) != SQLITE_OK) {
+        return false;
+    }
+    sqlite3_bind_int(stmt, 1, codigo);
+    
+    bool success = (sqlite3_step(stmt) == SQLITE_DONE);
+    sqlite3_finalize(stmt);
+    return success;
 }
