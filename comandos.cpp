@@ -235,3 +235,94 @@ bool deleteTitulo(sqlite3* db, int codigo) {
     sqlite3_finalize(stmt);
     return success;
 }
+
+//CRUD pagamento
+
+bool createPagamento(sqlite3* db, int codigo, const std::string& data, int percentual, const std::string& estado, int codigoTitulo) {
+    std::string sql = "INSERT INTO Pagamento (Codigo, Data, Percentual, Estado, Codigo_Titulo) VALUES (?, ?, ?, ?, ?);";
+    sqlite3_stmt* stmt;
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, 0) != SQLITE_OK) {
+        std::cerr << "Erro: " << sqlite3_errmsg(db) << std::endl;
+        return false;
+    }
+    sqlite3_bind_int(stmt, 1, codigo);
+    sqlite3_bind_text(stmt, 2, data.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_int(stmt, 3, percentual);
+    sqlite3_bind_text(stmt, 4, estado.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_int(stmt, 5, codigoTitulo);
+
+    if (sqlite3_step(stmt) != SQLITE_DONE) {
+        std::cerr << "Erro: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_finalize(stmt);
+        return false;
+    }
+
+    sqlite3_finalize(stmt);
+    return true;
+}
+
+bool readPagamento(sqlite3* db, int codigo, std::vector<std::string>& pagamentoData) {
+    std::string sql = "SELECT * FROM Pagamento WHERE Codigo = ?;";
+    sqlite3_stmt* stmt;
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, 0) != SQLITE_OK) {
+        std::cerr << "Erro: " << sqlite3_errmsg(db) << std::endl;
+        return false;
+    }
+    sqlite3_bind_int(stmt, 1, codigo);
+
+    if (sqlite3_step(stmt) == SQLITE_ROW) {
+        pagamentoData.push_back(std::to_string(sqlite3_column_int(stmt, 0)));
+        pagamentoData.push_back(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
+        pagamentoData.push_back(std::to_string(sqlite3_column_int(stmt, 2)));
+        pagamentoData.push_back(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
+        pagamentoData.push_back(std::to_string(sqlite3_column_int(stmt, 4)));
+    } else {
+        std::cerr << "Não existe um pagamento com esse codigo: " << codigo << std::endl;
+        sqlite3_finalize(stmt);
+        return false;
+    }
+
+    sqlite3_finalize(stmt);
+    return true;
+}
+
+bool updatePagamento(sqlite3* db, int codigo, const std::string& data, int percentual, const std::string& estado) {
+    std::string sql = "UPDATE Pagamento SET Data = ?, Percentual = ?, Estado = ? WHERE Codigo = ?;";
+    sqlite3_stmt* stmt;
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, 0) != SQLITE_OK) {
+        std::cerr << "Erro: " << sqlite3_errmsg(db) << std::endl;
+        return false;
+    }
+    sqlite3_bind_text(stmt, 1, data.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_int(stmt, 2, percentual);
+    sqlite3_bind_text(stmt, 3, estado.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_int(stmt, 4, codigo);
+
+    if (sqlite3_step(stmt) != SQLITE_DONE) {
+        std::cerr << "Erro: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_finalize(stmt);
+        return false;
+    }
+
+    sqlite3_finalize(stmt);
+    return true;
+}
+
+bool deletePagamento(sqlite3* db, int codigo) {
+    std::string sql = "DELETE FROM Pagamento WHERE Codigo = ?;";
+    sqlite3_stmt* stmt;
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, 0) != SQLITE_OK) {
+        std::cerr << "Erro: " << sqlite3_errmsg(db) << std::endl;
+        return false;
+    }
+    sqlite3_bind_int(stmt, 1, codigo);
+
+    if (sqlite3_step(stmt) != SQLITE_DONE) {
+        std::cerr << "Erro: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_finalize(stmt);
+        return false;
+    }
+
+    sqlite3_finalize(stmt);
+    return true;
+}

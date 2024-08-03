@@ -86,6 +86,35 @@ int main(){
         } else {
             cout << "Falha - Deletar Titulo" << endl;
         }
+        
+                if (createPagamento(db, 1, currentDate, 100, "Previsto", 1)) {
+            cout << "Sucesso - Criar Pagamento" << endl;
+        } else {
+            cout << "Falha - Criar Pagamento" << endl;
+        }
+
+        vector<string> pagamentoData;
+        if (readPagamento(db, 1, pagamentoData)) {
+            cout << "Sucesso - Ler Pagamento" << endl;
+            for (const auto& field : pagamentoData) {
+                cout << field << endl;
+            }
+        } else {
+            cout << "Falha - Ler Pagamento" << endl;
+        }
+
+        if (updatePagamento(db, 1, currentDate, 80, "Liquidado")) {
+            cout << "Sucesso - Atualizar Pagamento" << endl;
+        } else {
+            cout << "Falha - Atualizar Pagamento" << endl;
+        }
+
+        if (deletePagamento(db, 1)) {
+            cout << "Sucesso - Deletar Pagamento" << endl;
+        } else {
+            cout << "Falha - Deletar Pagamento" << endl;
+        }
+        
         endConnection(db);
 
     } catch (const std::exception& e) {
