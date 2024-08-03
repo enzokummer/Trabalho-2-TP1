@@ -56,3 +56,95 @@ void createTablePaym(sqlite3* db) {
         throw std::runtime_error("Erro ao criar tabela 'Pagamento': " + std::string(errMsg));
     }
 }
+
+bool createConta(sqlite3* db, const std::string& cpf, const std::string& nome, const std::string& senha) {
+    std::string sql = "INSERT INTO Conta (CPF, Nome, Senha) VALUES (?, ?, ?);";
+    sqlite3_stmt* stmt;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        std::cerr << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+        return false;
+    }
+    sqlite3_bind_text(stmt, 1, cpf.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, nome.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 3, senha.c_str(), -1, SQLITE_STATIC);
+
+    rc = sqlite3_step(stmt);
+    if (rc != SQLITE_DONE) {
+        std::cerr << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_finalize(stmt);
+        return false;
+    }
+
+    sqlite3_finalize(stmt);
+    return true;
+}
+
+bool readConta(sqlite3* db, const std::string& cpf, std::vector<std::string>& conta) {
+    std::string sql = "SELECT * FROM Conta WHERE CPF = ?;";
+    sqlite3_stmt* stmt;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        std::cerr << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+        return false;
+    }
+    sqlite3_bind_text(stmt, 1, cpf.c_str(), -1, SQLITE_STATIC);
+
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_ROW) {
+        conta.push_back(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
+        conta.push_back(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
+        conta.push_back(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
+    } else {
+        std::cerr << "Conta not found" << std::endl;
+        sqlite3_finalize(stmt);
+        return false;
+    }
+
+    sqlite3_finalize(stmt);
+    return true;
+}
+
+bool updateConta(sqlite3* db, const std::string& cpf, const std::string& nome, const std::string& senha) {
+    std::string sql = "UPDATE Conta SET Nome = ?, Senha = ? WHERE CPF = ?;";
+    sqlite3_stmt* stmt;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        std::cerr << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+        return false;
+    }
+    sqlite3_bind_text(stmt, 1, nome.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, senha.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 3, cpf.c_str(), -1, SQLITE_STATIC);
+
+    rc = sqlite3_step(stmt);
+    if (rc != SQLITE_DONE) {
+        std::cerr << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_finalize(stmt);
+        return false;
+    }
+
+    sqlite3_finalize(stmt);
+    return true;
+}
+
+bool deleteConta(sqlite3* db, const std::string& cpf) {
+    std::string sql = "DELETE FROM Conta WHERE CPF = ?;";
+    sqlite3_stmt* stmt;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        std::cerr << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+        return false;
+    }
+    sqlite3_bind_text(stmt, 1, cpf.c_str(), -1, SQLITE_STATIC);
+
+    rc = sqlite3_step(stmt);
+    if (rc != SQLITE_DONE) {
+        std::cerr << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_finalize(stmt);
+        return false;
+    }
+
+    sqlite3_finalize(stmt);
+    return true;
+}

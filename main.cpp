@@ -7,12 +7,37 @@
 using namespace std;
 
 int main(){
-    
-    try {
+ try {
         sqlite3* db = startConnection("database.db");
         createTbAcc(db);
         createTablebTtl(db);
         createTablePaym(db);
+
+        if (createConta(db, "12345678901", "Fulano silva", "123456")) {
+            cout << "Sucesso - Criar Conta" << endl;
+        } else {
+            cout << "Falha - Criar Conta" << endl;
+        }
+
+        vector<string> conta;
+        if (readConta(db, "12345678901", conta)) {
+            cout << "Sucesso - Ler Conta: " << conta[1] << endl;
+        } else {
+            cout << "Falha - Ler Conta" << endl;
+        }
+
+        if (updateConta(db, "12345678901", "Novo Nome", "654321")) {
+            cout << "Sucesso - Atualizar Conta" << endl;
+        } else {
+            cout << "Falha - Atualizar Conta" << endl;
+        }
+
+        if (deleteConta(db, "12345678901")) {
+            cout << "Sucesso - Excluir Conta" << endl;
+        } else {
+            cout << "Falha - Excluir Conta" << endl;
+        }
+
         endConnection(db);
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
@@ -126,4 +151,6 @@ int main(){
     }else {
         cout << "Falha - Pagamento" << endl;
     }
+
+    return 0;
 }
