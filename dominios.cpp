@@ -78,7 +78,7 @@ void CPF::validar(string valor) {
     int digito1 = calcDigito(digitos, 9);
     int digito2 = calcDigito(digitos, 10);
 
-    // Verificando se os digitos calculados são iguais aos do CPF
+    // Verificando se os digitos calculados sï¿½o iguais aos do CPF
     if (digito1 != (digitos[9] - '0') || digito2 != (digitos[10] - '0')) {
         throw invalid_argument("CPF invalido: Digitos verificadores incorretos");
     }
