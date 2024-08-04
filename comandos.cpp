@@ -111,6 +111,29 @@ bool readConta(sqlite3* db, const std::string& cpf, std::vector<std::string>& co
     return true;
 }
 
+bool readSenha(sqlite3* db, const std::string& cpf, std::string& senha) {
+    std::string sql = "SELECT senha FROM Conta WHERE CPF = ?;";
+    sqlite3_stmt* stmt;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        std::cerr << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+        return false;
+    }
+    sqlite3_bind_text(stmt, 1, cpf.c_str(), -1, SQLITE_STATIC);
+
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_ROW) {
+        senha = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
+    } else {
+        std::cerr << "Conta not found" << std::endl;
+        sqlite3_finalize(stmt);
+        return false;
+    }
+
+    sqlite3_finalize(stmt);
+    return true;
+}
+
 bool updateConta(sqlite3* db, const std::string& cpf, const std::string& nome, const std::string& senha) {
     std::string sql = "UPDATE Conta SET Nome = ?, Senha = ? WHERE CPF = ?;";
     sqlite3_stmt* stmt;
