@@ -11,6 +11,10 @@ class IAAutenticacao{
 
 };
 
+class ISAutenticacao {
+
+};
+
 class IAConta{
 
 };

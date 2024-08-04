@@ -28,6 +28,9 @@ int main() {
 
     Dinheiro valor;
     valor.setValor("1.000,00");
+    
+    CPF cpf_conta;
+    cpf_conta.setValor("006.599.720-42");
 
     titulo.setcodigo(codigo);
     titulo.setemissao(emissao);
@@ -35,15 +38,19 @@ int main() {
     titulo.setsetor(setor);
     titulo.setvalor(valor);
     titulo.setvencimento(vencimento);
-    
+    titulo.setcpfConta(cpf_conta);
+
     controladora.criar(titulo);
     controladora.recuperar(&titulo);
+    cout << "Titulo:\n Codigo: " << titulo.getcodigo().getValor() << endl << " Emissor: " << titulo.getemissor().getValor() << endl << " Emissao: " << titulo.getemissao().getValor() << endl << " Setor: " << titulo.getsetor().getValor() << endl << endl; //fiquei com preguiça de pôr todos
 
     emissor.setValor("Cleitin Jeferson");
+    setor.setValor("Energia");
     titulo.setemissor(emissor);
-    cout << titulo.getemissor().getValor();
+    titulo.setsetor(setor);
     controladora.atualizar(titulo);
     controladora.recuperar(&titulo);
+    cout << "Titulo:\n Codigo: " << titulo.getcodigo().getValor() << endl << " Emissor: " << titulo.getemissor().getValor() << endl << " Emissao: " << titulo.getemissao().getValor() << endl << " Setor: " << titulo.getsetor().getValor() << endl << endl;
 
     controladora.excluir(titulo);
 
@@ -64,18 +71,26 @@ int main() {
     Estado estado;
     estado.setValor("Inadimplente");
 
+    CodTitulo codigoTitulo;
+    codigoTitulo.setValor("CDB12345678");
+
     pagamento.setcodigo(codigo2);
     pagamento.setdata(data);
     pagamento.setestado(estado);
     pagamento.setpercentual(percentual);
+    pagamento.setcodigoTitulo(codigoTitulo);
 
     controladora2.criar(pagamento);
     controladora2.recuperar(&pagamento);
+    cout << "Pagamento:\n Codigo: " << pagamento.getcodigo().getValor() << endl << " Data: " << pagamento.getdata().getValor() << endl << " Estado: " << pagamento.getestado().getValor() << endl << " Percentual: " << pagamento.getpercentual().getValor() << endl << endl;
 
     estado.setValor("Previsto");
     pagamento.setestado(estado);
+    percentual.setValor("100");
+    pagamento.setpercentual(percentual);
     controladora2.atualizar(pagamento);
     controladora2.recuperar(&pagamento);
+    cout << "Pagamento:\n Codigo: " << pagamento.getcodigo().getValor() << endl << " Data: " << pagamento.getdata().getValor() << endl << " Estado: " << pagamento.getestado().getValor() << endl << " Percentual: " << pagamento.getpercentual().getValor() << endl << endl;
 
     controladora2.excluir(pagamento);
 
