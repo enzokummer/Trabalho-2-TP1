@@ -10,31 +10,24 @@ using namespace std;
 int main() {
     ControladoraServicoTitulos controladora;
     Titulo titulo;
-    string a;
 
-    cin >> a;
     CodTitulo codigo;
-    codigo.setValor(a);
+    codigo.setValor("CDB12345678");
 
-    cin >> a;
     Nome emissor;
-    emissor.setValor(a);
+    emissor.setValor("Joao Cleber");
 
-    cin >> a;
     Setor setor;
-    setor.setValor(a);
+    setor.setValor("Agricultura");
 
-    cin >> a;
     Data emissao;
-    emissao.setValor(a);
+    emissao.setValor("12-12-2012");
 
-    cin >> a;
     Data vencimento;
-    vencimento.setValor(a);
+    vencimento.setValor("13-12-2012");
 
-    cin >> a;
     Dinheiro valor;
-    valor.setValor(a);
+    valor.setValor("1.000,00");
 
     titulo.setcodigo(codigo);
     titulo.setemissao(emissao);
@@ -44,6 +37,47 @@ int main() {
     titulo.setvencimento(vencimento);
     
     controladora.criar(titulo);
+    controladora.recuperar(&titulo);
+
+    emissor.setValor("Cleitin Jeferson");
+    titulo.setemissor(emissor);
+    cout << titulo.getemissor().getValor();
+    controladora.atualizar(titulo);
+    controladora.recuperar(&titulo);
+
+    controladora.excluir(titulo);
+
+    /////////////////////////
+
+    ControladoraServicoPagamentos controladora2;
+    Pagamento pagamento;
+
+    CodPagamento codigo2;
+    codigo2.setValor("12345678");
+
+    Data data;
+    data.setValor("12-12-2085");
+
+    Percentual percentual;
+    percentual.setValor("82");
+
+    Estado estado;
+    estado.setValor("Inadimplente");
+
+    pagamento.setcodigo(codigo2);
+    pagamento.setdata(data);
+    pagamento.setestado(estado);
+    pagamento.setpercentual(percentual);
+
+    controladora2.criar(pagamento);
+    controladora2.recuperar(&pagamento);
+
+    estado.setValor("Previsto");
+    pagamento.setestado(estado);
+    controladora2.atualizar(pagamento);
+    controladora2.recuperar(&pagamento);
+
+    controladora2.excluir(pagamento);
 
     return 0;
 }
