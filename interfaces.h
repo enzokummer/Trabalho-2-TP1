@@ -6,17 +6,18 @@
 
 using namespace std;
 
-class IAAutenticacao{
-    public:
-        virtual bool autenticar(Matricula*) = 0                        // M�todo por meio do qual � solicitado servi�o.
-        virtual void setCntrISAutenticacao(ISAutenticacao*) = 0;     // M�todo por meio do qual � estabelecida liga��o (link) com a controladora na camada de servi�o.
-        virtual ~IAAutenticacao(){}                                  // Método destrutor virtual
-};
 
 class ISAutenticacao{
     public:
-        virtual bool autenticar(const Matricula&, const Senha&) = 0; // método por meio do qual é solicitado serviço
+        virtual bool autenticar(const CPF&, const Senha&) = 0; // método por meio do qual é solicitado serviço
         virtual ~ISAutenticacao(){}
+};
+
+class IAAutenticacao{
+    public:
+        virtual bool autenticar(CPF*) = 0;                        // M�todo por meio do qual � solicitado servi�o.
+        virtual void setCntrISAutenticacao(ISAutenticacao*) = 0;     // M�todo por meio do qual � estabelecida liga��o (link) com a controladora na camada de servi�o.
+        virtual ~IAAutenticacao(){}                                  // Método destrutor virtual
 };
 
 class IAConta{

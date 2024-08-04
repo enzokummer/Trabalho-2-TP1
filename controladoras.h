@@ -10,6 +10,8 @@
 #define CLR_SCR system("cls");
 using namespace std;
 
+// AUTENTICACAO 
+
 class CntrIAAutenticacao: public IAAutenticacao {
     private:
         ISAutenticacao *cntrISAutenticacao;

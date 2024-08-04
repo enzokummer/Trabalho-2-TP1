@@ -41,7 +41,7 @@ bool CntrIAAutenticacao::autenticar(CPF *cpf) {
 
 bool CntrISAutenticacao::autenticar(const CPF& cpf, const Senha& senha){
     sqlite3* db;
-    int rc = sqlite_open("database.db", &db);
+    int rc = sqlite3_open("database.db", &db);
     if(rc){
         cerr<<"Erro na comunicação com o banco de dados: " << sqlite3_errmsg(db) << std::endl;
         return false;
