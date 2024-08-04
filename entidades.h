@@ -69,6 +69,7 @@ private:
     Data emissao;
     Data vencimento;
     Dinheiro valor;
+    CPF cpfConta;
 public:
     //Codigo de Titulo
     void setcodigo(const CodTitulo&);
@@ -88,6 +89,9 @@ public:
     //Valor(Dinheiro)
     void setvalor(const Dinheiro&);
     Dinheiro getvalor() const;
+
+    void setcpfConta(const CPF&);
+    CPF getcpfConta() const;
 };
 //set Codigo de Titulo
 inline void Titulo::setcodigo(const CodTitulo &codigo){
@@ -138,6 +142,14 @@ inline Dinheiro Titulo::getvalor() const{
     return valor;
 }
 
+inline void Titulo::setcpfConta(const CPF &cpfConta){
+    this->cpfConta = cpfConta;
+}
+
+inline CPF Titulo::getcpfConta() const{
+    return cpfConta;
+}
+
 
 //ENTIDADE PAGAMENTO --------------------------------------------------------------
 /**
@@ -153,6 +165,7 @@ private:
     Data data;
     Percentual percentual;
     Estado estado;
+    CodTitulo codigoTitulo;
 public:
     //CodPagamento
     void setcodigo(const CodPagamento&);
@@ -166,6 +179,9 @@ public:
     //Estado
     void setestado(const Estado&);
     Estado getestado() const;
+
+    void setcodigoTitulo(const CodTitulo&);
+    CodTitulo getcodigoTitulo() const;
 };
 //set Codigo de Pagamento
 inline void Pagamento::setcodigo(const CodPagamento &codigo){
@@ -198,6 +214,14 @@ inline void Pagamento::setestado(const Estado &estado){
 //get Estado
 inline Estado Pagamento::getestado() const{
     return estado;
+}
+
+inline void Pagamento::setcodigoTitulo(const CodTitulo &codigoTitulo){
+    this->codigoTitulo = codigoTitulo;
+}
+
+inline CodTitulo Pagamento::getcodigoTitulo() const{
+    return codigoTitulo;
 }
 
 #endif //ENTIDADES_H

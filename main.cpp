@@ -22,34 +22,80 @@ std::string getDate() {
     return std::string(date);
 }
 
-bool testDeleteTituloWithPayments(sqlite3* db) {
+bool testDeleteTituloWithPayments(TituloSQL& tituloSQL, PagamentoSQL& pagamentoSQL, ContaSQL& contaSQL) {
+    Conta conta;
+    CPF cpf;
+    cpf.setValor("428.407.731-71");
+    conta.setcpf(cpf);
+    Nome nome;
+    nome.setValor("Test User");
+    conta.setnome(nome);
+    Senha senha;
+    senha.setValor("614598");
+    conta.setsenha(senha);
 
-    if (!createConta(db, "12345678901", "Test User", "123456")) {
+    if (!contaSQL.create(conta)) {
         cerr << "Erro ao criar conta." << endl;
         return false;
     }
 
-    if (!createTitulo(db, "CDB12345678", "Banco X", "Financas", "2023-01-01", "2025-01-01", "100000", "12345678901")) {
+    Titulo titulo;
+    CodTitulo codTitulo;
+    codTitulo.setValor("CDB12345678");
+    titulo.setcodigo(codTitulo);
+    Nome emissor;
+    emissor.setValor("Banco X");
+    titulo.setemissor(emissor);
+    Setor setor;
+    setor.setValor("Energia");
+    titulo.setsetor(setor);
+    Data emissao;
+    emissao.setValor("2023-01-01");
+    titulo.setemissao(emissao);
+    Data vencimento;
+    vencimento.setValor("2025-01-01");
+    titulo.setvencimento(vencimento);
+    Dinheiro valor;
+    valor.setValor("100000");
+    titulo.setvalor(valor);
+    titulo.setcpfConta(cpf);
+
+    if (!tituloSQL.create(titulo)) {
         cerr << "Erro ao criar título." << endl;
         return false;
     }
 
-    if (!createPagamento(db, 1, "2024-01-01", 50, "Liquidado", "CDB12345678")) {
+    Pagamento pagamento;
+    CodPagamento codPagamento;
+    codPagamento.setValor("1");
+    pagamento.setcodigo(codPagamento);
+    Data data;
+    data.setValor("2024-01-01");
+    pagamento.setdata(data);
+    Percentual percentual;
+    percentual.setValor("50");
+    pagamento.setpercentual(percentual);
+    Estado estado;
+    estado.setValor("Liquidado");
+    pagamento.setestado(estado);
+    pagamento.setcodigoTitulo(codTitulo);
+
+    if (!pagamentoSQL.create(pagamento)) {
         cerr << "Erro ao criar pagamento." << endl;
         return false;
     }
 
-    if (deleteTitulo(db, "CDB12345678")) {
+    if (tituloSQL.deleteTitulo("CDB12345678")) {
         cerr << "Erro: Título deletado indevidamente apesar de ter pagamento associado." << endl;
         return false;
     }
 
-    if (!deletePagamento(db, 1)) {
+    if (!pagamentoSQL.deletePagamento(1)) {
         cerr << "Erro ao deletar pagamento." << endl;
         return false;
     }
 
-    if (!deleteTitulo(db, "CDB12345678")) {
+    if (!tituloSQL.deleteTitulo("CDB12345678")) {
         cerr << "Erro ao deletar título que não tem mais pagamentos associados." << endl;
         return false;
     }
@@ -57,8 +103,7 @@ bool testDeleteTituloWithPayments(sqlite3* db) {
     return true;
 }
 
-int main(){
-
+int main() {
     cout << endl << "TESTES DO BANCO" << endl;
 
     try {
@@ -67,30 +112,53 @@ int main(){
         createTablebTtl(db);
         createTablePaym(db);
 
-        deleteConta(db, "12345678901");
-        deleteTitulo(db, "CDB12345678");
-        deletePagamento(db, 1);
+        ContaSQL contaSQL(db);
+        TituloSQL tituloSQL(db);
+        PagamentoSQL pagamentoSQL(db);
 
-        if (createConta(db, "12345678901", "Fulano silva", "123456")) {
+        contaSQL.deleteConta("123.456.789-01");
+        tituloSQL.deleteTitulo("CDB12345678");
+        pagamentoSQL.deletePagamento(1);
+
+        Conta conta;
+        CPF cpf;
+        cpf.setValor("428.407.731-71");
+        conta.setcpf(cpf);
+        Nome nome;
+        nome.setValor("Fulano Silva");
+        conta.setnome(nome);
+        Senha senha;
+        senha.setValor("614598");
+        conta.setsenha(senha);
+
+        if (contaSQL.create(conta)) {
             cout << "Sucesso - Criar Conta" << endl;
         } else {
             cout << "Falha - Criar Conta" << endl;
         }
 
-        vector<string> conta;
-        if (readConta(db, "12345678901", conta)) {
-            cout << "Sucesso - Ler Conta: " << conta[1] << endl;
+        Conta contaLida;
+        if (contaSQL.read("428.407.731-71", contaLida)) {
+            cout << "Sucesso - Ler Conta: " << contaLida.getnome().getValor() << endl;
+            cout << "CPF Lido: " << contaLida.getcpf().getValor() << endl;
         } else {
             cout << "Falha - Ler Conta" << endl;
         }
 
-        if (updateConta(db, "12345678901", "Novo Nome", "654321")) {
+        Nome novoNome;
+        novoNome.setValor("Novo Nome");
+        contaLida.setnome(novoNome);
+        Senha novaSenha;
+        novaSenha.setValor("456198");
+        contaLida.setsenha(novaSenha);
+
+        if (contaSQL.update(contaLida)) {
             cout << "Sucesso - Atualizar Conta" << endl;
         } else {
             cout << "Falha - Atualizar Conta" << endl;
         }
 
-        if (deleteConta(db, "12345678901")) {
+        if (contaSQL.deleteConta("428.407.731-71")) {
             cout << "Sucesso - Excluir Conta" << endl;
         } else {
             cout << "Falha - Excluir Conta" << endl;
@@ -98,62 +166,115 @@ int main(){
 
         std::string currentDate = getDate();
 
-        if (createTitulo(db, "CDB12345678", "Emissor Teste", "Setor Teste", currentDate, "2025-01-01", "1000.00", "12345678901")) {
+        Titulo titulo;
+        CodTitulo codTitulo;
+        codTitulo.setValor("CDB12345678");
+        titulo.setcodigo(codTitulo);
+        Nome emissor;
+        emissor.setValor("Emissor Teste");
+        titulo.setemissor(emissor);
+        Setor setor;
+        setor.setValor("Agricultura");
+        titulo.setsetor(setor);
+        Data emissao;
+        emissao.setValor(currentDate);
+        titulo.setemissao(emissao);
+        Data vencimento;
+        vencimento.setValor("2025-01-01");
+        titulo.setvencimento(vencimento);
+        Dinheiro valor;
+        valor.setValor("1000.00");
+        titulo.setvalor(valor);
+        titulo.setcpfConta(cpf);
+
+        if (tituloSQL.create(titulo)) {
             cout << "Sucesso - Criar Titulo" << endl;
         } else {
             cout << "Falha - Criar Titulo" << endl;
         }
 
-        if (readTitulo(db, "CDB12345678")) {
+        Titulo tituloLido;
+        if (tituloSQL.read("CDB12345678", tituloLido)) {
             cout << "Sucesso - Ler Titulo" << endl;
         } else {
             cout << "Falha - Ler Titulo" << endl;
         } 
 
-        if (updateTitulo(db, "CDB12345678", "Emissor Atualizado", "Setor Atualizado", currentDate, "2025-01-01", "2000.00")) {
+        Nome novoEmissor;
+        novoEmissor.setValor("Emissor Atualizado");
+        tituloLido.setemissor(novoEmissor);
+        Setor novoSetor;
+        novoSetor.setValor("Financas");
+        tituloLido.setsetor(novoSetor);
+        Dinheiro novoValor;
+        novoValor.setValor("2000.00");
+        tituloLido.setvalor(novoValor);
+
+        if (tituloSQL.update(tituloLido)) {
             cout << "Sucesso - Atualizar Titulo" << endl;
         } else {
             cout << "Falha - Atualizar Titulo" << endl;
         }
 
-        if (deleteTitulo(db, "CDB12345678")) {
-            cout << "Sucesso - Deletar titulo" << endl;
+        if (tituloSQL.deleteTitulo("CDB12345678")) {
+            cout << "Sucesso - Deletar Titulo" << endl;
         } else {
             cout << "Falha ao deletar título!" << endl;
         }
 
-        if (testDeleteTituloWithPayments(db)) {
+        if (testDeleteTituloWithPayments(tituloSQL, pagamentoSQL, contaSQL)) {
             cout << "Sucesso - Não deletar título com pagamento associado" << endl;
         } else {
             cout << "Falha - Não deletar título com pagamento associado" << endl;
         }
 
-        deletePagamento(db, 1);
-        deleteTitulo(db, "CDB12345678");
-        
-        if (createPagamento(db, 1, currentDate, 100, "Previsto", "CDB12345678")) {
+        Pagamento pagamento;
+        CodPagamento codPagamento;
+        codPagamento.setValor("1");
+        pagamento.setcodigo(codPagamento);
+        Data data;
+        data.setValor(currentDate);
+        pagamento.setdata(data);
+        Percentual percentual;
+        percentual.setValor("100");
+        pagamento.setpercentual(percentual);
+        Estado estado;
+        estado.setValor("Previsto");
+        pagamento.setestado(estado);
+        pagamento.setcodigoTitulo(codTitulo);
+
+        if (pagamentoSQL.create(pagamento)) {
             cout << "Sucesso - Criar Pagamento" << endl;
         } else {
             cout << "Falha - Criar Pagamento" << endl;
         }
 
-        if (readPagamento(db, 1)) {
+        Pagamento pagamentoLido;
+        if (pagamentoSQL.read(1, pagamentoLido)) {
             cout << "Sucesso - Ler Pagamento" << endl;
         } else {
             cout << "Falha - Ler Pagamento" << endl;
         }
-        if (updatePagamento(db, 1, currentDate, 80, "Liquidado")) {
+
+        Estado novoEstado;
+        novoEstado.setValor("Liquidado");
+        pagamentoLido.setestado(novoEstado);
+        Percentual novoPercentual;
+        novoPercentual.setValor("80");
+        pagamentoLido.setpercentual(novoPercentual);
+
+        if (pagamentoSQL.update(pagamentoLido)) {
             cout << "Sucesso - Atualizar Pagamento" << endl;
         } else {
             cout << "Falha - Atualizar Pagamento" << endl;
         }
 
-        if (deletePagamento(db, 1)) {
+        if (pagamentoSQL.deletePagamento(1)) {
             cout << "Sucesso - Deletar Pagamento" << endl;
         } else {
             cout << "Falha - Deletar Pagamento" << endl;
         }
-        
+
         endConnection(db);
 
     } catch (const std::exception& e) {
