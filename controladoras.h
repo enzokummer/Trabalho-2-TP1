@@ -14,7 +14,7 @@ class CntrIAAutenticacao: public IAAutenticacao {
     private:
         ISAutenticacao *cntrISAutenticacao;
     public:
-        bool autenticar(Matricula*);
+        bool autenticar(CPF*);
         void setCntrISAutenticacao(ISAutenticacao*);
 };
 
@@ -24,7 +24,7 @@ void inline CntrIAAutenticacao::setCntrISAutenticacao(ISAutenticacao* cntrISAute
 
 class CntrISAutenticacao: public ISAutenticacao {
     public:
-        bool autenticar(const Matricula&, const Senha&);
+        bool autenticar(const CPF&, const Senha&);
 };
 
 #endif // CONTROLADORAS_H_INCLUDED

@@ -17,6 +17,7 @@ sqlite3* startConnection(const std::string& dbFile);
 // Comandos Conta
 bool createConta(sqlite3* db, const std::string& cpf, const std::string& nome, const std::string& senha);
 bool readConta(sqlite3* db, const std::string& cpf, std::vector<std::string>& conta);
+bool readSenha(sqlite3* db, const std::string& cpf, std::string& senha);
 bool updateConta(sqlite3* db, const std::string& cpf, const std::string& nome, const std::string& senha);
 bool deleteConta(sqlite3* db, const std::string& cpf);
 // Comandos Titulo
@@ -32,5 +33,5 @@ bool deletePagamento(sqlite3* db, int codigo);
 // Encerrar conexão
 void endConnection(sqlite3* db);
 
-#endif 
+#endif // COMANDOS_H 
 
