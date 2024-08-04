@@ -59,25 +59,29 @@ bool CntrISAutenticacao::autenticar(const CPF& cpf, const Senha& senha){
 
 bool ControladoraServicoTitulos::criar(Titulo titulo) {
     sqlite3* db = startConnection("database.db");
-    createTitulo(db, titulo.getcodigo().getValor(), titulo.getemissor().getValor(), titulo.getsetor().getValor(), titulo.getemissao().getValor(), titulo.getvencimento().getValor(), titulo.getvalor().getValor(), "cpfprovisorio"); //consertar isso
+    TituloSQL comandos(db);
+    comandos.create(titulo);
     endConnection(db);
 };
 
 bool ControladoraServicoTitulos::recuperar(Titulo* titulo) {
     sqlite3* db = startConnection("database.db");
-    readTitulo(db, titulo->getcodigo().getValor());
+    TituloSQL comandos(db);
+    comandos.read(titulo->getcodigo().getValor(), *titulo);
     endConnection(db);
 };
 
 bool ControladoraServicoTitulos::atualizar(Titulo titulo) {
     sqlite3* db = startConnection("database.db");
-    updateTitulo(db, titulo.getcodigo().getValor(), titulo.getemissor().getValor(), titulo.getsetor().getValor(), titulo.getemissao().getValor(), titulo.getvencimento().getValor(), titulo.getvalor().getValor());
+    TituloSQL comandos(db);
+    comandos.update(titulo);
     endConnection(db);
 };
 
 bool ControladoraServicoTitulos::excluir(Titulo titulo) {
     sqlite3* db = startConnection("database.db");
-    deleteTitulo(db, titulo.getcodigo().getValor());
+    TituloSQL comandos(db);
+    comandos.deleteTitulo(titulo.getcodigo().getValor());
     endConnection(db);
 };
 
@@ -91,25 +95,29 @@ bool ControladoraServicoTitulos::listar(Titulo titulo) {
 
 bool ControladoraServicoPagamentos::criar(Pagamento pagamento) {
     sqlite3* db = startConnection("database.db");
-    createPagamento(db, stoi(pagamento.getcodigo().getValor()), pagamento.getdata().getValor(), stoi(pagamento.getpercentual().getValor()), pagamento.getestado().getValor(), "Codigo temporario"); //corrigir isso
+    PagamentoSQL comandos(db);
+    comandos.create(pagamento);
     endConnection(db);
 };
 
 bool ControladoraServicoPagamentos::recuperar(Pagamento* pagamento) {
     sqlite3* db = startConnection("database.db");
-    readPagamento(db, stoi(pagamento->getcodigo().getValor()));
+    PagamentoSQL comandos(db);
+    comandos.read(stoi(pagamento->getcodigo().getValor()), *pagamento);
     endConnection(db);
 };
 
 bool ControladoraServicoPagamentos::atualizar(Pagamento pagamento) {
     sqlite3* db = startConnection("database.db");
-    updatePagamento(db, stoi(pagamento.getcodigo().getValor()), pagamento.getdata().getValor(), stoi(pagamento.getpercentual().getValor()), pagamento.getestado().getValor());
+    PagamentoSQL comandos(db);
+    comandos.update(pagamento);
     endConnection(db);
 };
 
 bool ControladoraServicoPagamentos::excluir(Pagamento pagamento) {
     sqlite3* db = startConnection("database.db");
-    deletePagamento(db, stoi(pagamento.getcodigo().getValor()));
+    PagamentoSQL comandos(db);
+    comandos.deletePagamento(stoi(pagamento.getcodigo().getValor()));
     endConnection(db);
 };
 
