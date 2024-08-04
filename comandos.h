@@ -3,7 +3,7 @@
 
 #ifndef COMANDOS_H
 #define COMANDOS_H
-#include <sqlite3.h>
+#include "./includes/sqlite3.h"
 #include <string>
 #include <stdexcept>
 #include <vector>
