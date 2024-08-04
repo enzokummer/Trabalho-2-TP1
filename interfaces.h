@@ -2,21 +2,13 @@
 #define INTERFACES_H_INCLUDED
 
 #include "dominios.h"
+#include "entidades.h"
 #include <stdexcept>
 
 using namespace std;
 
 class IAAutenticacao{
-    public:
-        virtual bool autenticar(Matricula*) = 0                        // M�todo por meio do qual � solicitado servi�o.
-        virtual void setCntrISAutenticacao(ISAutenticacao*) = 0;     // M�todo por meio do qual � estabelecida liga��o (link) com a controladora na camada de servi�o.
-        virtual ~IAAutenticacao(){}                                  // Método destrutor virtual
-};
 
-class ISAutenticacao{
-    public:
-        virtual bool autenticar(const Matricula&, const Senha&) = 0; // método por meio do qual é solicitado serviço
-        virtual ~ISAutenticacao(){}
 };
 
 class IAConta{
@@ -31,7 +23,24 @@ class IAInvestimento{
 
 };
 
-class ISInvestimento{
-
+class ISInvestimentoTitulos {
+    public:
+        virtual bool criar(Titulo) = 0;
+        virtual bool recuperar(Titulo*) = 0;
+        virtual bool atualizar(Titulo) = 0;
+        virtual bool excluir(Titulo) = 0;
+        virtual bool listar(Titulo) = 0;
+        virtual ~ISInvestimentoTitulos() {};
 };
+
+class ISInvestimentoPagamentos {
+    public:
+        virtual bool criar(Pagamento) = 0;
+        virtual bool recuperar(Pagamento*) = 0;
+        virtual bool atualizar(Pagamento) = 0;
+        virtual bool excluir(Pagamento) = 0;
+        virtual bool listar(Pagamento) = 0;
+        virtual ~ISInvestimentoPagamentos() {};
+};
+
 #endif // INTERFACES_H_INCLUDED
