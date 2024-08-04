@@ -20,13 +20,13 @@ bool readConta(sqlite3* db, const std::string& cpf, std::vector<std::string>& co
 bool updateConta(sqlite3* db, const std::string& cpf, const std::string& nome, const std::string& senha);
 bool deleteConta(sqlite3* db, const std::string& cpf);
 // Comandos Titulo
-bool createTitulo(sqlite3* db, int codigo, const std::string& emissor, const std::string& setor, const std::string& emissao, const std::string& vencimento, const std::string& valor, const std::string& cpfConta);
-bool readTitulo(sqlite3* db, int codigo, std::vector<std::string>& titulo);
-bool updateTitulo(sqlite3* db, int codigo, const std::string& emissor, const std::string& setor, const std::string& emissao, const std::string& vencimento, const std::string& valor);
-bool deleteTitulo(sqlite3* db, int codigo);
+bool createTitulo(sqlite3* db, const std::string& codigo, const std::string& emissor, const std::string& setor, const std::string& emissao, const std::string& vencimento, const std::string& valor, const std::string& cpfConta);
+bool readTitulo(sqlite3* db, const std::string& codigo);
+bool updateTitulo(sqlite3* db, const std::string& codigo, const std::string& emissor, const std::string& setor, const std::string& emissao, const std::string& vencimento, const std::string& valor);
+bool deleteTitulo(sqlite3* db, const std::string& codigoTitulo);
 // Comandos Pagamento
-bool createPagamento(sqlite3* db, int codigo, const std::string& data, int percentual, const std::string& estado, int codigoTitulo);
-bool readPagamento(sqlite3* db, int codigo, std::vector<std::string>& pagamento);
+bool createPagamento(sqlite3* db, int codigo, const std::string& data, int percentual, const std::string& estado, const std::string& codigoTitulo);
+bool readPagamento(sqlite3* db, int codigo);
 bool updatePagamento(sqlite3* db, int codigo, const std::string& data, int percentual, const std::string& estado);
 bool deletePagamento(sqlite3* db, int codigo);
 // Encerrar conexão
