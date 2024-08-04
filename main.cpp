@@ -22,6 +22,41 @@ std::string getDate() {
     return std::string(date);
 }
 
+bool testDeleteTituloWithPayments(sqlite3* db) {
+
+    if (!createConta(db, "12345678901", "Test User", "123456")) {
+        cerr << "Erro ao criar conta." << endl;
+        return false;
+    }
+
+    if (!createTitulo(db, "CDB12345678", "Banco X", "Financas", "2023-01-01", "2025-01-01", "100000", "12345678901")) {
+        cerr << "Erro ao criar título." << endl;
+        return false;
+    }
+
+    if (!createPagamento(db, 1, "2024-01-01", 50, "Liquidado", "CDB12345678")) {
+        cerr << "Erro ao criar pagamento." << endl;
+        return false;
+    }
+
+    if (deleteTitulo(db, "CDB12345678")) {
+        cerr << "Erro: Título deletado indevidamente apesar de ter pagamento associado." << endl;
+        return false;
+    }
+
+    if (!deletePagamento(db, 1)) {
+        cerr << "Erro ao deletar pagamento." << endl;
+        return false;
+    }
+
+    if (!deleteTitulo(db, "CDB12345678")) {
+        cerr << "Erro ao deletar título que não tem mais pagamentos associados." << endl;
+        return false;
+    }
+
+    return true;
+}
+
 int main(){
 
     cout << endl << "TESTES DO BANCO" << endl;
@@ -31,6 +66,10 @@ int main(){
         createTbAcc(db);
         createTablebTtl(db);
         createTablePaym(db);
+
+        deleteConta(db, "12345678901");
+        deleteTitulo(db, "CDB12345678");
+        deletePagamento(db, 1);
 
         if (createConta(db, "12345678901", "Fulano silva", "123456")) {
             cout << "Sucesso - Criar Conta" << endl;
@@ -59,50 +98,50 @@ int main(){
 
         std::string currentDate = getDate();
 
-        if (createTitulo(db, 1, "Emissor Teste", "Setor Teste", currentDate, "2025-01-01", "1000.00", "12345678901")) {
+        if (createTitulo(db, "CDB12345678", "Emissor Teste", "Setor Teste", currentDate, "2025-01-01", "1000.00", "12345678901")) {
             cout << "Sucesso - Criar Titulo" << endl;
         } else {
             cout << "Falha - Criar Titulo" << endl;
         }
 
-        vector<string> tituloData;
-        if (readTitulo(db, 1, tituloData)) {
+        if (readTitulo(db, "CDB12345678")) {
             cout << "Sucesso - Ler Titulo" << endl;
-            for (const auto& field : tituloData) {
-                cout << field << endl;
-            }
         } else {
             cout << "Falha - Ler Titulo" << endl;
-        }
+        } 
 
-        if (updateTitulo(db, 1, "Emissor Atualizado", "Setor Atualizado", currentDate, "2025-01-01", "2000.00")) {
+        if (updateTitulo(db, "CDB12345678", "Emissor Atualizado", "Setor Atualizado", currentDate, "2025-01-01", "2000.00")) {
             cout << "Sucesso - Atualizar Titulo" << endl;
         } else {
             cout << "Falha - Atualizar Titulo" << endl;
         }
 
-        if (deleteTitulo(db, 1)) {
-            cout << "Sucesso - Deletar Titulo" << endl;
+        if (deleteTitulo(db, "CDB12345678")) {
+            cout << "Sucesso - Deletar titulo" << endl;
         } else {
-            cout << "Falha - Deletar Titulo" << endl;
+            cout << "Falha ao deletar título!" << endl;
         }
+
+        if (testDeleteTituloWithPayments(db)) {
+            cout << "Sucesso - Não deletar título com pagamento associado" << endl;
+        } else {
+            cout << "Falha - Não deletar título com pagamento associado" << endl;
+        }
+
+        deletePagamento(db, 1);
+        deleteTitulo(db, "CDB12345678");
         
-                if (createPagamento(db, 1, currentDate, 100, "Previsto", 1)) {
+        if (createPagamento(db, 1, currentDate, 100, "Previsto", "CDB12345678")) {
             cout << "Sucesso - Criar Pagamento" << endl;
         } else {
             cout << "Falha - Criar Pagamento" << endl;
         }
 
-        vector<string> pagamentoData;
-        if (readPagamento(db, 1, pagamentoData)) {
+        if (readPagamento(db, 1)) {
             cout << "Sucesso - Ler Pagamento" << endl;
-            for (const auto& field : pagamentoData) {
-                cout << field << endl;
-            }
         } else {
             cout << "Falha - Ler Pagamento" << endl;
         }
-
         if (updatePagamento(db, 1, currentDate, 80, "Liquidado")) {
             cout << "Sucesso - Atualizar Pagamento" << endl;
         } else {
