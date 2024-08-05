@@ -393,38 +393,17 @@ int main() {
         getchar();
     system("cls");
 
-    int opcao;
-    CPF* cpfUser;
-
-    cout << "Testes finalizados" << endl;
-    cout << "*************************************************" << endl;
-    cout << "Bem vindo ao Sistema de monitoração de pagamentos e vencimentos de títulos de renda fixa!" << endl;
-    cout << "Por favor, selecione a opção desejada" << endl;
-    cout << "1. Criar Conta" << endl;
-    cout << "2. Acessar Conta" << endl;
-    cout << "3. Sair" << endl;
-
-    cin >> opcao;
+    CntrAControle* apresentacao;
     CntrIAAutenticacao* autenticacao;
-    CntrISAutenticacao* controladora;
+    CntrIAConta* conta;
 
-    switch (opcao) {
-        case 1: //criar conta
-            //Modulo Conta criar()
-            break;
-        case 2: //login conta
-            autenticacao = new CntrIAAutenticacao();
-            controladora = new CntrISAutenticacao();
-            autenticacao->setCntrISAutenticacao(controladora);
+    apresentacao = new CntrAControle();
 
-            autenticacao->autenticar(cpfUser);
+    autenticacao = new CntrIAAutenticacao();
+    apresentacao->setCntrAAutenticacao(autenticacao);
 
-            break;
-        case 3: 
-            //SAIR!
-            cout << "Até logo!" << endl;
-            break;
-    }   
+    conta = new CntrIAConta();
+    apresentacao->setCntrAConta(conta);
 
     return 0;
 }

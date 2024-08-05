@@ -22,11 +22,20 @@ class IAAutenticacao{
 };
 
 class IAConta{
-
+    public:
+        virtual bool executar(CPF) = 0;
+        virtual void cadastrar() = 0;
+        virtual void setCntrISConta(ISConta*) = 0;
+        virtual ~IAConta(){}
 };
 
 class ISConta{
-
+    public:
+        virtual bool cadastrar(const Conta&) = 0;
+        virtual Conta visualizar(const CPF&) = 0;
+        virtual bool editar(const Conta&) = 0;
+        virtual bool descadastrar(const CPF&) = 0;
+        virtual ~ISConta(){}
 };
 
 class IAInvestimento{

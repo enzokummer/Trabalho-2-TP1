@@ -114,7 +114,7 @@ bool ContaSQL::read(const std::string& cpf, Conta& conta) {
     return false;
 }
 
-bool readSenha(sqlite3* db, const std::string& cpf, std::string& senha) {
+bool readSenha(sqlite3* db, const std::string& cpf, std::string& senha) { 
     std::string sql = "SELECT senha FROM Conta WHERE CPF = ?;";
     sqlite3_stmt* stmt;
     int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
