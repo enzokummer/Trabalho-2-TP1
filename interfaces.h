@@ -4,6 +4,7 @@
 #include "dominios.h"
 #include "entidades.h"
 #include <stdexcept>
+#include <vector>
 
 using namespace std;
 class ISConta{
@@ -35,17 +36,13 @@ class IAAutenticacao{
         virtual ~IAAutenticacao(){}                                  // Método destrutor virtual
 };
 
-class IAInvestimento{
-
-};
-
 class ISInvestimentoTitulos {
     public:
         virtual bool criar(Titulo) = 0;
         virtual bool recuperar(Titulo*) = 0;
         virtual bool atualizar(Titulo) = 0;
-        virtual bool excluir(Titulo) = 0;
-        virtual bool listar(Titulo) = 0;
+        virtual bool excluir(string) = 0;
+        virtual bool listar(vector<Titulo>*, CPF) = 0;
         virtual ~ISInvestimentoTitulos() {};
 };
 
@@ -54,9 +51,18 @@ class ISInvestimentoPagamentos {
         virtual bool criar(Pagamento) = 0;
         virtual bool recuperar(Pagamento*) = 0;
         virtual bool atualizar(Pagamento) = 0;
-        virtual bool excluir(Pagamento) = 0;
-        virtual bool listar(Pagamento) = 0;
+        virtual bool excluir(string) = 0;
+        virtual bool listar(vector<Pagamento>*, CodTitulo) = 0;
         virtual ~ISInvestimentoPagamentos() {};
+};
+
+class IAInvestimentos {
+    public:
+        virtual void setControladoraServicoTitulos(ISInvestimentoTitulos*) = 0;
+        virtual void setControladoraServicoPagamentos(ISInvestimentoPagamentos*) = 0;
+        virtual bool executarTitulos(CPF) = 0;
+        virtual bool executarPagamentos(CPF) = 0;
+        virtual ~IAInvestimentos() {};
 };
 
 #endif // INTERFACES_H_INCLUDED
