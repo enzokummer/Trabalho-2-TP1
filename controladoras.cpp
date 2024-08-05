@@ -8,7 +8,7 @@
 using namespace std;
 
 // AUTENTICACAO
-/*
+
 bool CntrIAAutenticacao::autenticar(CPF *cpf) {
     string logIn = "********* Bem-vindo de volta! *********";
     string pedeCPF = "CPF:";
@@ -55,7 +55,7 @@ bool CntrISAutenticacao::autenticar(const CPF& cpf, const Senha& senha){
         return (senhaReal == senha.getValor());
     }
 }
-*/
+
 //Apresentação Investimentos -------------------
 
 void ControladoraApresentacaoInvestimentos::setControladoraApresentacaoPagamentos(ControladoraApresentacaoPagamentos* controladora) {
