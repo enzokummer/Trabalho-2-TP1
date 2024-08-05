@@ -415,6 +415,52 @@ bool ControladoraApresentacaoPagamentos::excluir() {
     return true;
 }
 
+bool ControladoraApresentacaoPagamentos::atualizar() {
+    Pagamento pagamento;
+    CodPagamento codigo;
+    string input;
+
+    cout << "\nDigite o codigo do Pagamento que deseja atualizar." << endl << endl;
+    cin >> input;
+    codigo.setValor(input);
+    pagamento.setcodigo(codigo);
+    input = "";
+
+    cout << "\nDigite o novo valor da Data. Digite 0 para manter o valor atual." << endl;
+    cin >> input;
+    if (input != "0") {
+        Data data;
+        data.setValor(input);
+        pagamento.setdata(data);
+    }
+    input = "";
+
+    cout << "\nDigite o novo valor do Estado. Digite 0 para manter o valor atual." << endl;
+    cin >> input;
+    if (input != "0") {
+        Estado estado;
+        estado.setValor(input);
+        pagamento.setestado(estado);
+    }
+    input = "";
+
+    cout << "\nDigite o novo valor do Percentual. Digite 0 para manter o valor atual." << endl;
+    cin >> input;
+    if (input != "0") {
+        Percentual percentual;
+        percentual.setValor(input);
+        pagamento.setpercentual(percentual);
+    }
+    input = "";
+
+    if (this->controladoraServico->atualizar(pagamento)) {
+        cout << "\nPagamento atualizado com sucesso." << endl << endl;
+    } else {
+        cout << "\nFalha ao atualizar Pagamento." << endl << endl;
+    }
+    return true;
+}
+
 //Serviço Investimentos - Títulos --------------
 
 bool ControladoraServicoTitulos::criar(Titulo titulo) {
@@ -500,8 +546,12 @@ bool ControladoraServicoPagamentos::recuperar(Pagamento* pagamento) {
 bool ControladoraServicoPagamentos::atualizar(Pagamento pagamento) {
     sqlite3* db = startConnection("database.db");
     PagamentoSQL comandos(db);
-    comandos.update(pagamento);
+    if (comandos.update(pagamento)) {
+        endConnection(db);
+        return true;
+    }
     endConnection(db);
+    return true;
 };
 
 bool ControladoraServicoPagamentos::excluir(string codigo) {
