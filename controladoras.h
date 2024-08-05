@@ -10,6 +10,7 @@
 #define CLR_SCR system("cls");
 using namespace std;
 
+
 // AUTENTICACAO
 // FEITO POR ENZO KUMMER
 
@@ -57,7 +58,31 @@ class ControladoraServicoPagamentos:public ISInvestimentoPagamentos {
 
 // CONTAS
 // Feito por Dagoberto
+class CntrISConta: public ISConta {
+    private:
+        ISConta *CntrISConta;
+    public:
+        bool cadastrar(const Conta&);
+        Conta visualizar(const CPF&);
+        bool editar(const Conta&);
+        bool descadastrar(const CPF&);
+};
 
+class CntrIAConta: public IAConta {
+    private:
+        ISConta *cntrISConta;
+        void visualizar(CPF);
+        void editar(CPF);
+        bool descadastrar(CPF);
+    public:
+        bool executar(CPF);
+        void cadastrar();
+        void setCntrISConta(ISConta*);
+};
+
+void inline CntrIAConta::setCntrISConta(ISConta *cntrISConta) {
+    this->cntrISConta = cntrISConta;
+}
 class CntrAControle {
     private:
         CPF cpf;
@@ -80,32 +105,6 @@ void inline CntrAControle::setCntrAConta(IAConta* cntr) {
     cntrAConta = cntr;
 }
 
-class CntrIAConta: public IAConta {
-    private:
-        ISConta *cntrISConta;
-        void visualizar(CPF);
-        void editar(CPF);
-        bool descadastrar(CPF);
-    public:
-        bool executar(CPF);
-        void cadastrar();
-        void setCntrISConta(ISConta*);
-};
-
-void inline CntrIAConta::setCntrISConta(ISConta *cntrISConta) {
-    this->cntrISConta = cntrISConta;
-}
-
-class CntrISConta: public ISConta {
-    //private:
-      //  list<Teste> visualizarTestes(CPF);
-        //list<CasoDeTeste> visualizarCasosDeTestes(CPF);
-    public:
-        bool cadastrar(const Conta&);
-        Conta visualizar(const CPF&);
-        bool editar(const Conta&);
-        bool descadastrar(const CPF&);
-};
 
 #endif // CONTROLADORAS_H_INCLUDED
 
