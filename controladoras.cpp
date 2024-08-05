@@ -3,6 +3,7 @@
 #include "entidades.h"
 #include "comandos.h"
 #include "sqlite3.h"
+#include "comandos.cpp"
 
 using namespace std;
 
@@ -41,7 +42,7 @@ bool CntrIAAutenticacao::autenticar(CPF *cpf) {
 
 bool CntrISAutenticacao::autenticar(const CPF& cpf, const Senha& senha){
     sqlite3* db;
-    int rc = sqlite_open("database.db", &db);
+    int rc = sqlite3_open("database.db", &db);
     if(rc){
         cerr<<"Erro na comunicação com o banco de dados: " << sqlite3_errmsg(db) << std::endl;
         return false;
@@ -54,7 +55,6 @@ bool CntrISAutenticacao::autenticar(const CPF& cpf, const Senha& senha){
         return (senhaReal == senha.getValor());
     }
 }
-
 //Serviço Investimentos - Títulos --------------
 
 bool ControladoraServicoTitulos::criar(Titulo titulo) {

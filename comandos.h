@@ -36,6 +36,7 @@ public:
     bool read(const std::string& codigo, Titulo& titulo);
     bool update(const Titulo& titulo);
     bool deleteTitulo(const std::string& codigo);
+    std::vector<Titulo> listar(const std::string& cpfConta);
 };
 
 class PagamentoSQL {
@@ -48,6 +49,7 @@ public:
     bool read(int codigo, Pagamento& pagamento);
     bool update(const Pagamento& pagamento);
     bool deletePagamento(int codigo);
+    std::vector<Pagamento> listar(const std::string& codigoTitulo);
 };
 
 #endif 

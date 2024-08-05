@@ -3,6 +3,7 @@
 #include "entidades.h"
 #include "testes.h"
 #include "comandos.h"
+#include "controladoras.h"
 #include <ctime>
 
 using namespace std;
@@ -25,13 +26,13 @@ std::string getDate() {
 bool testDeleteTituloWithPayments(TituloSQL& tituloSQL, PagamentoSQL& pagamentoSQL, ContaSQL& contaSQL) {
     Conta conta;
     CPF cpf;
-    cpf.setValor("428.407.731-71");
+    cpf.setValor("123.456.789-01");
     conta.setcpf(cpf);
     Nome nome;
     nome.setValor("Test User");
     conta.setnome(nome);
     Senha senha;
-    senha.setValor("614598");
+    senha.setValor("123456");
     conta.setsenha(senha);
 
     if (!contaSQL.create(conta)) {
@@ -67,7 +68,7 @@ bool testDeleteTituloWithPayments(TituloSQL& tituloSQL, PagamentoSQL& pagamentoS
 
     Pagamento pagamento;
     CodPagamento codPagamento;
-    codPagamento.setValor("1");
+    codPagamento.setValor("00000001");
     pagamento.setcodigo(codPagamento);
     Data data;
     data.setValor("2024-01-01");
@@ -122,13 +123,13 @@ int main() {
 
         Conta conta;
         CPF cpf;
-        cpf.setValor("428.407.731-71");
+        cpf.setValor("123.456.789-01");
         conta.setcpf(cpf);
         Nome nome;
         nome.setValor("Fulano Silva");
         conta.setnome(nome);
         Senha senha;
-        senha.setValor("614598");
+        senha.setValor("123456");
         conta.setsenha(senha);
 
         if (contaSQL.create(conta)) {
@@ -138,7 +139,7 @@ int main() {
         }
 
         Conta contaLida;
-        if (contaSQL.read("428.407.731-71", contaLida)) {
+        if (contaSQL.read("123.456.789-01", contaLida)) {
             cout << "Sucesso - Ler Conta: " << contaLida.getnome().getValor() << endl;
             cout << "CPF Lido: " << contaLida.getcpf().getValor() << endl;
         } else {
@@ -158,7 +159,7 @@ int main() {
             cout << "Falha - Atualizar Conta" << endl;
         }
 
-        if (contaSQL.deleteConta("428.407.731-71")) {
+        if (contaSQL.deleteConta("123.456.789-01")) {
             cout << "Sucesso - Excluir Conta" << endl;
         } else {
             cout << "Falha - Excluir Conta" << endl;
@@ -183,7 +184,7 @@ int main() {
         vencimento.setValor("2025-01-01");
         titulo.setvencimento(vencimento);
         Dinheiro valor;
-        valor.setValor("1000.00");
+        valor.setValor("1000,00");
         titulo.setvalor(valor);
         titulo.setcpfConta(cpf);
 
@@ -207,7 +208,7 @@ int main() {
         novoSetor.setValor("Financas");
         tituloLido.setsetor(novoSetor);
         Dinheiro novoValor;
-        novoValor.setValor("2000.00");
+        novoValor.setValor("2.000,00");
         tituloLido.setvalor(novoValor);
 
         if (tituloSQL.update(tituloLido)) {
@@ -230,7 +231,7 @@ int main() {
 
         Pagamento pagamento;
         CodPagamento codPagamento;
-        codPagamento.setValor("1");
+        codPagamento.setValor("00000001");
         pagamento.setcodigo(codPagamento);
         Data data;
         data.setValor(currentDate);
@@ -389,6 +390,41 @@ int main() {
     }else {
         cout << "Falha - Pagamento" << endl;
     }
+        getchar();
+    system("cls");
+
+    int opcao;
+    CPF* cpfUser;
+
+    cout << "Testes finalizados" << endl;
+    cout << "*************************************************" << endl;
+    cout << "Bem vindo ao Sistema de monitoração de pagamentos e vencimentos de títulos de renda fixa!" << endl;
+    cout << "Por favor, selecione a opção desejada" << endl;
+    cout << "1. Criar Conta" << endl;
+    cout << "2. Acessar Conta" << endl;
+    cout << "3. Sair" << endl;
+
+    cin >> opcao;
+    CntrIAAutenticacao* autenticacao;
+    CntrISAutenticacao* controladora;
+
+    switch (opcao) {
+        case 1: //criar conta
+            //Modulo Conta criar()
+            break;
+        case 2: //login conta
+            autenticacao = new CntrIAAutenticacao();
+            controladora = new CntrISAutenticacao();
+            autenticacao->setCntrISAutenticacao(controladora);
+
+            autenticacao->autenticar(cpfUser);
+
+            break;
+        case 3: 
+            //SAIR!
+            cout << "Até logo!" << endl;
+            break;
+    }   
 
     return 0;
 }
