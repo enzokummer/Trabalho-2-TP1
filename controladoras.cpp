@@ -3,6 +3,7 @@
 #include "entidades.h"
 #include "comandos.h"
 #include "sqlite3.h"
+#include <vector>
 
 using namespace std;
 
@@ -90,10 +91,10 @@ bool ControladoraApresentacaoInvestimentos::executarTitulos(CPF cpf) {
             break;
         case '4':
             return controladoraApresentacaoTitulos->excluir(cpf);
-            break;/*
+            break;
         case '5':
-            return controladoraApresentacaoTitulos->listar();
-            break;*/
+            return controladoraApresentacaoTitulos->listar(cpf);
+            break;
         case '6':
             return false;
             break;
@@ -308,7 +309,23 @@ bool ControladoraApresentacaoTitulos::excluir(const CPF& cpf) {
         return false;
     }
     cout << "\nExclusao cancelada." << endl << endl;
-    return false;
+    return true;
+}
+
+bool ControladoraApresentacaoTitulos::listar(const CPF& cpf_conta) {
+    vector<Titulo> titulos;
+
+    cout << "Listando todos os titulos associados a conta." << endl << endl;
+    if (this->controladoraServico->listar(&titulos, cpf_conta)) {
+        for (Titulo titulo : titulos) {
+            cout << "Codigo: " << titulo.getcodigo().getValor() << endl << " Emissor: " << titulo.getemissor().getValor() << endl 
+            << " Setor: " << titulo.getsetor().getValor() << endl << " Emissao: " << titulo.getemissao().getValor() << endl << " Vencimento: "
+            << titulo.getvencimento().getValor() << endl << " Valor: " << titulo.getvalor().getValor() << endl << endl;
+        }
+        return true;
+    }
+    cout << "Falha ao listar titulos/Nao ha titulos a serem listados." << endl << endl;
+    return true;
 }
 
 //Serviço Investimentos - Títulos --------------
@@ -361,10 +378,12 @@ bool ControladoraServicoTitulos::excluir(string codigo) {
     
 };
 
-bool ControladoraServicoTitulos::listar(Titulo titulo) {
+bool ControladoraServicoTitulos::listar(vector<Titulo>* titulos, CPF cpf_conta) {
     sqlite3* db = startConnection("database.db");
-    
+    TituloSQL comandos(db);
+    *titulos = comandos.listar(cpf_conta.getValor());
     endConnection(db);
+    return !titulos->empty();
 };
 
 //Serviço Investimentos - Pagamentos --------------

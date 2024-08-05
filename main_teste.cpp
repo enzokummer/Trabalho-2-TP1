@@ -10,6 +10,14 @@
 using namespace std;
 
 int main() {
+    /*
+    sqlite3* db = startConnection("database.db");
+    createTbAcc(db);
+    createTablebTtl(db);
+    createTablePaym(db);
+    endConnection(db);
+    */
+
     ControladoraServicoTitulos controladoraServicoTitulos;
     ControladoraServicoPagamentos controladoraServicoPagamentos;
     ControladoraApresentacaoInvestimentos controladoraApresentacaoInvestimentos;

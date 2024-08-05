@@ -4,6 +4,7 @@
 #include "dominios.h"
 #include "entidades.h"
 #include <stdexcept>
+#include <vector>
 
 using namespace std;
 
@@ -35,7 +36,7 @@ class ISInvestimentoTitulos {
         virtual bool recuperar(Titulo*) = 0;
         virtual bool atualizar(Titulo) = 0;
         virtual bool excluir(string) = 0;
-        virtual bool listar(Titulo) = 0;
+        virtual bool listar(vector<Titulo>*, CPF) = 0;
         virtual ~ISInvestimentoTitulos() {};
 };
 

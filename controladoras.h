@@ -38,7 +38,7 @@ class ControladoraApresentacaoTitulos {
         bool recuperar(const CPF&);
         bool atualizar(const CPF&);
         bool excluir(const CPF&);
-        bool listar();
+        bool listar(const CPF&);
 };
 
 class ControladoraApresentacaoPagamentos {
@@ -50,7 +50,7 @@ class ControladoraApresentacaoPagamentos {
         bool recuperar(const CPF&);
         bool atualizar(const CPF&);
         bool excluir(const CPF&);
-        bool listar();
+        bool listar(const CPF&);
 };
 
 class ControladoraApresentacaoInvestimentos:public IAInvestimentos {
@@ -78,7 +78,7 @@ class ControladoraServicoTitulos:public ISInvestimentoTitulos {
         bool recuperar(Titulo*);
         bool atualizar(Titulo);
         bool excluir(string);
-        bool listar(Titulo);
+        bool listar(vector<Titulo>*, CPF);
 }; 
 
 class ControladoraServicoPagamentos:public ISInvestimentoPagamentos {
