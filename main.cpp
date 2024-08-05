@@ -7,7 +7,6 @@
 #include <ctime>
 
 using namespace std;
-
 // Função pra pegar a data e hora do sistema
 
 std::string getDate() {
@@ -105,8 +104,9 @@ bool testDeleteTituloWithPayments(TituloSQL& tituloSQL, PagamentoSQL& pagamentoS
 }
 
 int main() {
-    cout << endl << "TESTES DO BANCO" << endl;
 
+    /*cout << endl << "TESTES DO BANCO" << endl;
+    
     try {
         sqlite3* db = startConnection("database.db");
         createTbAcc(db);
@@ -390,24 +390,27 @@ int main() {
     }else {
         cout << "Falha - Pagamento" << endl;
     }
-        getchar();
+    */
+    getchar();
     system("cls");
-
+     // Criar instâncias das controladoras
     CntrAControle* apresentacao = new CntrAControle();
     CntrIAAutenticacao* autenticacao = new CntrIAAutenticacao();
-    CntrISAutenticacao* servAuth = new CntrISAutenticacao();
+    CntrISAutenticacao* servAutenticacao = new CntrISAutenticacao();
     CntrIAConta* conta = new CntrIAConta();
-
-    autenticacao->setCntrISAutenticacao(servAuth);
+    
+    // Configurar dependências
+    autenticacao->setCntrISAutenticacao(servAutenticacao);
     apresentacao->setCntrAAutenticacao(autenticacao);
     apresentacao->setCntrAConta(conta);
-
+    
+    // Chamar o método executar da controladora principal
     apresentacao->executar();
 
-    // Limpeza da memória alocada dinamicamente
+    // Limpar a memória
     delete apresentacao;
     delete autenticacao;
-    delete servAuth;
+    delete servAutenticacao;
     delete conta;
 
     return 0;

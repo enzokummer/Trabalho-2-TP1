@@ -3,10 +3,10 @@
 #include "entidades.h"
 #include "comandos.h"
 #include "sqlite3.h"
-#include "comandos.cpp"
 
 using namespace std;
 //conta
+
 bool CntrIAConta::executar(CPF cpf) {
 
     std::string texto1 = "Selecione um dos serviços: ";
@@ -96,11 +96,11 @@ void CntrIAConta::cadastrar() {
     conta.setsenha(senha);
 
     if (cntrISConta->cadastrar(conta)) {
-        std::cout << texto7 << std::endl;
-        getchar();
-        return;
-    }
-
+            std::cout << texto7 << std::endl;
+            getchar();
+            return;
+        }
+    
     std::cout << texto8 << std::endl;
     getchar();
 }
@@ -229,7 +229,7 @@ bool CntrIAConta::descadastrar(CPF cpf) {
 
 void CntrAControle::executar(){ // MENU NAO LOGADO
     int opcao;
-    CPF* cpfUser;
+    CPF* cpfUser = new CPF();
 
     cout << "*************************************************" << endl;
     cout << "Bem vindo ao Sistema de monitoração de pagamentos e vencimentos de títulos de renda fixa!" << endl;
@@ -242,17 +242,23 @@ void CntrAControle::executar(){ // MENU NAO LOGADO
     
     CntrIAAutenticacao* aprAuth;
     CntrISAutenticacao* servAuth;
-
+    CntrIAConta* conta;
     switch (opcao) {
         case 1: //criar conta
-            //Modulo Conta criar()
+            conta = new CntrIAConta();
+            conta->cadastrar();
             break;
         case 2: //login conta
             aprAuth = new CntrIAAutenticacao();
             servAuth = new CntrISAutenticacao();
+            
             aprAuth->setCntrISAutenticacao(servAuth);
-
-            aprAuth->autenticar(cpfUser);
+            cout << "Eu irei agora chamar o método autenticar" << endl;
+            
+            
+            if(aprAuth->autenticar(cpfUser)){
+                executar(cpfUser);
+            };
 
             break;
         case 3: 
@@ -262,23 +268,23 @@ void CntrAControle::executar(){ // MENU NAO LOGADO
     }   
 }
 
-void CntrAControle::executar(CPF* cpfUsuario){ //MENU LOGADO
-
+void CntrAControle::executar(CPF* cpfUser){ //MENU LOGADO
+    cout << "voce chegou à tela logada!" << endl;
 }
 // AUTENTICACAO
 
 bool CntrIAAutenticacao::autenticar(CPF *cpf) {
-    string logIn = "********* Bem-vindo de volta! *********";
+    string logIn = "********* Tela de Log-In *********";
     string pedeCPF = "CPF:";
     string pedeSenha = "Senha:";
-    string deuErro = "Formato inserido está incorreto. Por favor, tente novamente! (Digite qualquer botão)";
+    string deuErro = "Formato inserido está incorreto. Por favor, tente novamente! (Digite qualquer tecla)";
 
     string campo1, campo2;
 
     Senha senha;
 
     while(true) {
-        CLR_SCR; // LIMPA A TELA
+//        CLR_SCR; // LIMPA A TELA
         cout << logIn << endl;
         cout << pedeCPF << " ";
         cin >> campo1;
@@ -290,16 +296,16 @@ bool CntrIAAutenticacao::autenticar(CPF *cpf) {
             senha.setValor(campo2);
             break;
         } catch (invalid_argument &exp) {
-            CLR_SCR;
+//            CLR_SCR;
             cout << deuErro << endl;
-            getchar();
+            getchar(); // espera o usuário
         }
     }
     return (cntrISAutenticacao->autenticar(*cpf, senha));
 }
 
 bool CntrISAutenticacao::autenticar(const CPF& cpf, const Senha& senha){
-    sqlite3* db;
+    /*sqlite3* db;
     int rc = sqlite3_open("database.db", &db);
     if(rc){
         cerr<<"Erro na comunicação com o banco de dados: " << sqlite3_errmsg(db) << std::endl;
@@ -311,7 +317,21 @@ bool CntrISAutenticacao::autenticar(const CPF& cpf, const Senha& senha){
 
     if(readSenha(db,numCpf,senhaReal)){
         return (senhaReal == senha.getValor());
-    }
+    }*/
+   Conta conta1;
+   Conta conta2;
+
+   conta1.setcpf(cpf);
+   conta1.setsenha(senha);
+
+   sqlite3* db = startConnection("database.db");
+   ContaSQL comandos(db);
+   comandos.read(cpf.getValor(), conta2);
+
+   cout << "Banco de dados foi acessado" << endl;
+
+   return (conta1.getsenha().getValor() == conta2.getsenha().getValor());
+
 }
 //Serviço Investimentos - Títulos --------------
 

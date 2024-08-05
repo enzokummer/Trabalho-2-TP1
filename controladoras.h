@@ -58,14 +58,15 @@ class ControladoraServicoPagamentos:public ISInvestimentoPagamentos {
 
 // CONTAS
 // Feito por Dagoberto
+
 class CntrISConta: public ISConta {
     private:
         ISConta *CntrISConta;
     public:
-        bool cadastrar(const Conta&);
-        Conta visualizar(const CPF&);
-        bool editar(const Conta&);
-        bool descadastrar(const CPF&);
+        bool cadastrar(const Conta&) override;
+        Conta visualizar(const CPF&) override;
+        bool editar(const Conta&) override;
+        bool descadastrar(const CPF&) override ;
 };
 
 class CntrIAConta: public IAConta {
@@ -76,15 +77,17 @@ class CntrIAConta: public IAConta {
         bool descadastrar(CPF);
         
     public:
-        bool executar(CPF);
-        void cadastrar();
-        void setCntrISConta(ISConta*);
+        bool executar(CPF) override;
+        void cadastrar() override ;
+        void setCntrISConta(ISConta* CntrISConta) override;
         
 };
 
 void inline CntrIAConta::setCntrISConta(ISConta *cntrISConta) {
     this->cntrISConta = cntrISConta;
 }
+
+
 class CntrAControle {
     private:
         CPF cpf;
