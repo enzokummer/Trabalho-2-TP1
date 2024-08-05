@@ -7,7 +7,6 @@
 #include <ctime>
 
 using namespace std;
-
 // Função pra pegar a data e hora do sistema
 
 std::string getDate() {
@@ -105,8 +104,9 @@ bool testDeleteTituloWithPayments(TituloSQL& tituloSQL, PagamentoSQL& pagamentoS
 }
 
 int main() {
-    cout << endl << "TESTES DO BANCO" << endl;
 
+    /*cout << endl << "TESTES DO BANCO" << endl;
+    
     try {
         sqlite3* db = startConnection("database.db");
         createTbAcc(db);
@@ -390,41 +390,28 @@ int main() {
     }else {
         cout << "Falha - Pagamento" << endl;
     }
-        getchar();
+    */
+    getchar();
     system("cls");
+     // Criar instâncias das controladoras
+    CntrAControle* apresentacao = new CntrAControle();
+    CntrIAAutenticacao* autenticacao = new CntrIAAutenticacao();
+    CntrISAutenticacao* servAutenticacao = new CntrISAutenticacao();
+    CntrIAConta* conta = new CntrIAConta();
+    
+    // Configurar dependências
+    autenticacao->setCntrISAutenticacao(servAutenticacao);
+    apresentacao->setCntrAAutenticacao(autenticacao);
+    apresentacao->setCntrAConta(conta);
+    
+    // Chamar o método executar da controladora principal
+    apresentacao->executar();
 
-    int opcao;
-    CPF* cpfUser;
-
-    cout << "Testes finalizados" << endl;
-    cout << "*************************************************" << endl;
-    cout << "Bem vindo ao Sistema de monitoração de pagamentos e vencimentos de títulos de renda fixa!" << endl;
-    cout << "Por favor, selecione a opção desejada" << endl;
-    cout << "1. Criar Conta" << endl;
-    cout << "2. Acessar Conta" << endl;
-    cout << "3. Sair" << endl;
-
-    cin >> opcao;
-    CntrIAAutenticacao* autenticacao;
-    CntrISAutenticacao* controladora;
-
-    switch (opcao) {
-        case 1: //criar conta
-            //Modulo Conta criar()
-            break;
-        case 2: //login conta
-            autenticacao = new CntrIAAutenticacao();
-            controladora = new CntrISAutenticacao();
-            autenticacao->setCntrISAutenticacao(controladora);
-
-            autenticacao->autenticar(cpfUser);
-
-            break;
-        case 3: 
-            //SAIR!
-            cout << "Até logo!" << endl;
-            break;
-    }   
+    // Limpar a memória
+    delete apresentacao;
+    delete autenticacao;
+    delete servAutenticacao;
+    delete conta;
 
     return 0;
 }
