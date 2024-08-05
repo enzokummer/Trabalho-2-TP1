@@ -63,10 +63,10 @@ class CntrISConta: public ISConta {
     private:
         ISConta *CntrISConta;
     public:
-        bool cadastrar(const Conta&) override;
-        Conta visualizar(const CPF&) override;
-        bool editar(const Conta&) override;
-        bool descadastrar(const CPF&) override ;
+        bool cadastrar(const Conta&);
+        Conta visualizar(const CPF&);
+        bool editar(const Conta&);
+        bool descadastrar(const CPF&);
 };
 
 class CntrIAConta: public IAConta {
@@ -77,9 +77,9 @@ class CntrIAConta: public IAConta {
         bool descadastrar(CPF);
         
     public:
-        bool executar(CPF) override;
-        void cadastrar() override ;
-        void setCntrISConta(ISConta* CntrISConta) override;
+        bool executar(CPF);
+        void cadastrar();
+        void setCntrISConta(ISConta* CntrISConta);
         
 };
 

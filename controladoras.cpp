@@ -225,6 +225,36 @@ bool CntrIAConta::descadastrar(CPF cpf) {
     return false;
 }
 
+bool CntrISConta::cadastrar(const Conta& conta) {
+    sqlite3* db = startConnection("database.db");
+    ContaSQL comandos(db);
+    comandos.create(conta);
+    endConnection(db);
+}
+
+Conta CntrISConta::visualizar(const CPF& cpf) {
+    sqlite3* db = startConnection("database.db");
+    ContaSQL comandos(db);
+    Conta contaLida;
+
+    comandos.read(cpf.getValor(),contaLida);
+    endConnection(db);
+}
+
+bool CntrISConta::editar(const Conta& conta) {
+    sqlite3* db = startConnection("database.db");
+    ContaSQL comandos(db);
+    comandos.update(conta);
+    endConnection(db);
+}
+
+bool CntrISConta::descadastrar(const CPF &cpf) { 
+    sqlite3* db = startConnection("database.db");
+    ContaSQL comandos(db);
+    comandos.deleteConta(cpf.getValor());
+    endConnection(db);
+}
+
 // APRESENTACAO
 
 void CntrAControle::executar(){ // MENU NAO LOGADO
@@ -242,11 +272,15 @@ void CntrAControle::executar(){ // MENU NAO LOGADO
     
     CntrIAAutenticacao* aprAuth;
     CntrISAutenticacao* servAuth;
-    CntrIAConta* conta;
+    CntrIAConta* aprConta;
+    CntrISConta* servConta;
     switch (opcao) {
         case 1: //criar conta
-            conta = new CntrIAConta();
-            conta->cadastrar();
+            aprConta = new CntrIAConta();
+            servConta = new CntrISConta();
+            aprConta->setCntrISConta(servConta);
+
+            aprConta->cadastrar();
             break;
         case 2: //login conta
             aprAuth = new CntrIAAutenticacao();
@@ -265,11 +299,31 @@ void CntrAControle::executar(){ // MENU NAO LOGADO
             //SAIR!
             cout << "Até logo!" << endl;
             break;
+        default:
+            cout << "Expressão errada." << endl;
+            
     }   
 }
 
 void CntrAControle::executar(CPF* cpfUser){ //MENU LOGADO
-    cout << "voce chegou à tela logada!" << endl;
+    int opcao;
+    cout << "Login foi realizado com sucesso! \nSelecione a opção que deseja acessar:" << endl;
+    cout << "1. Contas" << endl;
+    cout << "2. Investimentos" << endl;
+    cout << "3. Menu Inicial" << endl;
+    cin >> opcao;
+    CntrIAConta* aprConta;
+    CntrISConta* servConta;
+    switch(opcao){
+        case 1:
+            aprConta = new CntrIAConta();
+            servConta = new CntrISConta();
+            aprConta->setCntrISConta(servConta);
+
+            aprConta->executar(*cpfUser);
+        case 2:
+            cout << "investimentos!!!" << endl;
+    };
 }
 // AUTENTICACAO
 
