@@ -123,16 +123,15 @@ bool ControladoraApresentacaoInvestimentos::executarPagamentos(CPF cpf) {
         case '4':
             return controladoraApresentacaoPagamentos->excluir();
             break;
-        case '5':/*
+        case '5':
             return controladoraApresentacaoPagamentos->listar();
             break;
         case '6':
-            //<-sair
-            break;*/
-        default:
-            //<-mensagem de erro
-            //<-recarregar tela
             return false;
+            break;
+        default:
+            cout << "\nComando invalido. Selecione um comando listado a seguir." << endl << endl;
+            return true;
             break;
     }
 }
@@ -461,6 +460,27 @@ bool ControladoraApresentacaoPagamentos::atualizar() {
     return true;
 }
 
+bool ControladoraApresentacaoPagamentos::listar() {
+    vector<Pagamento> pagamentos;
+    CodTitulo codigoDoTitulo;
+    string input;
+
+    cout << "\nDigite o codigo do Titulo cujos Pagamentos serao listados." << endl;
+    cin >> input;
+    codigoDoTitulo.setValor(input);
+    
+    cout << "\nListando todos os Pagamentos associados ao Titulo de codigo " << codigoDoTitulo.getValor() << endl << endl;
+    if (this->controladoraServico->listar(&pagamentos, codigoDoTitulo)) {
+        for (const Pagamento& pagamento : pagamentos) {
+            cout << "Codigo: " << pagamento.getcodigo().getValor() << "\n Data: " << pagamento.getdata().getValor()
+            << "\n Estado: " << pagamento.getestado().getValor() << "\n Percentual: " << pagamento.getpercentual().getValor() << endl << endl;
+        }
+    } else {
+        cout << "Falha ao listar Pagamentos/Nao ha Pagamentos a serem listados." << endl << endl;
+    }
+    return true;
+}
+
 //Serviço Investimentos - Títulos --------------
 
 bool ControladoraServicoTitulos::criar(Titulo titulo) {
@@ -565,8 +585,14 @@ bool ControladoraServicoPagamentos::excluir(string codigo) {
     return false;  
 };
 
-bool ControladoraServicoPagamentos::listar(Pagamento pagamento) {
+bool ControladoraServicoPagamentos::listar(vector<Pagamento>* pagamentos, CodTitulo codigo) {
     sqlite3* db = startConnection("database.db");
-    
+    PagamentoSQL comandos(db);
+    *pagamentos = comandos.listar(codigo.getValor());
+    if (!pagamentos->empty()) {
+        endConnection(db);
+        return true;
+    }
     endConnection(db);
+    return false;
 };

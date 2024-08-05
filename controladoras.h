@@ -89,7 +89,7 @@ class ControladoraServicoPagamentos:public ISInvestimentoPagamentos {
         bool recuperar(Pagamento*);
         bool atualizar(Pagamento);
         bool excluir(string);
-        bool listar(Pagamento);
+        bool listar(vector<Pagamento>*, CodTitulo);
 };
 
 #endif // CONTROLADORAS_H_INCLUDED

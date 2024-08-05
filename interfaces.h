@@ -46,7 +46,7 @@ class ISInvestimentoPagamentos {
         virtual bool recuperar(Pagamento*) = 0;
         virtual bool atualizar(Pagamento) = 0;
         virtual bool excluir(string) = 0;
-        virtual bool listar(Pagamento) = 0;
+        virtual bool listar(vector<Pagamento>*, CodTitulo) = 0;
         virtual ~ISInvestimentoPagamentos() {};
 };
 
