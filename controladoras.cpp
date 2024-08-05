@@ -51,7 +51,7 @@ bool CntrIAConta::executar(CPF cpf) {
         }
     }
     return true;
-};
+}
 
 void CntrIAConta::cadastrar() {
 
@@ -103,7 +103,7 @@ void CntrIAConta::cadastrar() {
 
     std::cout << texto8 << std::endl;
     getchar();
-};
+}
 
 void CntrIAConta::visualizar(CPF cpf) {
 
@@ -123,7 +123,7 @@ void CntrIAConta::visualizar(CPF cpf) {
     std::cout << texto4 << conta.getsenha().getValor() << std::endl;
     std::cout << texto6 << std::endl;
     getchar();
-};
+}
 
 void CntrIAConta::editar(CPF cpf) {
 
@@ -186,7 +186,7 @@ void CntrIAConta::editar(CPF cpf) {
     }
     std::cout << texto12 << std::endl;
     getchar();
-};
+}
 
 bool CntrIAConta::descadastrar(CPF cpf) {
 
