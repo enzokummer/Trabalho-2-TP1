@@ -46,11 +46,11 @@ class ControladoraApresentacaoPagamentos {
         ISInvestimentoPagamentos* controladoraServico;
     public:
         void setControladoraServico(ISInvestimentoPagamentos*);
-        bool criar(const CPF&);
-        bool recuperar(const CPF&);
-        bool atualizar(const CPF&);
-        bool excluir(const CPF&);
-        bool listar(const CPF&);
+        bool criar();
+        bool recuperar();
+        bool atualizar();
+        bool excluir();
+        bool listar();
 };
 
 class ControladoraApresentacaoInvestimentos:public IAInvestimentos {

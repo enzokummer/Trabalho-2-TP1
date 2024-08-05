@@ -108,22 +108,22 @@ bool ControladoraApresentacaoInvestimentos::executarTitulos(CPF cpf) {
 bool ControladoraApresentacaoInvestimentos::executarPagamentos(CPF cpf) {
     this->controladoraApresentacaoPagamentos->setControladoraServico(this->controladoraServicoPagamentos);
     char input;
-    cout << "Digite o número da ação que deseja realizar em Pagamentos: \n1. Criar\n2. Recuperar\n3. Atualizar\n4. Excluir\n5. Listar\n6. Voltar" << endl;
+    cout << "Digite o numero da acao que deseja realizar em Pagamentos: \n1. Criar\n2. Recuperar\n3. Atualizar\n4. Excluir\n5. Listar\n6. Voltar" << endl;
     cin >> input;
     switch (input) {
         case '1':
-            return controladoraApresentacaoPagamentos->criar(cpf);
-            break;/*
+            return controladoraApresentacaoPagamentos->criar();
+            break;
         case '2':
-            return controladoraApresentacaoPagamentos->recuperar(cpf);
+            return controladoraApresentacaoPagamentos->recuperar();
             break;
         case '3':
-            return controladoraApresentacaoPagamentos->atualizar(cpf);
+            return controladoraApresentacaoPagamentos->atualizar();
             break;
         case '4':
-            return controladoraApresentacaoPagamentos->excluir(cpf);
+            return controladoraApresentacaoPagamentos->excluir();
             break;
-        case '5':
+        case '5':/*
             return controladoraApresentacaoPagamentos->listar();
             break;
         case '6':
@@ -147,7 +147,7 @@ bool ControladoraApresentacaoTitulos::criar(const CPF& cpf) {
     string input;
     Titulo titulo;
 
-    cout << "Para criar um titulo, preencha os dados a seguir.\n\nDigite o codigo." << endl;
+    cout << "Para criar um Titulo, preencha os dados a seguir.\n\nDigite o codigo." << endl;
     cin >> input;
     CodTitulo codigo;
     codigo.setValor(input);
@@ -198,7 +198,7 @@ bool ControladoraApresentacaoTitulos::criar(const CPF& cpf) {
     if (controladoraServico->criar(titulo)) {
         cout << "\nTitulo criado com sucesso." << endl << endl;
     } else {
-        cout << "\nFalha ao criar titulo." << endl << endl;
+        cout << "\nFalha ao criar Titulo." << endl << endl;
     }
     return true;
 }
@@ -208,7 +208,7 @@ bool ControladoraApresentacaoTitulos::recuperar(const CPF& cpf) {
     CodTitulo codigo;
     string input;
 
-    cout << "\nDigite o codigo do titulo que deseja ler." << endl;
+    cout << "\nDigite o codigo do Titulo que deseja ler." << endl;
     cin >> input;
     codigo.setValor(input);
     titulo.setcodigo(codigo);
@@ -218,7 +218,7 @@ bool ControladoraApresentacaoTitulos::recuperar(const CPF& cpf) {
         << " Setor: " << titulo.getsetor().getValor() << endl << " Emissao: " << titulo.getemissao().getValor() << endl << " Vencimento: "
         << titulo.getvencimento().getValor() << endl << " Valor: " << titulo.getvalor().getValor() << endl << endl;
     } else {
-        cout << "\nFalha ao ler titulo." << endl << endl;
+        cout << "\nFalha ao ler Titulo." << endl << endl;
     }
     return true;
 }
@@ -228,7 +228,7 @@ bool ControladoraApresentacaoTitulos::atualizar(const CPF& cpf) {
     CodTitulo codigo;
     string input;
 
-    cout << "\nDigite o codigo do titulo que deseja atualizar." << endl;
+    cout << "\nDigite o codigo do Titulo que deseja atualizar." << endl;
     cin >> input;
     codigo.setValor(input);
     titulo.setcodigo(codigo);
@@ -283,7 +283,7 @@ bool ControladoraApresentacaoTitulos::atualizar(const CPF& cpf) {
     if (this->controladoraServico->atualizar(titulo)) {
         cout << "\nTitulo atualizado com sucesso." << endl << endl;
     } else {
-        cout << "\nFalha ao atualizar titulo." << endl << endl;
+        cout << "\nFalha ao atualizar Titulo." << endl << endl;
     }
     return true;
 }
@@ -293,17 +293,17 @@ bool ControladoraApresentacaoTitulos::excluir(const CPF& cpf) {
     string input;
     bool confirmacao;
 
-    cout << "\nDigite o codigo do titulo que deseja excluir" << endl;
+    cout << "\nDigite o codigo do Titulo que deseja excluir" << endl;
     cin >> input;
     codigo.setValor(input);
 
-    cout << "\nO titulo de codigo " << codigo.getValor() << " sera excluido permantentemente, deseja prosseguir? Digite 1 para confirmar e 0 para cancelar." << endl;
+    cout << "\nO Titulo de codigo " << codigo.getValor() << " sera excluido permantentemente, deseja prosseguir? Digite 1 para confirmar e 0 para cancelar." << endl;
     cin >> confirmacao;
     if (confirmacao) {
         if (this->controladoraServico->excluir(codigo.getValor())) {
             cout << "\nTitulo exlcuido com sucesso." << endl << endl;
         }
-        cout << "\nFalha ao excluir titulo." << endl << endl;
+        cout << "\nFalha ao excluir Titulo." << endl << endl;
     } else {
         cout << "\nExclusao cancelada." << endl << endl;
     }
@@ -313,7 +313,7 @@ bool ControladoraApresentacaoTitulos::excluir(const CPF& cpf) {
 bool ControladoraApresentacaoTitulos::listar(const CPF& cpf_conta) {
     vector<Titulo> titulos;
 
-    cout << "Listando todos os titulos associados a conta." << endl << endl;
+    cout << "Listando todos os Titulos associados a conta." << endl << endl;
     if (this->controladoraServico->listar(&titulos, cpf_conta)) {
         for (Titulo titulo : titulos) {
             cout << "Codigo: " << titulo.getcodigo().getValor() << endl << " Emissor: " << titulo.getemissor().getValor() << endl 
@@ -321,7 +321,7 @@ bool ControladoraApresentacaoTitulos::listar(const CPF& cpf_conta) {
             << titulo.getvencimento().getValor() << endl << " Valor: " << titulo.getvalor().getValor() << endl << endl;
         }
     } else {
-        cout << "Falha ao listar titulos/Nao ha titulos a serem listados." << endl << endl;
+        cout << "Falha ao listar Titulos/Nao ha Titulos a serem listados." << endl << endl;
     }
     return true;
 }
@@ -332,7 +332,7 @@ void ControladoraApresentacaoPagamentos::setControladoraServico(ISInvestimentoPa
     this->controladoraServico = controladora;
 }
 
-bool ControladoraApresentacaoPagamentos::criar(const CPF& cpf_conta) {
+bool ControladoraApresentacaoPagamentos::criar() {
     Pagamento pagamento;
     string input;
 
@@ -376,6 +376,41 @@ bool ControladoraApresentacaoPagamentos::criar(const CPF& cpf_conta) {
         cout << "\nPagamento criado com sucesso." << endl << endl;
     } else {
         cout << "\nFalha ao criar pagamento." << endl << endl;
+    }
+    return true;
+}
+
+bool ControladoraApresentacaoPagamentos::recuperar() {
+    Pagamento pagamento;
+    string input;
+
+    cout << "\nDigite o codigo do Pagamento que deseja ler." << endl;
+    cin >> input;
+    CodPagamento codigo;
+    codigo.setValor(input);
+    pagamento.setcodigo(codigo);
+    
+    if (this->controladoraServico->recuperar(&pagamento)) {
+        cout << "\nPagamento Lido:\n Codigo: " << pagamento.getcodigo().getValor() << "\n Data: " << pagamento.getdata().getValor()
+        << "\n Estado: " << pagamento.getestado().getValor() << "\n Percentual: " << pagamento.getpercentual().getValor() << endl << endl;
+    } else {
+        cout << "Falha ao ler Pagamento.";
+    }
+    return true;
+}
+
+bool ControladoraApresentacaoPagamentos::excluir() {
+    string input;
+    CodPagamento codigo;
+
+    cout << "\nDigite o codigo do Pagamento que deseja excluir." << endl << endl;
+    cin >> input;
+    codigo.setValor(input);
+
+    if (this->controladoraServico->excluir(codigo.getValor())) {
+        cout << "\nPagamento excluido com sucesso." << endl << endl;
+    } else {
+        cout << "\nFalha ao excluir pagamenot." << endl << endl;
     }
     return true;
 }
@@ -454,8 +489,12 @@ bool ControladoraServicoPagamentos::criar(Pagamento pagamento) {
 bool ControladoraServicoPagamentos::recuperar(Pagamento* pagamento) {
     sqlite3* db = startConnection("database.db");
     PagamentoSQL comandos(db);
-    comandos.read(stoi(pagamento->getcodigo().getValor()), *pagamento);
+    if (comandos.read(stoi(pagamento->getcodigo().getValor()), *pagamento)) {
+        endConnection(db);
+        return true;
+    }
     endConnection(db);
+    return false;
 };
 
 bool ControladoraServicoPagamentos::atualizar(Pagamento pagamento) {
@@ -468,8 +507,12 @@ bool ControladoraServicoPagamentos::atualizar(Pagamento pagamento) {
 bool ControladoraServicoPagamentos::excluir(string codigo) {
     sqlite3* db = startConnection("database.db");
     PagamentoSQL comandos(db);
-    comandos.deletePagamento(stoi(codigo));
+    if (comandos.deletePagamento(stoi(codigo))) {
+        endConnection(db);
+        return true;
+    }
     endConnection(db);
+    return false;  
 };
 
 bool ControladoraServicoPagamentos::listar(Pagamento pagamento) {
