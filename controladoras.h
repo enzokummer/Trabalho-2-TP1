@@ -44,6 +44,8 @@ class ControladoraApresentacaoTitulos {
 class ControladoraApresentacaoPagamentos {
     private:
         ISInvestimentoPagamentos* controladoraServico;
+        bool verificaEmissao(Data, Data);
+        bool verificaVencimento(Data, Data);
     public:
         void setControladoraServico(ISInvestimentoPagamentos*);
         bool criar();

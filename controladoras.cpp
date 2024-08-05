@@ -331,7 +331,84 @@ void ControladoraApresentacaoPagamentos::setControladoraServico(ISInvestimentoPa
     this->controladoraServico = controladora;
 }
 
+bool ControladoraApresentacaoPagamentos::verificaEmissao(Data emissao, Data data_pagamento) {
+    int ano_emissao, mes_emissao, dia_emissao, ano_data, mes_data, dia_data;
+    string aux_emissao, aux_data;
+    for (int i = 0; i<2; i++) {
+        aux_emissao += emissao.getValor()[i];
+        aux_data += data_pagamento.getValor()[i];
+    }
+    dia_emissao = stoi(aux_emissao);
+    dia_data = stoi(aux_data);
+
+    aux_emissao = "";
+    aux_data = "";
+    for (int i = 3; i<5; i++) {
+        aux_emissao += emissao.getValor()[i];
+        aux_data += data_pagamento.getValor()[i];
+    }
+    mes_emissao = stoi(aux_emissao);
+    mes_data = stoi(aux_data);
+
+    aux_emissao = "";
+    aux_data = "";
+    for (int i = 6; i<10; i++) {
+        aux_emissao += emissao.getValor()[i];
+        aux_data += data_pagamento.getValor()[i];
+    }
+    ano_emissao = stoi(aux_emissao);
+    ano_data = stoi(aux_data);
+
+    if (ano_data > ano_emissao) {
+        return false;
+    } else if (mes_data > mes_emissao) {
+        return false;
+    } else if (dia_data > dia_emissao) {
+        return false;
+    }
+    return true;
+}
+
+bool ControladoraApresentacaoPagamentos::verificaVencimento(Data vencimento, Data data_pagamento) {
+    int ano_vencimento, mes_vencimento, dia_vencimento, ano_data, mes_data, dia_data;
+    string aux_vencimento, aux_data;
+    for (int i = 0; i<2; i++) {
+        aux_vencimento += vencimento.getValor()[i];
+        aux_data += data_pagamento.getValor()[i];
+    }
+    dia_vencimento = stoi(aux_vencimento);
+    dia_data = stoi(aux_data);
+
+    aux_vencimento = "";
+    aux_data = "";
+    for (int i = 3; i<5; i++) {
+        aux_vencimento += vencimento.getValor()[i];
+        aux_data += data_pagamento.getValor()[i];
+    }
+    mes_vencimento = stoi(aux_vencimento);
+    mes_data = stoi(aux_data);
+
+    aux_vencimento = "";
+    aux_data = "";
+    for (int i = 6; i<10; i++) {
+        aux_vencimento += vencimento.getValor()[i];
+        aux_data += data_pagamento.getValor()[i];
+    }
+    ano_vencimento = stoi(aux_vencimento);
+    ano_data = stoi(aux_data);
+
+    if (ano_data < ano_vencimento) {
+        return false;
+    } else if (mes_data < mes_vencimento) {
+        return false;
+    } else if (dia_data < dia_vencimento) {
+        return false;
+    }
+    return true;
+}
+
 bool ControladoraApresentacaoPagamentos::criar() {
+    Titulo titulo;
     Pagamento pagamento;
     string input;
 
@@ -339,7 +416,15 @@ bool ControladoraApresentacaoPagamentos::criar() {
     cin >> input;
     CodTitulo codigo_titulo;
     codigo_titulo.setValor(input);
+    titulo.setcodigo(codigo_titulo);
     input = "";
+
+    //verifica se o titulo existe
+    ControladoraServicoTitulos controladora;
+    if (!controladora.recuperar(&titulo)) {
+        cout << "Erro. Titulo nao existe." << endl << endl;
+        return true;
+    }
 
     cout << "\nDigite o codigo do Pagamento." << endl;
     cin >> input;
@@ -352,6 +437,12 @@ bool ControladoraApresentacaoPagamentos::criar() {
     Data data;
     data.setValor(input);
     input = "";
+
+    //verifica se a data é posterior à data de emissão e anterior à data de vencimento
+    if (!verificaEmissao(titulo.getemissao(), data) or !verificaVencimento(titulo.getvencimento(), data)) {
+        cout << "Erro. Data nao pode ser anterior a Emissao nem posterior ao Vencimento." << endl << endl;
+        return true;
+    }
 
     cout << "\nDigite o percentual." << endl;
     cin >> input;
