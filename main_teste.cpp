@@ -38,6 +38,11 @@ int main() {
         }
     }
 
+    while (true) {
+        if (!controladoraApresentacaoInvestimentos.executarPagamentos(cpf)) {
+            break;
+        }
+    }
 
     /*Titulo titulo;
 

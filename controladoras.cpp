@@ -106,14 +106,14 @@ bool ControladoraApresentacaoInvestimentos::executarTitulos(CPF cpf) {
 }
 
 bool ControladoraApresentacaoInvestimentos::executarPagamentos(CPF cpf) {
-    //this->controladoraApresentacaoPagamentos->setControladoraServico(this->controladoraServicoPagamentos);
+    this->controladoraApresentacaoPagamentos->setControladoraServico(this->controladoraServicoPagamentos);
     char input;
     cout << "Digite o número da ação que deseja realizar em Pagamentos: \n1. Criar\n2. Recuperar\n3. Atualizar\n4. Excluir\n5. Listar\n6. Voltar" << endl;
     cin >> input;
-    switch (input) {/*
+    switch (input) {
         case '1':
             return controladoraApresentacaoPagamentos->criar(cpf);
-            break;
+            break;/*
         case '2':
             return controladoraApresentacaoPagamentos->recuperar(cpf);
             break;
@@ -197,10 +197,10 @@ bool ControladoraApresentacaoTitulos::criar(const CPF& cpf) {
 
     if (controladoraServico->criar(titulo)) {
         cout << "\nTitulo criado com sucesso." << endl << endl;
-        return true;
+    } else {
+        cout << "\nFalha ao criar titulo." << endl << endl;
     }
-    cout << "\nFalha ao criar titulo." << endl << endl;
-    return false;
+    return true;
 }
 
 bool ControladoraApresentacaoTitulos::recuperar(const CPF& cpf) {
@@ -217,11 +217,10 @@ bool ControladoraApresentacaoTitulos::recuperar(const CPF& cpf) {
         cout << "\nTitulo Lido:\n Codigo: " << titulo.getcodigo().getValor() << endl << " Emissor: " << titulo.getemissor().getValor() << endl 
         << " Setor: " << titulo.getsetor().getValor() << endl << " Emissao: " << titulo.getemissao().getValor() << endl << " Vencimento: "
         << titulo.getvencimento().getValor() << endl << " Valor: " << titulo.getvalor().getValor() << endl << endl;
-        return true;
     } else {
         cout << "\nFalha ao ler titulo." << endl << endl;
-        return false;
     }
+    return true;
 }
 
 bool ControladoraApresentacaoTitulos::atualizar(const CPF& cpf) {
@@ -283,10 +282,10 @@ bool ControladoraApresentacaoTitulos::atualizar(const CPF& cpf) {
 
     if (this->controladoraServico->atualizar(titulo)) {
         cout << "\nTitulo atualizado com sucesso." << endl << endl;
-        return true;
+    } else {
+        cout << "\nFalha ao atualizar titulo." << endl << endl;
     }
-    cout << "\nFalha ao atualizar titulo." << endl << endl;
-    return false;
+    return true;
 }
 
 bool ControladoraApresentacaoTitulos::excluir(const CPF& cpf) {
@@ -303,12 +302,11 @@ bool ControladoraApresentacaoTitulos::excluir(const CPF& cpf) {
     if (confirmacao) {
         if (this->controladoraServico->excluir(codigo.getValor())) {
             cout << "\nTitulo exlcuido com sucesso." << endl << endl;
-            return true;
         }
         cout << "\nFalha ao excluir titulo." << endl << endl;
-        return false;
+    } else {
+        cout << "\nExclusao cancelada." << endl << endl;
     }
-    cout << "\nExclusao cancelada." << endl << endl;
     return true;
 }
 
@@ -322,9 +320,63 @@ bool ControladoraApresentacaoTitulos::listar(const CPF& cpf_conta) {
             << " Setor: " << titulo.getsetor().getValor() << endl << " Emissao: " << titulo.getemissao().getValor() << endl << " Vencimento: "
             << titulo.getvencimento().getValor() << endl << " Valor: " << titulo.getvalor().getValor() << endl << endl;
         }
-        return true;
+    } else {
+        cout << "Falha ao listar titulos/Nao ha titulos a serem listados." << endl << endl;
     }
-    cout << "Falha ao listar titulos/Nao ha titulos a serem listados." << endl << endl;
+    return true;
+}
+
+//Apresentacao Investimentos Pagamentos
+
+void ControladoraApresentacaoPagamentos::setControladoraServico(ISInvestimentoPagamentos* controladora) {
+    this->controladoraServico = controladora;
+}
+
+bool ControladoraApresentacaoPagamentos::criar(const CPF& cpf_conta) {
+    Pagamento pagamento;
+    string input;
+
+    cout << "\nPara criar um Pagamento, preencha os dados a seguir.\n\nDigite o codigo do Titulo ao qual sera associado o pagamento." << endl;
+    cin >> input;
+    CodTitulo codigo_titulo;
+    codigo_titulo.setValor(input);
+    input = "";
+
+    cout << "\nDigite o codigo do Pagamento." << endl;
+    cin >> input;
+    CodPagamento codigo;
+    codigo.setValor(input);
+    input = "";
+
+    cout << "\nDigite a data." << endl;
+    cin >> input;
+    Data data;
+    data.setValor(input);
+    input = "";
+
+    cout << "\nDigite o percentual." << endl;
+    cin >> input;
+    Percentual percentual;
+    percentual.setValor(input);
+    input = "";
+    
+    cout << "\nDigite o estado." << endl;
+    cin >> input;
+    Estado estado;
+    estado.setValor(input);
+    input = "";
+
+    pagamento.setcodigoTitulo(codigo_titulo);
+    pagamento.setcodigo(codigo);
+    pagamento.setdata(data);
+    pagamento.setestado(estado);
+    pagamento.setpercentual(percentual);
+
+    if (this->controladoraServico->criar(pagamento)) {
+        cout << "\nPagamento criado com sucesso." << endl << endl;
+    } else {
+        cout << "\nFalha ao criar pagamento." << endl << endl;
+    }
     return true;
 }
 
@@ -391,8 +443,12 @@ bool ControladoraServicoTitulos::listar(vector<Titulo>* titulos, CPF cpf_conta) 
 bool ControladoraServicoPagamentos::criar(Pagamento pagamento) {
     sqlite3* db = startConnection("database.db");
     PagamentoSQL comandos(db);
-    comandos.create(pagamento);
+    if (comandos.create(pagamento)) {
+        endConnection(db);
+        return true;
+    }
     endConnection(db);
+    return false;
 };
 
 bool ControladoraServicoPagamentos::recuperar(Pagamento* pagamento) {
