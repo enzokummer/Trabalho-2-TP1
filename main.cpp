@@ -393,17 +393,22 @@ int main() {
         getchar();
     system("cls");
 
-    CntrAControle* apresentacao;
-    CntrIAAutenticacao* autenticacao;
-    CntrIAConta* conta;
+    CntrAControle* apresentacao = new CntrAControle();
+    CntrIAAutenticacao* autenticacao = new CntrIAAutenticacao();
+    CntrISAutenticacao* servAuth = new CntrISAutenticacao();
+    CntrIAConta* conta = new CntrIAConta();
 
-    apresentacao = new CntrAControle();
-
-    autenticacao = new CntrIAAutenticacao();
+    autenticacao->setCntrISAutenticacao(servAuth);
     apresentacao->setCntrAAutenticacao(autenticacao);
-
-    conta = new CntrIAConta();
     apresentacao->setCntrAConta(conta);
+
+    apresentacao->executar();
+
+    // Limpeza da memória alocada dinamicamente
+    delete apresentacao;
+    delete autenticacao;
+    delete servAuth;
+    delete conta;
 
     return 0;
 }

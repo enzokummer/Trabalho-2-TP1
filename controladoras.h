@@ -74,10 +74,12 @@ class CntrIAConta: public IAConta {
         void visualizar(CPF);
         void editar(CPF);
         bool descadastrar(CPF);
+        
     public:
         bool executar(CPF);
         void cadastrar();
         void setCntrISConta(ISConta*);
+        
 };
 
 void inline CntrIAConta::setCntrISConta(ISConta *cntrISConta) {
