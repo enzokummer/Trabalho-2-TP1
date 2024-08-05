@@ -113,6 +113,7 @@ bool ContaSQL::read(const std::string& cpf, Conta& conta) {
     sqlite3_finalize(stmt);
     return false;
 }
+
 bool readSenha(sqlite3* db, const std::string& cpf, std::string& senha) {
     std::string sql = "SELECT senha FROM Conta WHERE CPF = ?;";
     sqlite3_stmt* stmt;
@@ -415,4 +416,90 @@ bool PagamentoSQL::deletePagamento(int codigo) {
 
     sqlite3_finalize(stmt);
     return true;
+}
+
+std::vector<Titulo> TituloSQL::listar(const std::string& cpfConta) {
+    std::vector<Titulo> titulos;
+    sqlite3_stmt* stmt;
+    std::string sql = "SELECT * FROM Titulo WHERE CPF_Conta = ?;";
+
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(stmt, 1, cpfConta.c_str(), -1, SQLITE_STATIC);
+
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            Titulo titulo;
+            CodTitulo codigo;
+            codigo.setValor(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
+            titulo.setcodigo(codigo);
+
+            Nome emissor;
+            emissor.setValor(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
+            titulo.setemissor(emissor);
+
+            Setor setor;
+            setor.setValor(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
+            titulo.setsetor(setor);
+
+            Data emissao;
+            emissao.setValor(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
+            titulo.setemissao(emissao);
+
+            Data vencimento;
+            vencimento.setValor(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));
+            titulo.setvencimento(vencimento);
+
+            Dinheiro valor;
+            valor.setValor(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5)));
+            titulo.setvalor(valor);
+
+            CPF cpf;
+            cpf.setValor(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6)));
+            titulo.setcpfConta(cpf);
+
+            titulos.push_back(titulo);
+        }
+
+        sqlite3_finalize(stmt);
+    }
+
+    return titulos;
+}
+
+std::vector<Pagamento> PagamentoSQL::listar(const std::string& codigoTitulo) {
+    std::vector<Pagamento> pagamentos;
+    sqlite3_stmt* stmt;
+    std::string sql = "SELECT * FROM Pagamento WHERE Codigo_Titulo = ?;";
+
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(stmt, 1, codigoTitulo.c_str(), -1, SQLITE_STATIC);
+
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            Pagamento pagamento;
+            CodPagamento codigo;
+            codigo.setValor(std::to_string(sqlite3_column_int(stmt, 0)));
+            pagamento.setcodigo(codigo);
+
+            Data data;
+            data.setValor(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
+            pagamento.setdata(data);
+
+            Percentual percentual;
+            percentual.setValor(std::to_string(sqlite3_column_int(stmt, 2)));
+            pagamento.setpercentual(percentual);
+
+            Estado estado;
+            estado.setValor(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3)));
+            pagamento.setestado(estado);
+
+            CodTitulo codTitulo;
+            codTitulo.setValor(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4)));
+            pagamento.setcodigoTitulo(codTitulo);
+
+            pagamentos.push_back(pagamento);
+        }
+
+        sqlite3_finalize(stmt);
+    }
+
+    return pagamentos;
 }
