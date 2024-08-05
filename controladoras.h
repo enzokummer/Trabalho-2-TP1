@@ -27,6 +27,49 @@ class CntrISAutenticacao: public ISAutenticacao {
         bool autenticar(const CPF&, const Senha&);
 };
 
+/////////////////////
+
+class ControladoraApresentacaoTitulos {
+    private:
+        ISInvestimentoTitulos* controladoraServico;
+    public:
+        void setControladoraServico(ISInvestimentoTitulos*);
+        bool criar(const CPF&);
+        bool recuperar(const CPF&);
+        bool atualizar(const CPF&);
+        bool excluir(const CPF&);
+        bool listar(const CPF&);
+};
+
+class ControladoraApresentacaoPagamentos {
+    private:
+        ISInvestimentoPagamentos* controladoraServico;
+    public:
+        void setControladoraServico(ISInvestimentoPagamentos*);
+        bool criar();
+        bool recuperar();
+        bool atualizar();
+        bool excluir();
+        bool listar();
+};
+
+class ControladoraApresentacaoInvestimentos:public IAInvestimentos {
+    private:
+        ISInvestimentoTitulos* controladoraServicoTitulos;
+        ISInvestimentoPagamentos* controladoraServicoPagamentos;
+        ControladoraApresentacaoPagamentos* controladoraApresentacaoPagamentos;
+        ControladoraApresentacaoTitulos* controladoraApresentacaoTitulos;
+    public:
+        void setControladoraServicoTitulos(ISInvestimentoTitulos*);
+        void setControladoraServicoPagamentos(ISInvestimentoPagamentos*);
+        void setControladoraApresentacaoTitulos(ControladoraApresentacaoTitulos*);
+        void setControladoraApresentacaoPagamentos(ControladoraApresentacaoPagamentos*);
+        bool executarTitulos(CPF);
+        bool executarPagamentos(CPF);
+};
+
+//////////////////////
+
 class ControladoraServicoTitulos:public ISInvestimentoTitulos {
     private:
 
@@ -34,8 +77,8 @@ class ControladoraServicoTitulos:public ISInvestimentoTitulos {
         bool criar(Titulo);
         bool recuperar(Titulo*);
         bool atualizar(Titulo);
-        bool excluir(Titulo);
-        bool listar(Titulo);
+        bool excluir(string);
+        bool listar(vector<Titulo>*, CPF);
 }; 
 
 class ControladoraServicoPagamentos:public ISInvestimentoPagamentos {
@@ -45,9 +88,8 @@ class ControladoraServicoPagamentos:public ISInvestimentoPagamentos {
         bool criar(Pagamento);
         bool recuperar(Pagamento*);
         bool atualizar(Pagamento);
-        bool excluir(Pagamento);
-        bool listar(Pagamento);
+        bool excluir(string);
+        bool listar(vector<Pagamento>*, CodTitulo);
 };
 
 #endif // CONTROLADORAS_H_INCLUDED
-

@@ -4,12 +4,47 @@
 #include "testes.h"
 #include "comandos.h"
 #include "controladoras.h"
+#include "interfaces.h"
+
 
 using namespace std;
 
 int main() {
-    ControladoraServicoTitulos controladora;
-    Titulo titulo;
+    /*
+    sqlite3* db = startConnection("database.db");
+    createTbAcc(db);
+    createTablebTtl(db);
+    createTablePaym(db);
+    endConnection(db);
+    */
+
+    ControladoraServicoTitulos controladoraServicoTitulos;
+    ControladoraServicoPagamentos controladoraServicoPagamentos;
+    ControladoraApresentacaoInvestimentos controladoraApresentacaoInvestimentos;
+    ControladoraApresentacaoTitulos controladoraApresentacaoTitulos;
+    ControladoraApresentacaoPagamentos controladoraApresentacaoPagamentos;
+
+    controladoraApresentacaoInvestimentos.setControladoraApresentacaoTitulos(&controladoraApresentacaoTitulos);
+    controladoraApresentacaoInvestimentos.setControladoraApresentacaoPagamentos(&controladoraApresentacaoPagamentos);
+    controladoraApresentacaoInvestimentos.setControladoraServicoPagamentos(&controladoraServicoPagamentos);
+    controladoraApresentacaoInvestimentos.setControladoraServicoTitulos(&controladoraServicoTitulos);
+
+    CPF cpf;
+    cpf.setValor("059.814.151-00");
+
+    while (true) {
+        if (!controladoraApresentacaoInvestimentos.executarTitulos(cpf)) {
+            break;
+        }
+    }
+
+    while (true) {
+        if (!controladoraApresentacaoInvestimentos.executarPagamentos(cpf)) {
+            break;
+        }
+    }
+
+    /*Titulo titulo;
 
     CodTitulo codigo;
     codigo.setValor("CDB12345678");
@@ -93,6 +128,6 @@ int main() {
     cout << "Pagamento:\n Codigo: " << pagamento.getcodigo().getValor() << endl << " Data: " << pagamento.getdata().getValor() << endl << " Estado: " << pagamento.getestado().getValor() << endl << " Percentual: " << pagamento.getpercentual().getValor() << endl << endl;
 
     controladora2.excluir(pagamento);
-
+    */
     return 0;
 }
