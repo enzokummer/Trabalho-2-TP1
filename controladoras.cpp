@@ -16,7 +16,7 @@ bool CntrIAConta::executar(CPF cpf) {
     std::string texto4 = "3 - Descadastrar conta.";
     std::string texto5 = "4 - Retornar.";
 
-    int campo;
+    char campo;
 
     bool apresentar = true;
 
@@ -33,20 +33,20 @@ bool CntrIAConta::executar(CPF cpf) {
         campo = getchar();
 
         switch (campo) {
-            case 1:
+            case '1':
                 visualizar(cpf);
                 break;
-            case 2:
+            case '2':
                 editar(cpf);
                 break;
-            case 3:
+            case '3':
                 if (descadastrar(cpf)) {
                     std::cout << "Conta descadastrada com sucesso." << std::endl;
                     getchar();
                     return false;
                 }
                 break;
-            case 4:
+            case '4':
                 apresentar = false;
                 break;
         }
@@ -54,7 +54,7 @@ bool CntrIAConta::executar(CPF cpf) {
     return true;
 }
 
-void CntrIAConta::cadastrar() {
+bool CntrIAConta::cadastrar() {
 
     std::string texto1 = "Complete com os seus dados: ";
     std::string texto2 = "Nome:";
@@ -88,7 +88,7 @@ void CntrIAConta::cadastrar() {
     catch (std::invalid_argument &excecao) {
         std::cout << texto6 << std::endl;
         getchar();
-        return;
+        return false;
     }
 
     Conta conta;
@@ -99,18 +99,19 @@ void CntrIAConta::cadastrar() {
     if (cntrISConta->cadastrar(conta)) {
             std::cout << texto7 << std::endl;
             getchar();
-            return;
+            return true;
         }
     
     std::cout << texto8 << std::endl;
     getchar();
+    return false;
 }
 
 void CntrIAConta::visualizar(CPF cpf) {
 
     Conta conta = cntrISConta->visualizar(cpf);
 
-    CLR_SCR;
+    //CLR_SCR;
 
     std::string texto1 = "Aqui estão os seus dados atuais: ";
     std::string texto2 = "Nome: ";
@@ -199,7 +200,7 @@ bool CntrIAConta::descadastrar(CPF cpf) {
     std::string texto4 = "Falha na exclusão. Tente novamente.";
     std::string texto5 = "Descadastramento cancelado.";
 
-    int campo;
+    char campo;
 
     Conta conta = cntrISConta->visualizar(cpf);
 
@@ -212,7 +213,7 @@ bool CntrIAConta::descadastrar(CPF cpf) {
     campo = getchar();
 
     switch (campo) {
-        case 1:
+        case '1':
             if (cntrISConta->descadastrar(cpf)) {
                 return true;
             } else {
@@ -220,9 +221,11 @@ bool CntrIAConta::descadastrar(CPF cpf) {
                 getchar();
                 return false;
             }
-        case 2:
+        case '2':
             std::cout << texto5 << std::endl;
             getchar();
+            return false;
+        default:
             return false;
     }
     return false;
@@ -241,6 +244,7 @@ bool CntrISConta::cadastrar(const Conta& conta) {
 }
 
 Conta CntrISConta::visualizar(const CPF& cpf) {
+    cout << "Acessou o banco de dados" << endl;
     sqlite3* db = startConnection("database.db");
     ContaSQL comandos(db);
     Conta contaLida;
@@ -280,7 +284,8 @@ bool CntrISConta::descadastrar(const CPF &cpf) {
 void CntrAControle::executar(){ // MENU NAO LOGADO
     int opcao;
     CPF* cpfUser = new CPF();
-
+    bool apresentar = true;
+    while(apresentar){
     cout << "*************************************************" << endl;
     cout << "Bem vindo ao Sistema de monitoração de pagamentos e vencimentos de títulos de renda fixa!" << endl;
     cout << "Por favor, selecione a opção desejada" << endl;
@@ -289,16 +294,16 @@ void CntrAControle::executar(){ // MENU NAO LOGADO
     cout << "3. Sair" << endl;
 
     cin >> opcao;
-    bool apresentar = true;
-    while(apresentar){
+    
         switch (opcao) {
         case 1: //criar conta
-            this->cntrAConta->cadastrar();
-            executar(cpfUser);
+            if(this->cntrAConta->cadastrar()){
+                executar(cpfUser);
+            }
             
             break;
         case 2: //login conta
-            cout << "Eu irei agora chamar o método autenticar" << endl;
+            cout << "Eu irei agora chamar o metodo autenticar" << endl;
             
             if(this->cntrAAutenticacao->autenticar(cpfUser)){
                 executar(cpfUser);
@@ -320,21 +325,39 @@ void CntrAControle::executar(){ // MENU NAO LOGADO
 
 void CntrAControle::executar(CPF* cpfUser){ //MENU LOGADO
     int opcao;
-    cout << "Login foi realizado com sucesso! \nSelecione a opção que deseja acessar:" << endl;
-    cout << "1. Contas" << endl;
-    cout << "2. Investimentos" << endl;
-    cout << "3. Menu Inicial" << endl;
-    cin >> opcao;
-
     bool apresentar = true;
     while (apresentar)
     {
+        cout << "Selecione a opção que deseja acessar:" << endl;
+        cout << "1. Contas" << endl;
+        cout << "2. Investimentos" << endl;
+        cout << "3. Menu Inicial" << endl;
+        cin >> opcao;
+
         switch(opcao){
         case 1:
             this->cntrAConta->executar(*cpfUser);
+            getchar();
+            break;
         case 2:
-            cout << "investimentos!!!" << endl;
-    };
+            CLR_SCR;
+            int titOuPag;
+            cout << "1. Titulos \n2.Pagamentos" << endl;
+            cin >> titOuPag;
+            if(titOuPag == 1){
+                this->cntrAInvestimentos->executarTitulos(*cpfUser);
+            } else if(titOuPag == 2){
+                this->cntrAInvestimentos->executarPagamentos(*cpfUser);
+            }
+            break;
+        case 3:
+            apresentar=false;
+            break;
+        default:
+            cout << "Valor inválido, tente novamente" << endl;
+            break;
+        };
+
     }
     
     
@@ -997,7 +1020,7 @@ bool ControladoraServicoTitulos::criar(Titulo titulo) {
         endConnection(db);
         return true;
     } else {
-        endConnection(db);
+    endConnection(db);
         return false;
     }
 };
@@ -1009,7 +1032,7 @@ bool ControladoraServicoTitulos::recuperar(Titulo* titulo) {
         endConnection(db);
         return true;
     } else {
-        endConnection(db);
+    endConnection(db);
         return false;
     }
 };

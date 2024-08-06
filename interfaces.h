@@ -18,7 +18,7 @@ class ISConta{
 class IAConta{
     public:
         virtual bool executar(CPF) = 0;
-        virtual void cadastrar() = 0;
+        virtual bool cadastrar() = 0;
         virtual void setCntrISConta(ISConta*) = 0;
         virtual ~IAConta(){}
 };
