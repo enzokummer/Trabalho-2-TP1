@@ -397,7 +397,7 @@ int main() {
     CntrISAutenticacao* servAutenticacao = new CntrISAutenticacao();
     CntrIAConta* aprConta = new CntrIAConta();
     CntrISConta* servConta = new CntrISConta();
-    /*
+    
     ControladoraServicoTitulos controladoraServicoTitulos;
     ControladoraServicoPagamentos controladoraServicoPagamentos;
     ControladoraApresentacaoInvestimentos controladoraApresentacaoInvestimentos;
@@ -408,12 +408,14 @@ int main() {
     controladoraApresentacaoInvestimentos.setControladoraApresentacaoTitulos(&controladoraApresentacaoTitulos);
     controladoraApresentacaoInvestimentos.setControladoraApresentacaoPagamentos(&controladoraApresentacaoPagamentos);
     controladoraApresentacaoInvestimentos.setControladoraServicoPagamentos(&controladoraServicoPagamentos);
-    controladoraApresentacaoInvestimentos.setControladoraServicoTitulos(&controladoraServicoTitulos);*/
+    controladoraApresentacaoInvestimentos.setControladoraServicoTitulos(&controladoraServicoTitulos);
+    
+
     aprConta->setCntrISConta(servConta);
     autenticacao->setCntrISAutenticacao(servAutenticacao);
     apresentacao->setCntrAAutenticacao(autenticacao);
     apresentacao->setCntrAConta(aprConta);
-
+    apresentacao->setCntrAInvestimentos(&controladoraApresentacaoInvestimentos);
     
     // Chamar o método executar da controladora principal
     apresentacao->executar();

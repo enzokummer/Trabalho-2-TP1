@@ -16,13 +16,13 @@ bool CntrIAConta::executar(CPF cpf) {
     std::string texto4 = "3 - Descadastrar conta.";
     std::string texto5 = "4 - Retornar.";
 
-    int campo;
+    char campo;
 
     bool apresentar = true;
 
     while (apresentar) {
 
-        //CLR_SCR;
+        CLR_SCR;
 
         std::cout << texto1 << std::endl;
         std::cout << texto2 << std::endl;
@@ -33,20 +33,20 @@ bool CntrIAConta::executar(CPF cpf) {
         campo = getchar();
 
         switch (campo) {
-            case 1:
+            case '1':
                 visualizar(cpf);
                 break;
-            case 2:
+            case '2':
                 editar(cpf);
                 break;
-            case 3:
+            case '3':
                 if (descadastrar(cpf)) {
                     std::cout << "Conta descadastrada com sucesso." << std::endl;
                     getchar();
                     return false;
                 }
                 break;
-            case 4:
+            case '4':
                 apresentar = false;
                 break;
         }
@@ -200,7 +200,7 @@ bool CntrIAConta::descadastrar(CPF cpf) {
     std::string texto4 = "Falha na exclusão. Tente novamente.";
     std::string texto5 = "Descadastramento cancelado.";
 
-    int campo;
+    char campo;
 
     Conta conta = cntrISConta->visualizar(cpf);
 
@@ -213,7 +213,7 @@ bool CntrIAConta::descadastrar(CPF cpf) {
     campo = getchar();
 
     switch (campo) {
-        case 1:
+        case '1':
             if (cntrISConta->descadastrar(cpf)) {
                 return true;
             } else {
@@ -221,9 +221,11 @@ bool CntrIAConta::descadastrar(CPF cpf) {
                 getchar();
                 return false;
             }
-        case 2:
+        case '2':
             std::cout << texto5 << std::endl;
             getchar();
+            return false;
+        default:
             return false;
     }
     return false;
@@ -282,7 +284,8 @@ bool CntrISConta::descadastrar(const CPF &cpf) {
 void CntrAControle::executar(){ // MENU NAO LOGADO
     int opcao;
     CPF* cpfUser = new CPF();
-
+    bool apresentar = true;
+    while(apresentar){
     cout << "*************************************************" << endl;
     cout << "Bem vindo ao Sistema de monitoração de pagamentos e vencimentos de títulos de renda fixa!" << endl;
     cout << "Por favor, selecione a opção desejada" << endl;
@@ -291,8 +294,7 @@ void CntrAControle::executar(){ // MENU NAO LOGADO
     cout << "3. Sair" << endl;
 
     cin >> opcao;
-    bool apresentar = true;
-    while(apresentar){
+    
         switch (opcao) {
         case 1: //criar conta
             if(this->cntrAConta->cadastrar()){
@@ -323,23 +325,30 @@ void CntrAControle::executar(){ // MENU NAO LOGADO
 
 void CntrAControle::executar(CPF* cpfUser){ //MENU LOGADO
     int opcao;
-    cout << "Login foi realizado com sucesso! \nSelecione a opção que deseja acessar:" << endl;
-    cout << "1. Contas" << endl;
-    cout << "2. Investimentos" << endl;
-    cout << "3. Menu Inicial" << endl;
-    cin >> opcao;
-
     bool apresentar = true;
     while (apresentar)
     {
+        cout << "Selecione a opção que deseja acessar:" << endl;
+        cout << "1. Contas" << endl;
+        cout << "2. Investimentos" << endl;
+        cout << "3. Menu Inicial" << endl;
+        cin >> opcao;
+
         switch(opcao){
         case 1:
             this->cntrAConta->executar(*cpfUser);
             getchar();
             break;
         case 2:
-            cout << "investimentos!!!" << endl;
-            getchar();
+            CLR_SCR;
+            int titOuPag;
+            cout << "1. Titulos \n2.Pagamentos" << endl;
+            cin >> titOuPag;
+            if(titOuPag == 1){
+                this->cntrAInvestimentos->executarTitulos(*cpfUser);
+            } else if(titOuPag == 2){
+                this->cntrAInvestimentos->executarPagamentos(*cpfUser);
+            }
             break;
         case 3:
             apresentar=false;
@@ -1011,7 +1020,7 @@ bool ControladoraServicoTitulos::criar(Titulo titulo) {
         endConnection(db);
         return true;
     } else {
-        endConnection(db);
+    endConnection(db);
         return false;
     }
 };
@@ -1023,7 +1032,7 @@ bool ControladoraServicoTitulos::recuperar(Titulo* titulo) {
         endConnection(db);
         return true;
     } else {
-        endConnection(db);
+    endConnection(db);
         return false;
     }
 };

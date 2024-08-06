@@ -136,14 +136,20 @@ class CntrAControle { // MODULO DE APRESENTACAO INICIO
         CPF cpf;
         IAAutenticacao *cntrAAutenticacao;
         IAConta *cntrAConta;
+        IAInvestimentos *cntrAInvestimentos;
         //IATeste *cntrATeste;
     public:
         void executar();
         void executar(CPF*);
         void setCntrAAutenticacao(IAAutenticacao*);
         void setCntrAConta(IAConta*);
+        void setCntrAInvestimentos(IAInvestimentos*);
         //void setCntrATeste(IATeste*);
 };
+
+void inline CntrAControle::setCntrAInvestimentos(IAInvestimentos* cntr){
+    cntrAInvestimentos = cntr;
+}
 
 void inline CntrAControle::setCntrAAutenticacao(IAAutenticacao* cntr) {
     cntrAAutenticacao = cntr;
