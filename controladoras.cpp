@@ -739,8 +739,9 @@ bool ControladoraApresentacaoTitulos::excluir(const CPF& cpf) {
     if (confirmacao) {
         if (this->controladoraServico->excluir(codigo.getValor())) {
             cout << "\nTitulo exlcuido com sucesso." << endl << endl;
+        } else {
+            cout << "\nFalha ao excluir Titulo." << endl << endl;
         }
-        cout << "\nFalha ao excluir Titulo." << endl << endl;
     } else {
         cout << "\nExclusao cancelada." << endl << endl;
     }
