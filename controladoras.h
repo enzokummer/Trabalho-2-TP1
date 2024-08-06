@@ -10,6 +10,10 @@
 #define CLR_SCR system("cls");
 using namespace std;
 
+
+// AUTENTICACAO
+// FEITO POR ENZO KUMMER
+
 class CntrIAAutenticacao: public IAAutenticacao {
     private:
         ISAutenticacao *cntrISAutenticacao;
@@ -27,7 +31,8 @@ class CntrISAutenticacao: public ISAutenticacao {
         bool autenticar(const CPF&, const Senha&);
 };
 
-/////////////////////
+// TITULOS E PAGAMENTOS
+// Feito por Pedro de Paula
 
 class ControladoraApresentacaoTitulos {
     private:
@@ -94,4 +99,60 @@ class ControladoraServicoPagamentos:public ISInvestimentoPagamentos {
         bool listar(vector<Pagamento>*, CodTitulo);
 };
 
+// CONTAS
+// Feito por Dagoberto
+
+class CntrISConta: public ISConta {
+    private:
+        ISConta *CntrISConta;
+    public:
+        bool cadastrar(const Conta&);
+        Conta visualizar(const CPF&);
+        bool editar(const Conta&);
+        bool descadastrar(const CPF&);
+};
+
+class CntrIAConta: public IAConta {
+    private:
+        ISConta *cntrISConta;
+        void visualizar(CPF);
+        void editar(CPF);
+        bool descadastrar(CPF);
+        
+    public:
+        bool executar(CPF);
+        void cadastrar();
+        void setCntrISConta(ISConta* CntrISConta);
+        
+};
+
+void inline CntrIAConta::setCntrISConta(ISConta *cntrISConta) {
+    this->cntrISConta = cntrISConta;
+}
+
+
+class CntrAControle {
+    private:
+        CPF cpf;
+        IAAutenticacao *cntrAAutenticacao;
+        IAConta *cntrAConta;
+        //IATeste *cntrATeste;
+    public:
+        void executar();
+        void executar(CPF*);
+        void setCntrAAutenticacao(IAAutenticacao*);
+        void setCntrAConta(IAConta*);
+        //void setCntrATeste(IATeste*);
+};
+
+void inline CntrAControle::setCntrAAutenticacao(IAAutenticacao* cntr) {
+    cntrAAutenticacao = cntr;
+}
+
+void inline CntrAControle::setCntrAConta(IAConta* cntr) {
+    cntrAConta = cntr;
+}
+
+
 #endif // CONTROLADORAS_H_INCLUDED
+

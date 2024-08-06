@@ -7,7 +7,21 @@
 #include <vector>
 
 using namespace std;
-
+class ISConta{
+    public:
+        virtual bool cadastrar(const Conta&) = 0;
+        virtual Conta visualizar(const CPF&) = 0;
+        virtual bool editar(const Conta&) = 0;
+        virtual bool descadastrar(const CPF&) = 0;
+        virtual ~ISConta(){}
+};
+class IAConta{
+    public:
+        virtual bool executar(CPF) = 0;
+        virtual void cadastrar() = 0;
+        virtual void setCntrISConta(ISConta*) = 0;
+        virtual ~IAConta(){}
+};
 
 class ISAutenticacao{
     public:
@@ -20,14 +34,6 @@ class IAAutenticacao{
         virtual bool autenticar(CPF*) = 0;                        // M�todo por meio do qual � solicitado servi�o.
         virtual void setCntrISAutenticacao(ISAutenticacao*) = 0;     // M�todo por meio do qual � estabelecida liga��o (link) com a controladora na camada de servi�o.
         virtual ~IAAutenticacao(){}                                  // Método destrutor virtual
-};
-
-class IAConta{
-
-};
-
-class ISConta{
-
 };
 
 class ISInvestimentoTitulos {
