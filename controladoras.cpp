@@ -22,7 +22,7 @@ bool CntrIAConta::executar(CPF cpf) {
 
     while (apresentar) {
 
-        CLR_SCR;
+        //CLR_SCR;
 
         std::cout << texto1 << std::endl;
         std::cout << texto2 << std::endl;
@@ -54,7 +54,7 @@ bool CntrIAConta::executar(CPF cpf) {
     return true;
 }
 
-void CntrIAConta::cadastrar() {
+bool CntrIAConta::cadastrar() {
 
     std::string texto1 = "Complete com os seus dados: ";
     std::string texto2 = "Nome:";
@@ -88,7 +88,7 @@ void CntrIAConta::cadastrar() {
     catch (std::invalid_argument &excecao) {
         std::cout << texto6 << std::endl;
         getchar();
-        return;
+        return false;
     }
 
     Conta conta;
@@ -99,18 +99,19 @@ void CntrIAConta::cadastrar() {
     if (cntrISConta->cadastrar(conta)) {
             std::cout << texto7 << std::endl;
             getchar();
-            return;
+            return true;
         }
     
     std::cout << texto8 << std::endl;
     getchar();
+    return false;
 }
 
 void CntrIAConta::visualizar(CPF cpf) {
 
     Conta conta = cntrISConta->visualizar(cpf);
 
-    CLR_SCR;
+    //CLR_SCR;
 
     std::string texto1 = "Aqui estão os seus dados atuais: ";
     std::string texto2 = "Nome: ";
@@ -241,6 +242,7 @@ bool CntrISConta::cadastrar(const Conta& conta) {
 }
 
 Conta CntrISConta::visualizar(const CPF& cpf) {
+    cout << "Acessou o banco de dados" << endl;
     sqlite3* db = startConnection("database.db");
     ContaSQL comandos(db);
     Conta contaLida;
@@ -293,12 +295,13 @@ void CntrAControle::executar(){ // MENU NAO LOGADO
     while(apresentar){
         switch (opcao) {
         case 1: //criar conta
-            this->cntrAConta->cadastrar();
-            executar(cpfUser);
+            if(this->cntrAConta->cadastrar()){
+                executar(cpfUser);
+            }
             
             break;
         case 2: //login conta
-            cout << "Eu irei agora chamar o método autenticar" << endl;
+            cout << "Eu irei agora chamar o metodo autenticar" << endl;
             
             if(this->cntrAAutenticacao->autenticar(cpfUser)){
                 executar(cpfUser);
@@ -332,9 +335,20 @@ void CntrAControle::executar(CPF* cpfUser){ //MENU LOGADO
         switch(opcao){
         case 1:
             this->cntrAConta->executar(*cpfUser);
+            getchar();
+            break;
         case 2:
             cout << "investimentos!!!" << endl;
-    };
+            getchar();
+            break;
+        case 3:
+            apresentar=false;
+            break;
+        default:
+            cout << "Valor inválido, tente novamente" << endl;
+            break;
+        };
+
     }
     
     

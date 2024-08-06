@@ -121,7 +121,7 @@ class CntrIAConta: public IAConta {
         
     public:
         bool executar(CPF);
-        void cadastrar();
+        bool cadastrar();
         void setCntrISConta(ISConta* CntrISConta);
         
 };
@@ -131,7 +131,7 @@ void inline CntrIAConta::setCntrISConta(ISConta *cntrISConta) {
 }
 
 
-class CntrAControle {
+class CntrAControle { // MODULO DE APRESENTACAO INICIO
     private:
         CPF cpf;
         IAAutenticacao *cntrAAutenticacao;

@@ -391,8 +391,6 @@ int main() {
         cout << "Falha - Pagamento" << endl;
     }
     */
-    getchar();
-    system("cls");
      // Criar instâncias das controladoras
     CntrAControle* apresentacao = new CntrAControle();
     CntrIAAutenticacao* autenticacao = new CntrIAAutenticacao();
