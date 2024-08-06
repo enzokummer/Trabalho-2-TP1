@@ -853,7 +853,12 @@ bool ControladoraApresentacaoPagamentos::criar() {
     cout << "\nPara criar um Pagamento, preencha os dados a seguir.\n\nDigite o codigo do Titulo ao qual sera associado o pagamento." << endl;
     cin >> input;
     CodTitulo codigo_titulo;
-    codigo_titulo.setValor(input);
+    try {
+        codigo_titulo.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     titulo.setcodigo(codigo_titulo);
     input = "";
 
@@ -867,13 +872,23 @@ bool ControladoraApresentacaoPagamentos::criar() {
     cout << "\nDigite o codigo do Pagamento." << endl;
     cin >> input;
     CodPagamento codigo;
-    codigo.setValor(input);
+    try {
+        codigo.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     input = "";
 
     cout << "\nDigite a data." << endl;
     cin >> input;
     Data data;
-    data.setValor(input);
+    try {
+        data.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     input = "";
 
     //verifica se a data é posterior à data de emissão e anterior à data de vencimento
@@ -885,13 +900,23 @@ bool ControladoraApresentacaoPagamentos::criar() {
     cout << "\nDigite o percentual." << endl;
     cin >> input;
     Percentual percentual;
-    percentual.setValor(input);
+    try {
+        percentual.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     input = "";
     
     cout << "\nDigite o estado." << endl;
     cin >> input;
     Estado estado;
-    estado.setValor(input);
+    try {
+        estado.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     input = "";
 
     pagamento.setcodigoTitulo(codigo_titulo);
@@ -915,7 +940,12 @@ bool ControladoraApresentacaoPagamentos::recuperar() {
     cout << "\nDigite o codigo do Pagamento que deseja ler." << endl;
     cin >> input;
     CodPagamento codigo;
-    codigo.setValor(input);
+    try {
+        codigo.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     pagamento.setcodigo(codigo);
     
     if (this->controladoraServico->recuperar(&pagamento)) {
@@ -933,8 +963,13 @@ bool ControladoraApresentacaoPagamentos::excluir() {
 
     cout << "\nDigite o codigo do Pagamento que deseja excluir." << endl << endl;
     cin >> input;
-    codigo.setValor(input);
-
+    try {
+        codigo.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
+    
     if (this->controladoraServico->excluir(codigo.getValor())) {
         cout << "\nPagamento excluido com sucesso." << endl << endl;
     } else {
@@ -950,7 +985,12 @@ bool ControladoraApresentacaoPagamentos::atualizar() {
 
     cout << "\nDigite o codigo do Pagamento que deseja atualizar." << endl << endl;
     cin >> input;
-    codigo.setValor(input);
+    try {
+        codigo.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     pagamento.setcodigo(codigo);
     input = "";
 
@@ -958,7 +998,12 @@ bool ControladoraApresentacaoPagamentos::atualizar() {
     cin >> input;
     if (input != "0") {
         Data data;
-        data.setValor(input);
+        try {
+            data.setValor(input);
+        } catch (invalid_argument &exc) {
+            cout << endl << exc.what() << endl << endl;
+            return true;
+        }
         pagamento.setdata(data);
     }
     input = "";
@@ -967,7 +1012,12 @@ bool ControladoraApresentacaoPagamentos::atualizar() {
     cin >> input;
     if (input != "0") {
         Estado estado;
-        estado.setValor(input);
+        try {
+            estado.setValor(input);
+        } catch (invalid_argument &exc) {
+            cout << endl << exc.what() << endl << endl;
+            return true;
+        }
         pagamento.setestado(estado);
     }
     input = "";
@@ -976,7 +1026,12 @@ bool ControladoraApresentacaoPagamentos::atualizar() {
     cin >> input;
     if (input != "0") {
         Percentual percentual;
-        percentual.setValor(input);
+        try {
+            percentual.setValor(input);
+        } catch (invalid_argument &exc) {
+            cout << endl << exc.what() << endl << endl;
+            return true;
+        }
         pagamento.setpercentual(percentual);
     }
     input = "";
@@ -996,7 +1051,12 @@ bool ControladoraApresentacaoPagamentos::listar() {
 
     cout << "\nDigite o codigo do Titulo cujos Pagamentos serao listados." << endl;
     cin >> input;
-    codigoDoTitulo.setValor(input);
+    try {
+        codigoDoTitulo.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     
     cout << "\nListando todos os Pagamentos associados ao Titulo de codigo " << codigoDoTitulo.getValor() << endl << endl;
     if (this->controladoraServico->listar(&pagamentos, codigoDoTitulo)) {
