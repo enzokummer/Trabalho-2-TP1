@@ -10,7 +10,7 @@ using namespace std;
 
 bool CntrIAConta::executar(CPF cpf) {
 
-    std::string texto1 = "Selecione um dos serviços: ";
+    std::string texto1 = "Selecione um dos servicos: ";
     std::string texto2 = "1 - Visualizar dados.";
     std::string texto3 = "2 - Editar dados.";
     std::string texto4 = "3 - Descadastrar conta.";
@@ -49,6 +49,9 @@ bool CntrIAConta::executar(CPF cpf) {
             case '4':
                 apresentar = false;
                 break;
+            default:
+                cout << "Opcao invalida, tente novamente";
+                break;
         }
     }
     return true;
@@ -60,7 +63,7 @@ bool CntrIAConta::cadastrar() {
     std::string texto2 = "Nome:";
     std::string texto3 = "CPF:";
     std::string texto4 = "Senha:";
-    std::string texto6 = "Dados em formato inválido. Pressione qualquer tecla para continuar.";
+    std::string texto6 = "Dados em formato invalido. Pressione qualquer tecla para continuar.";
     std::string texto7 = "Conta cadastrada com sucesso. Pressione qualquer tecla para continuar.";
     std::string texto8 = "Falha ao realizar o cadastramento. Pressione qualquer tecla para continuar.";
 
@@ -111,9 +114,9 @@ void CntrIAConta::visualizar(CPF cpf) {
 
     Conta conta = cntrISConta->visualizar(cpf);
 
-    //CLR_SCR;
+    CLR_SCR;
 
-    std::string texto1 = "Aqui estão os seus dados atuais: ";
+    std::string texto1 = "Aqui estao os seus dados atuais: ";
     std::string texto2 = "Nome: ";
     std::string texto3 = "CPF: ";
     std::string texto4 = "Senha: ";
@@ -124,7 +127,7 @@ void CntrIAConta::visualizar(CPF cpf) {
     std::cout << texto3 << conta.getcpf().getValor() << std::endl;
     std::cout << texto4 << conta.getsenha().getValor() << std::endl;
     std::cout << texto6 << std::endl;
-    getchar();
+    system("pause");
 }
 
 void CntrIAConta::editar(CPF cpf) {
@@ -133,7 +136,7 @@ void CntrIAConta::editar(CPF cpf) {
     Senha senha;
     Conta conta = cntrISConta->visualizar(cpf);
 
-    std::string texto1 = "Aqui estão os seus dados atuais: ";
+    std::string texto1 = "Aqui estao os seus dados atuais: ";
     std::string texto2 = "Nome: ";
     std::string texto3 = "CPF: ";
     std::string texto4 = "Senha: ";
@@ -209,7 +212,7 @@ bool CntrIAConta::descadastrar(CPF cpf) {
     std::cout << texto1 << std::endl;
     std::cout << texto2 << std::endl;
     std::cout << texto3 << std::endl;
-
+    system("pause");
     campo = getchar();
 
     switch (campo) {
@@ -218,12 +221,12 @@ bool CntrIAConta::descadastrar(CPF cpf) {
                 return true;
             } else {
                 std::cout << texto4 << std::endl;
-                getchar();
+                system("pause");
                 return false;
             }
         case '2':
             std::cout << texto5 << std::endl;
-            getchar();
+            system("pause");
             return false;
         default:
             return false;
@@ -244,7 +247,6 @@ bool CntrISConta::cadastrar(const Conta& conta) {
 }
 
 Conta CntrISConta::visualizar(const CPF& cpf) {
-    cout << "Acessou o banco de dados" << endl;
     sqlite3* db = startConnection("database.db");
     ContaSQL comandos(db);
     Conta contaLida;
@@ -287,8 +289,8 @@ void CntrAControle::executar(){ // MENU NAO LOGADO
     bool apresentar = true;
     while(apresentar){
     cout << "*************************************************" << endl;
-    cout << "Bem vindo ao Sistema de monitoração de pagamentos e vencimentos de títulos de renda fixa!" << endl;
-    cout << "Por favor, selecione a opção desejada" << endl;
+    cout << "Bem vindo ao Sistema de monitoramento de pagamentos e vencimentos de titulos de renda fixa!" << endl;
+    cout << "Por favor, selecione a opcaoo desejada" << endl;
     cout << "1. Criar Conta" << endl;
     cout << "2. Acessar Conta" << endl;
     cout << "3. Sair" << endl;
@@ -303,7 +305,6 @@ void CntrAControle::executar(){ // MENU NAO LOGADO
             
             break;
         case 2: //login conta
-            cout << "Eu irei agora chamar o metodo autenticar" << endl;
             
             if(this->cntrAAutenticacao->autenticar(cpfUser)){
                 executar(cpfUser);
@@ -324,22 +325,22 @@ void CntrAControle::executar(){ // MENU NAO LOGADO
 }
 
 void CntrAControle::executar(CPF* cpfUser){ //MENU LOGADO
-    int opcao;
+    char opcao;
     bool apresentar = true;
     while (apresentar)
     {
-        cout << "Selecione a opção que deseja acessar:" << endl;
+        cout << "Selecione a opcao que deseja acessar:" << endl;
         cout << "1. Contas" << endl;
         cout << "2. Investimentos" << endl;
         cout << "3. Menu Inicial" << endl;
         cin >> opcao;
 
         switch(opcao){
-        case 1:
+        case '1':
             this->cntrAConta->executar(*cpfUser);
             getchar();
             break;
-        case 2:
+        case '2':
             CLR_SCR;
             int titOuPag;
             cout << "1. Titulos \n2.Pagamentos" << endl;
@@ -350,11 +351,11 @@ void CntrAControle::executar(CPF* cpfUser){ //MENU LOGADO
                 this->cntrAInvestimentos->executarPagamentos(*cpfUser);
             }
             break;
-        case 3:
+        case '3':
             apresentar=false;
             break;
         default:
-            cout << "Valor inválido, tente novamente" << endl;
+            cout << "Valor invalido, tente novamente" << endl;
             break;
         };
 
@@ -368,14 +369,14 @@ bool CntrIAAutenticacao::autenticar(CPF *cpf) {
     string logIn = "********* Tela de Log-In *********";
     string pedeCPF = "CPF:";
     string pedeSenha = "Senha:";
-    string deuErro = "Formato inserido está incorreto. Por favor, tente novamente! (Digite qualquer tecla)";
+    string deuErro = "Formato inserido esta incorreto. Por favor, tente novamente! (Digite qualquer tecla)";
 
     string campo1, campo2;
 
     Senha senha;
 
     while(true) {
-//        CLR_SCR; // LIMPA A TELA
+        CLR_SCR; // LIMPA A TELA
         cout << logIn << endl;
         cout << pedeCPF << " ";
         cin >> campo1;
@@ -387,7 +388,7 @@ bool CntrIAAutenticacao::autenticar(CPF *cpf) {
             senha.setValor(campo2);
             break;
         } catch (invalid_argument &exp) {
-//            CLR_SCR;
+            CLR_SCR;
             cout << deuErro << endl;
             getchar(); // espera o usuário
         }
@@ -418,8 +419,6 @@ bool CntrISAutenticacao::autenticar(const CPF& cpf, const Senha& senha){
    sqlite3* db = startConnection("database.db");
    ContaSQL comandos(db);
    comandos.read(cpf.getValor(), conta2);
-
-   cout << "Banco de dados foi acessado" << endl;
 
    return (conta1.getsenha().getValor() == conta2.getsenha().getValor());
 
