@@ -149,41 +149,73 @@ bool ControladoraApresentacaoTitulos::criar(const CPF& cpf) {
     cout << "Para criar um Titulo, preencha os dados a seguir.\n\nDigite o codigo." << endl;
     cin >> input;
     CodTitulo codigo;
-    codigo.setValor(input);
+    try {
+        codigo.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     input = "";
     cin.ignore(256, '\n');
 
+    //emissor
     cout << "\nDigite o emissor." << endl;
     getline(cin, input);
     Nome emissor;
-    emissor.setValor(input);
+    try {
+        emissor.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     input = "";
 
+    //setor
     cout << "\nDigite o setor." << endl;
     cin >> input;
     Setor setor;
-    setor.setValor(input);
+    try {
+        setor.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     input = "";
 
     //emissao
     cout << "\nDigite a data de emissao." << endl;
     cin >> input;
     Data emissao;
-    emissao.setValor(input);
+    try {
+        emissao.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     input = "";
 
     //vencimento
     cout << "\nDigite a data de vencimento." << endl;
     cin >> input;
     Data vencimento;
-    vencimento.setValor(input);
+    try {
+        vencimento.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     input = "";
 
     //valor
     cout << "\nDigite o valor." << endl;
     cin >> input;
     Dinheiro valor;
-    valor.setValor(input);
+    try {
+        valor.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     input = "";
 
     titulo.setcodigo(codigo);
@@ -209,7 +241,12 @@ bool ControladoraApresentacaoTitulos::recuperar(const CPF& cpf) {
 
     cout << "\nDigite o codigo do Titulo que deseja ler." << endl;
     cin >> input;
-    codigo.setValor(input);
+    try {
+        codigo.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     titulo.setcodigo(codigo);
 
     if (controladoraServico->recuperar(&titulo)) {
@@ -229,7 +266,12 @@ bool ControladoraApresentacaoTitulos::atualizar(const CPF& cpf) {
 
     cout << "\nDigite o codigo do Titulo que deseja atualizar." << endl;
     cin >> input;
-    codigo.setValor(input);
+    try {
+        codigo.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
     titulo.setcodigo(codigo);
     input = "";
     cin.ignore(256, '\n');
@@ -238,7 +280,12 @@ bool ControladoraApresentacaoTitulos::atualizar(const CPF& cpf) {
     getline(cin, input);
     if (input != "0") {
         Nome emissor;
-        emissor.setValor(input);
+        try {
+            emissor.setValor(input);
+        } catch (invalid_argument &exc) {
+            cout << endl << exc.what() << endl << endl;
+            return true;
+        }
         titulo.setemissor(emissor);
     }
     input = "";
@@ -247,7 +294,12 @@ bool ControladoraApresentacaoTitulos::atualizar(const CPF& cpf) {
     cin >> input;
     if (input != "0") {
         Setor setor;
-        setor.setValor(input);
+        try {
+            setor.setValor(input);
+        } catch (invalid_argument &exc) {
+            cout << endl << exc.what() << endl << endl;
+            return true;
+        }
         titulo.setsetor(setor);
     }
     input = "";
@@ -256,7 +308,12 @@ bool ControladoraApresentacaoTitulos::atualizar(const CPF& cpf) {
     cin >> input;
     if (input != "0") {
         Data emissao;
-        emissao.setValor(input);
+        try {
+            emissao.setValor(input);
+        } catch (invalid_argument &exc) {
+            cout << endl << exc.what() << endl << endl;
+            return true;
+        }
         titulo.setemissao(emissao);
     }
     input = "";
@@ -265,7 +322,12 @@ bool ControladoraApresentacaoTitulos::atualizar(const CPF& cpf) {
     cin >> input;
     if (input != "0") {
         Data vencimento;
-        vencimento.setValor(input);
+        try {
+            vencimento.setValor(input);
+        } catch (invalid_argument &exc) {
+            cout << endl << exc.what() << endl << endl;
+            return true;
+        }
         titulo.setvencimento(vencimento);
     }
     input = "";
@@ -274,7 +336,12 @@ bool ControladoraApresentacaoTitulos::atualizar(const CPF& cpf) {
     cin >> input;
     if (input != "0") {
         Dinheiro valor;
-        valor.setValor(input);
+        try {
+            valor.setValor(input);
+        } catch (invalid_argument &exc) {
+            cout << endl << exc.what() << endl << endl;
+            return true;
+        }
         titulo.setvalor(valor);
     }
     input = "";
@@ -294,8 +361,13 @@ bool ControladoraApresentacaoTitulos::excluir(const CPF& cpf) {
 
     cout << "\nDigite o codigo do Titulo que deseja excluir" << endl;
     cin >> input;
-    codigo.setValor(input);
-
+    try {
+        codigo.setValor(input);
+    } catch (invalid_argument &exc) {
+        cout << endl << exc.what() << endl << endl;
+        return true;
+    }
+    
     cout << "\nO Titulo de codigo " << codigo.getValor() << " sera excluido permantentemente, deseja prosseguir? Digite 1 para confirmar e 0 para cancelar." << endl;
     cin >> confirmacao;
     if (confirmacao) {
