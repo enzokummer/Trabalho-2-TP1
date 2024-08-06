@@ -797,11 +797,11 @@ bool ControladoraApresentacaoPagamentos::verificaEmissao(Data emissao, Data data
     ano_emissao = stoi(aux_emissao);
     ano_data = stoi(aux_data);
 
-    if (ano_data > ano_emissao) {
+    if (ano_data < ano_emissao) {
         return false;
-    } else if (mes_data > mes_emissao) {
+    } else if (ano_data == ano_emissao && mes_data < mes_emissao) {
         return false;
-    } else if (dia_data > dia_emissao) {
+    } else if (ano_data == ano_emissao && mes_data == mes_emissao && dia_data < dia_emissao) {
         return false;
     }
     return true;
@@ -835,11 +835,11 @@ bool ControladoraApresentacaoPagamentos::verificaVencimento(Data vencimento, Dat
     ano_vencimento = stoi(aux_vencimento);
     ano_data = stoi(aux_data);
 
-    if (ano_data < ano_vencimento) {
+    if (ano_data > ano_vencimento) {
         return false;
-    } else if (mes_data < mes_vencimento) {
+    } else if (ano_data == ano_vencimento && mes_data > mes_vencimento) {
         return false;
-    } else if (dia_data < dia_vencimento) {
+    } else if (ano_data == ano_vencimento && mes_data == mes_vencimento && dia_data > dia_vencimento) {
         return false;
     }
     return true;
